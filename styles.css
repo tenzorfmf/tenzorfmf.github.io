@@ -65,7 +65,7 @@ h2 {
 }
 
 .menu a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 16px;
     padding: 10px 20px;
@@ -76,7 +76,7 @@ h2 {
 
 .menu a:hover {
     background-color: #4adae2;
-    color: #f0f4f8;
+    color: #000000;
 }
 .site-logo {
     height: 50px; /* Adjust the height to fit your design */
