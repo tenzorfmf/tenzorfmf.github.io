@@ -66,14 +66,14 @@ h2 {
 
 .menu li {
     /*margin: 0 15px;*/
-    top:-20px;
+    top:20px;
 }
 
 .menu a {
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 16px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 4px;
