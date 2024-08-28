@@ -55,8 +55,9 @@ h2 {
     display: flex;
     justify-content: center;
     background-color: #ffffff;
+    
+    padding: 30px 0px;
     /*
-    padding: 10px;
     margin-bottom: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
