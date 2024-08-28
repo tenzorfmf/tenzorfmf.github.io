@@ -20,7 +20,7 @@ body {
 header {
     background-color: #ffffff;
     color: rgb(60, 9, 9);
-    padding: 20px 0;
+    /*padding: 20px 0;*/
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -33,7 +33,7 @@ header h1 {
 
 /* Main content area with buffer zone */
 main {
-    padding: 30px 40px;  /* Added horizontal padding */
+    /*padding: 30px 40px; */ /* Added horizontal padding */
     max-width: 1200px;
     margin: 0 auto;  /* Center the main content */
 }
@@ -44,9 +44,10 @@ h2 {
     color: rgb(72, 0, 0);
     padding: 15px;
     font-size: 1.8em;
+    /*
     margin-bottom: 20px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
 }
 
 /* Navigation menu styling */
@@ -61,11 +62,12 @@ h2 {
     box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
     */
 }
-/*
+
 .menu li {
-    margin: 0 15px;
+    /*margin: 0 15px;*/
+    top:-20px;
 }
-*/
+
 .menu a {
     color: rgb(0, 0, 0);
     text-decoration: none;
