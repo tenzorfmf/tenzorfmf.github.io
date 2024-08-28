@@ -78,7 +78,12 @@ h2 {
     background-color: #4adae2;
     color: #f0f4f8;
 }
-
+.site-logo {
+    height: 50px; /* Adjust the height to fit your design */
+    width: auto; /* Keep the aspect ratio of the logo */
+    margin-right: 20px; /* Space between the logo and the text */
+    vertical-align: middle; /* Align the logo with the text */
+}
 /* Responsive Menu for smaller screens */
 @media (max-width: 600px) {
     .menu {
