@@ -10,7 +10,7 @@ body, ul {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #e7eed9;
-    color: #000000;
+    color: #291414;
     line-height: 1.6;
     margin: 0;
     padding: 15;
@@ -19,7 +19,7 @@ body {
 /* Header styling */
 header {
     background-color: #ffffff;
-    color: white;
+    color: rgb(60, 9, 9);
     padding: 20px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -40,8 +40,8 @@ main {
 
 /* Section headings */
 h2 {
-    background-color: #000000;
-    color: white;
+    background-color: #fefefe;
+    color: rgb(72, 0, 0);
     padding: 15px;
     font-size: 1.8em;
     margin-bottom: 20px;
