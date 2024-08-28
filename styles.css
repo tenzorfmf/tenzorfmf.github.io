@@ -54,16 +54,18 @@ h2 {
     display: flex;
     justify-content: center;
     background-color: #ffffff;
+    /*
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
+    */
 }
-
+/*
 .menu li {
     margin: 0 15px;
 }
-
+*/
 .menu a {
     color: rgb(0, 0, 0);
     text-decoration: none;
