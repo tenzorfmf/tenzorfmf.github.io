@@ -142,7 +142,10 @@ p {
     margin-bottom: 20px;
     font-size: 1.1em;
 }
-
+img.site-logo {
+    width: 100px;  /* Adjust width as needed */
+    height: auto;  /* Maintains aspect ratio */
+  }
 /* Media Queries for Responsive Design */
 @media (max-width: 600px) {
     .menu {
