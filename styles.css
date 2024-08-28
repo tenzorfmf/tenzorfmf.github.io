@@ -145,7 +145,10 @@ p {
 img.site-logo {
     width: 100px;  /* Adjust width as needed */
     height: auto;  /* Maintains aspect ratio */
+    position: relative;
+    top: -20px;
   }
+
 /* Media Queries for Responsive Design */
 @media (max-width: 600px) {
     .menu {
