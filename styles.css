@@ -1,7 +1,7 @@
 /* Reset basic styles */
 body, ul {
     margin: 0;
-    padding: 0;
+    padding: 40px;
     list-style-type: none;
     box-sizing: border-box;
 }
@@ -13,7 +13,7 @@ body {
     color: #291414;
     line-height: 1.6;
     margin: 0;
-    padding: 15;
+    padding: 40px;
 }
 
 /* Header styling */
@@ -57,7 +57,7 @@ h2 {
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(63, 22, 210, 0.1);
 }
 
 .menu li {
