@@ -94,6 +94,7 @@ h2 {
 
     .menu li {
         margin: 10px 0;
+        margin-top: -20px;
     }
 
     header h1 {
