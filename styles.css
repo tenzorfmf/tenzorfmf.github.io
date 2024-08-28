@@ -33,7 +33,7 @@ header h1 {
 
 /* Main content area with buffer zone */
 main {
-    padding: 30px -30px; /* Added horizontal padding */ 
+    padding: -30px 30px; /* Added horizontal padding */ 
     max-width: 1200px;
     margin: 0 auto;  /* Center the main content */
 }
