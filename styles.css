@@ -1,0 +1,130 @@
+/* Reset basic styles */
+body, ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+
+/* Body and font styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    background-color: #26cc7f;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+/* Main content area */
+main {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Section headings */
+h2 {
+    background-color: #4c58c0;
+    color: white;
+    padding: 15px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation menu styling */
+.menu {
+    display: flex;
+    justify-content: center;
+    background-color: #1bd676;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+}
+
+.menu a:hover {
+    background-color: #aa0b95;
+    color: #ddd;
+}
+
+/* Styling for lists */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #4f96de;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #5293e1;
+    text-decoration: underline;
+}
+
+/* Responsive Menu for smaller screens */
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+}
+
+/* Additional styles for better layout */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
