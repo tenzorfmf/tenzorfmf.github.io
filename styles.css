@@ -48,6 +48,7 @@ h2 {
 
 /* Navigation menu styling */
 .menu {
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     background-color: #ffffff;
@@ -186,7 +187,7 @@ img.site-logo {
 
 .dropdown-header {
     cursor: pointer;
-    
+    border-radius: 8px;
     margin: 0px 0;
     padding: 0px;
     background-color: #ffffff;
