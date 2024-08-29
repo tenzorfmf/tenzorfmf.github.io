@@ -56,8 +56,7 @@ h2 {
     justify-content: center;
     background-color: #ffffff;
     margin-bottom: 0px;
-    padding: 0px 0px;
-    top:20px;
+    padding: 10px 0px;
     /*
     
     border-radius: 4px;
@@ -71,7 +70,7 @@ h2 {
 
 .menu li {
     /*margin: 0 15px;*/
-    top: 20px;
+    top: -20px;
 }
 
 .menu a {
@@ -82,6 +81,8 @@ h2 {
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 4px;
+    top: -20px;
+
 }
 
 .menu a:hover {
@@ -93,6 +94,7 @@ h2 {
     width: auto; /* Keep the aspect ratio of the logo */
     justify-content: left;
     margin-right: 20px; /* Space between the logo and the text */
+    top: -20px;
     vertical-align: middle; /* Align the logo with the text */
 }
 /* Responsive Menu for smaller screens */
