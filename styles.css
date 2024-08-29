@@ -189,10 +189,11 @@ img.site-logo {
 
 .dropdown-header {
     cursor: pointer;
+    /*
     margin: 10px 0;
     padding: 10px;
     background-color: #f0f0f0;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; */
 }
 .dropdown-content {
     display: none;
