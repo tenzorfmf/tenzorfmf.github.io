@@ -44,10 +44,10 @@ h2 {
     color: rgb(72, 0, 0);
     padding: 15px;
     font-size: 1.8em;
-    /*
-    margin-bottom: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    
+    margin-bottom: 0px;
+    border-radius: 0px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);*/
 }
 
 /* Navigation menu styling */
@@ -57,11 +57,11 @@ h2 {
     background-color: #ffffff;
     margin-bottom: -10px;
     padding: 10px 0px;
-    /*
     
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
-    */
+    
+    border-radius: 0px;
+    box-shadow: 0 rgba(255, 0, 0, 0.1);
+    
 }
 
 .menu ul{
@@ -69,7 +69,7 @@ h2 {
 }
 
 .menu li {
-    /*margin: 0 15px;*/
+    margin: 0 0px;
     top: -20px;
 }
 
@@ -189,11 +189,11 @@ img.site-logo {
 
 .dropdown-header {
     cursor: pointer;
-    /*
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd; */
+    
+    margin: 0px 0;
+    padding: 0px;
+    background-color: #ffffff;
+    border: 0px solid #ffffff; 
 }
 .dropdown-content {
     display: none;
