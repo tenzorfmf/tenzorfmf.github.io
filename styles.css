@@ -20,10 +20,9 @@ body {
 header {
     background-color: #ffffff;
     color: rgb(60, 9, 9);
-    padding: 0px;
+    padding: 10px;
     text-align: center;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -49,34 +48,29 @@ h2 {
 
 /* Navigation menu styling */
 .menu {
-    border-radius: 8px;
     display: flex;
     justify-content: center;
     background-color: #ffffff;
     margin-bottom: -10px;
     padding: 10px 0px;
-    margin: 0;
+    
     
 }
 
 .menu ul{
     top: 20px;
-    margin: 0;
-    padding: 0;
 }
 
 .menu li {
     margin: 0 0px;
     top: -20px;
-    margin: 0;
-    padding: 0;
 }
 
 .menu a {
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 16px;
-    padding: 0;
+    padding: 10px 10px;
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 4px;
@@ -188,7 +182,7 @@ img.site-logo {
 
 .dropdown-header {
     cursor: pointer;
-    border-radius: 8px;
+    
     margin: 0px 0;
     padding: 0px;
     background-color: #ffffff;
