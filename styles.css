@@ -42,12 +42,8 @@ main {
 h2 {
     background-color: #fefefe;
     color: rgb(72, 0, 0);
-    padding: 15px;
+    padding: 10px;
     font-size: 1.8em;
-    
-    margin-bottom: 0px;
-    border-radius: 0px;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);*/
 }
 
 /* Navigation menu styling */
