@@ -201,7 +201,7 @@ img.site-logo {
 .button-row button {
     margin-right: 10px;
 }
-
+/**/
 .profile-block {
     display: flex;
     align-items: center;
@@ -213,8 +213,8 @@ img.site-logo {
 }
 
 .profile-photo {
-    width: 150px; /* Adjust the width of the photo */
-    height: 150px; /* Adjust the height of the photo */
+    width: 200px; /* Adjust the width of the photo */
+    height: 200px; /* Adjust the height of the photo */
     object-fit: cover; /* Ensures the photo covers the area without distortion */
     border-radius: 50%; /* Makes the photo circular, remove this if you want a square image */
     margin-right: 20px; /* Adds space between the photo and the text */
@@ -234,3 +234,57 @@ img.site-logo {
     line-height: 1.5; /* Improves readability */
 }
 
+@media (max-width: 768px) {
+    .profile-block {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-photo {
+      margin: 0 0 20px 0;
+      width: 100px;
+      height: 100px;
+    }
+}
+
+/*Arrow*/
+/* Default styles for dropdown arrows */
+.dropdown-header {
+    cursor: pointer;
+    margin: 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    position: relative; /* Needed for absolute positioning of the arrow */
+}
+
+.dropdown-header h2 {
+    margin: 0;
+    display: inline;
+}
+
+.arrow {
+    font-size: 1em;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Arrow pointing down by default */
+.arrow {
+    display: inline-block;
+    transform: rotate(0deg);
+}
+
+/* When dropdown is open, rotate the arrow */
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content.hide {
+    display: none;
+}
+
+.dropdown-header .arrow.up {
+    transform: rotate(-180deg); /* Arrow pointing up */
+}

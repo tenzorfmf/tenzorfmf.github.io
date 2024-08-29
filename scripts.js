@@ -1,8 +1,16 @@
 function toggleDropdown(id) {
     var element = document.getElementById(id);
-    if (element.style.display === "none" || element.style.display === "") {
-        element.style.display = "block";
+    var header = element.previousElementSibling; // Assuming the header is immediately before the content
+    var arrow = header.querySelector('.arrow');
+    
+    if (element.classList.contains('show')) {
+        element.classList.remove('show');
+        element.classList.add('hide');
+        arrow.classList.remove('up');
     } else {
-        element.style.display = "none";
+        element.classList.remove('hide');
+        element.classList.add('show');
+        arrow.classList.add('up');
     }
 }
+
