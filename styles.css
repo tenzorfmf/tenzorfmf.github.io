@@ -201,7 +201,7 @@ img.site-logo {
 .button-row button {
     margin-right: 10px;
 }
-
+/*+++++++++++++++++++++*/
 .profile-block {
     display: flex;
     align-items: center;
@@ -233,4 +233,17 @@ img.site-logo {
     color: #333; /* Optional: sets the text color */
     line-height: 1.5; /* Improves readability */
 }
+
+@media (max-width: 768px) {
+    .profile-block {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-photo {
+      margin: 0 0 20px 0;
+      width: 100px;
+      height: 100px;
+    }
 
