@@ -23,46 +23,52 @@
     <h1>Koristne Povezave Page</h1>
     <p>Tu lahko najdete koriste povezave, ki vam lahko pomagajo pri študiju.</p>
     <h2>Splošno</h2>
-    <li><a href="https://www.fmf.uni-lj.si/sl/"></a>Splošno</li>
+    <li><a href="https://www.fmf.uni-lj.si/sl/">Splošno</a></li>
 
-    <div class="dropdown-header" onclick="toggleDropdown('naloge')"><h2>Matematika</h2></div>
-    <div id="naloge" class="dropdown-content">
-        <li><a href="https://www.fmf.uni-lj.si/sl/studij-matematike/"></a>Študij matematike</li>
+    <div class="dropdown-header" onclick="toggleDropdown('Mat')"><h2>Matematika</h2></div>
+    <div id="Mat" class="dropdown-content">
+        <li><a href="https://www.fmf.uni-lj.si/sl/studij-matematike/">Študij matematike</a></li>
         <p>Gradiva za pomoč pri študiju na južni strani FMF.</p>
 
-        <h3>Dodiplomski študij</h3>
-        <h4>Matematika</h4>
-        <h4>Finančna matematika</h4>
-        <h4>Pedagoška matematika</h4>
-        <h4>Računalništvo in matematika</h4>
-        <h4>Praktična/Aplikativna matematika</h4>
+        <div class="dropdown-header" onclick="toggleDropdown('Mat-dod')"><h3>Dodiplomski študij</h3></div>
+        <div id="Mat-dod" class="dropdown-content">
+            <h4>Matematika</h4>
+            <h4>Finančna matematika</h4>
+            <h4>Pedagoška matematika</h4>
+            <h4>Računalništvo in matematika</h4>
+            <h4>Praktična/Aplikativna matematika</h4>
+        </div>
 
-        <h3>magisterski študij</h3>
-        <h4>Matematika</h4>
-        <h4>Finančna matematika</h4>
-        <h4>Računalništvo in matematika</h4>
-        <h4>Pedagoška matematika</h4>
-        <h4>Uporabna statistika</h4>
+        <div class="dropdown-header" onclick="toggleDropdown('Mat-mag')"><h3>Magisterski študij</h3></div>
+        <div id="Mat-mag" class="dropdown-content">
+            <h4>Matematika</h4>
+            <h4>Finančna matematika</h4>
+            <h4>Računalništvo in matematika</h4>
+            <h4>Pedagoška matematika</h4>
+            <h4>Uporabna statistika</h4>
+        </div>
     </div>
     
-    <h4>Fizika</h4>
-    <h4>Medicinska fizika</h4>
-    <h4>Jedrska tehnika</h4>
-    <h4>Pedagoška fizika</h4>
 
-    <h2>Fizika</h2>
-    <li><a href="https://www.fmf.uni-lj.si/sl/studij-fizike/"></a>Študij fizike</li>
-    <p>Gradiva za pomoč pri študiju na severni strani FMF.</p>
+    <div class="dropdown-header" onclick="toggleDropdown('Fiz')"><h2>Fizika</h2></div>
+    <div id="Fiz" class="dropdown-content">
+        <li><a href="https://www.fmf.uni-lj.si/sl/studij-fizike/">Študij fizike</a></li>
+        <p>Gradiva za pomoč pri študiju na severni strani FMF.</p>
     
-    <h3>Dodiplomski študij</h3>
-    <h4>Fizika</h4>
-    <h4>Aplikativna fizika</h4>
-
-    <h3>magisterski študij</h3>
-    <h4>Fizika</h4>
-    <h4>Medicinska fizika</h4>
-    <h4>Jedrska tehnika</h4>
-    <h4>Pedagoška fizika</h4>
+        <div class="dropdown-header" onclick="toggleDropdown('Fiz-dod')"><h3>Dodiplomski študij</h3></div>
+        <div id="Fiz-dod" class="dropdown-content">
+            <h4>Fizika</h4>
+            <h4>Aplikativna fizika</h4>
+        </div>
+    
+        <div class="dropdown-header" onclick="toggleDropdown('Fiz-mag')"><h3>Magisterski študij</h3></div>
+        <div id="Fiz-mag" class="dropdown-content">
+            <h4>Fizika</h4>
+            <h4>Medicinska fizika</h4>
+            <h4>Jedrska tehnika</h4>
+            <h4>Pedagoška fizika</h4>
+        </div>
+    </div>
 
 </body>
 </html>
