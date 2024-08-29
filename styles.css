@@ -201,3 +201,36 @@ img.site-logo {
 .button-row button {
     margin-right: 10px;
 }
+
+.profile-block {
+    display: flex;
+    align-items: center;
+    margin: 20px 0; /* Adds space above and below each block */
+    padding: 15px;
+    border: 1px solid #ccc; /* Optional: adds a border around the block */
+    border-radius: 8px; /* Optional: rounds the corners of the block */
+    background-color: #f9f9f9; /* Optional: sets the background color */
+}
+
+.profile-photo {
+    width: 150px; /* Adjust the width of the photo */
+    height: 150px; /* Adjust the height of the photo */
+    object-fit: cover; /* Ensures the photo covers the area without distortion */
+    border-radius: 50%; /* Makes the photo circular, remove this if you want a square image */
+    margin-right: 20px; /* Adds space between the photo and the text */
+}
+
+.profile-text {
+    max-width: 600px; /* Limits the width of the text block */
+}
+
+.profile-text h2 {
+    margin: 0 0 10px 0; /* Adds space below the heading */
+}
+
+.profile-text p {
+    margin: 0; /* Removes default margins */
+    color: #333; /* Optional: sets the text color */
+    line-height: 1.5; /* Improves readability */
+}
+
