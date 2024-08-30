@@ -46,6 +46,13 @@ h2 {
     font-size: 1.8em;
 }
 
+h3 {
+    background-color: #fefefe;
+    color: rgb(72, 0, 0);
+    padding: 5px;
+    font-size: 1.4em;
+}
+
 /* Navigation menu styling */
 .menu {
     display: flex;
