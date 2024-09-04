@@ -297,3 +297,75 @@ img.site-logo {
 .dropdown-header .arrow.up {
     transform: rotate(-180deg); /* Arrow pointing up */
 }
+
+
+/* da je kot latex*/
+.latex-style {
+    font-family: 'Crimson Text', serif;
+    margin: 20px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.latex-style h1, 
+.latex-style h2, 
+.latex-style h3, 
+.latex-style h4, 
+.latex-style h5, 
+.latex-style h6 {
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.latex-style h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.latex-style h2 {
+    font-size: 1.5em;
+}
+
+.latex-style h3 {
+    font-size: 1.25em;
+}
+
+.latex-style p, 
+.latex-style ul, 
+.latex-style ol {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+.latex-style ul, 
+.latex-style ol {
+    margin-left: 20px;
+}
+
+.latex-style strong {
+    font-weight: bold;
+}
+
+.latex-style em {
+    font-style: italic;
+}
+
+.latex-style blockquote {
+    margin: 20px;
+    padding-left: 15px;
+    border-left: 5px solid #ddd;
+}
+
+.latex-style code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95em;
+}
+
+.latex-style hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 30px 0;
+}
