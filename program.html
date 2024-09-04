@@ -13,7 +13,7 @@
             height: 0;
             padding-bottom: 75%; /* Aspect ratio (e.g., 4:3 ratio) */
         }
-        .pdf-container iframe {
+        .pdf-container object {
             position: absolute;
             top: 0;
             left: 0;
@@ -24,68 +24,67 @@
 
         @media (max-width: 768px) {
             .pdf-container {
-            position: center;
-            width: 100%;
-            height: 200;
-            padding-bottom: 100%; /* Aspect ratio (e.g., 4:3 ratio) */
+                width: 100%;
+                height: 100vh; /* Adjusted to fill the viewport height */
+                padding-bottom: 0; /* Removing aspect ratio padding for full height */
+            }
+            .pdf-container object {
+                width: 100%;
+                height: 100%;
+            }
+            header {     
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #e7eed9;
+                color: #291414;
+                margin: 20px; /* Adjusting margins */
+                padding: 20px; /* Adjusting padding */
+            }
+            .div-pdf {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #e7eed9;
+                color: #291414;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #e7eed9;
+                color: #291414;
+                margin: 0;
+                padding: 0;
+            }
         }
-            .pdf-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-            header{     
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e7eed9;
-            color: #291414;
-            margin: 40px;
-            padding: 40px;
-        }
-            div-pdf{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e7eed9;
-            color: #291414;
-            line-height: 1.6;
-            margin: 00px;
-            padding: 00px;
-        }
-
-        body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e7eed9;
-            color: #291414;
-            margin: 00px;
-            padding: 00px;
-        }
-}
-
     </style>
 </head>
 <body>
     <header>
-            <ul class="menu">
-                <img src="assets/logo.png" alt="Site Logo" class="site-logo">
-                <li><a href="index.html">Domov</a></li>
-                <li><a href="program.html">Program</a></li>
-                <li><a href="clani.html">Člani</a></li>
-                <li><a href="dogodki.html">Dogodki</a></li>
-                <li><a href="koristne_povezave.html">Koristne povezave</a></li>
-              <li><a href="kontakti.html">Kontakti</a></li>
-            </ul>
-        
+        <ul class="menu">
+            <img src="assets/logo.png" alt="Site Logo" class="site-logo">
+            <li><a href="index.html">Domov</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="clani.html">Člani</a></li>
+            <li><a href="dogodki.html">Dogodki</a></li>
+            <li><a href="koristne_povezave.html">Koristne povezave</a></li>
+            <li><a href="kontakti.html">Kontakti</a></li>
+        </ul>
     </header>
     <h1>Program</h1>
     <div class="div-pdf">
-        
         <div class="pdf-container">
-            <iframe src="sou.pdf" </iframe>
+            <object
+                data="sou.pdf"
+                type="application/pdf"
+                width="100%"
+                height="100%"
+            >
+                <p>
+                    Your browser does not support PDFs. 
+                    <a href="sou.pdf" download>Download the PDF</a>.
+                </p>
+            </object>
         </div>
     </div>
-</body>
-</html>
     <script src="scripts.js"></script>
 </body>
 </html>
