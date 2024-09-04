@@ -23,6 +23,12 @@
         }
 
         @media (max-width: 768px) {
+            .pdf-container {
+            position: relative;
+            width: 130%;
+            height: 0;
+            padding-bottom: 75%; /* Aspect ratio (e.g., 4:3 ratio) */
+        }
             .pdf-container iframe {
             position: absolute;
             top: 0;
