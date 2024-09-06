@@ -8,15 +8,11 @@ body, ul {
 /* Body and font styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffffd3;
+    background-color: #e7eed9;
     color: #291414;
     line-height: 1.6;
     margin: 40px;
     padding: 40px;
-}
-
-div{
-    background-color: #ffffff;
 }
 
 /* Header styling */
@@ -43,14 +39,14 @@ main {
 
 /* Section headings */
 h2 {
-
+    background-color: #fefefe;
     color: rgb(72, 0, 0);
     padding: 10px;
     font-size: 1.8em;
 }
 
 h3 {
-
+    background-color: #fefefe;
     color: rgb(72, 0, 0);
     padding: 5px;
     font-size: 1.4em;
