@@ -1,6 +1,8 @@
 /* Reset basic styles */
 body, ul {
-       box-sizing: border-box;
+    
+    list-style-type: none;
+    box-sizing: border-box;
 }
 
 /* Body and font styling */
@@ -62,7 +64,7 @@ h3 {
 .menu ul{
     margin-top: 60px;
     padding-top: 40px;
-    margin-bottom: -40px;
+    margin-bottom: -20px;
     padding-bottom: 0px;
 }
 
