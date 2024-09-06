@@ -1,8 +1,6 @@
 /* Reset basic styles */
 body, ul {
-    padding: 40px;
-    list-style-type: none;
-    box-sizing: border-box;
+       box-sizing: border-box;
 }
 
 /* Body and font styling */
@@ -56,12 +54,8 @@ h3 {
 .menu {
     display: flex;
     justify-content: center;
-    background-color: #ffffff;
-    padding: 10px 0px;
-    
-    
-    border-radius: 0px;
-    box-shadow: 0 rgba(255, 0, 0, 0.1);
+    padding: 0px 0px;
+
     
 }
 
