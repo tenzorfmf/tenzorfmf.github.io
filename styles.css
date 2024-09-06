@@ -1,6 +1,5 @@
 /* Reset basic styles */
 body, ul {
-    margin: 0;
     padding: 40px;
     list-style-type: none;
     box-sizing: border-box;
