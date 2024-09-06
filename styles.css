@@ -68,7 +68,10 @@ h3 {
 }
 
 .menu ul{
-    top: -20px;
+    top: 0px;
+    padding-top: 40px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .menu li {
