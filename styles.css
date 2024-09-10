@@ -289,3 +289,45 @@ img.site-logo {
 }
 
 
+/*menu*/
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove space between table cells */
+    margin-bottom: 20px;
+    font-size: 1em;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Light border between rows */
+    color: #291414; /* Text color */
+}
+
+th {
+    background-color: #f0f0f0; /* Light background for table headers */
+    color: #9432af; /* Accent color for header text */
+    font-weight: 600; /* Bold header */
+    text-transform: uppercase; /* Capitalize header text */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+tr:hover {
+    background-color: #e7eed9; /* Highlight on hover */
+}
+
+@media (max-width: 600px) {
+    table {
+        font-size: 0.9em; /* Slightly smaller font size for small screens */
+    }
+
+    th, td {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
