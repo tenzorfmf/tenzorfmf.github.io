@@ -324,6 +324,7 @@ tr:hover {
 
 @media (max-width: 600px) {
     table {
+        align-items: center;
         font-size: 0.9em; /* Slightly smaller font size for small screens */
     }
 
