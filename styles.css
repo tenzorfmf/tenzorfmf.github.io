@@ -342,17 +342,20 @@ tr:hover {
     padding: 10px;
 }
 
-/* Uniform image size */
+/* Uniform image size with enforced width and height */
 .photo-grid img {
-    width: 100%; /* Make images take full width of the grid cell */
-    max-height: 400px; /* Set a max height to ensure uniformity */
-    max-width: 300px;
-    object-fit: cover; /* Maintain aspect ratio, center and crop if needed */
+    width: 100%; /* Full width of the grid cell */
+    height: 500px; /* Enforce the height */
+    object-fit: cover; /* Crop the image to fit the size */
 }
 
 /* Responsive design for phones (stack images vertically) */
 @media (max-width: 600px) {
     .photo-grid {
         grid-template-columns: 1fr; /* One column on small screens */
+    }
+
+    .photo-grid img {
+        height: 300px; /* Enforce a smaller height for mobile */
     }
 }
