@@ -27,8 +27,8 @@
 
         /* Uniform image size with enforced width and height */
         .photo-grid img {
-            width: 1000px; /* Force all images to be 1000px wide */
-            height: 600px; /* Force all images to be 600px high */
+            width: 100%; /* Full width of the grid cell */
+            height: 300px; /* Fixed height for all images */
             object-fit: cover; /* Crop the image to fit the size */
         }
 
@@ -39,8 +39,9 @@
             }
 
             .photo-grid img {
-                width: 100%; /* Make images responsive */
-                height: auto; /* Maintain aspect ratio on smaller screens */
+                width: 100%; /* Full width of the grid cell */
+                height: auto; /* Allow height to adjust for smaller screens */
+                object-fit: contain; /* Keep full image visible on smaller screens */
             }
         }
     </style>
