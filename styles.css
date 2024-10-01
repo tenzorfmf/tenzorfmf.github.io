@@ -344,8 +344,7 @@ tr:hover {
 
 /* Uniform image size with enforced width and height */
 .photo-grid img {
-    width: 100%; /* Full width of the grid cell */
-    height: 500px; /* Enforce the height */
+    width: 1000px; /* Full width of the grid cell */
     object-fit: cover; /* Crop the image to fit the size */
 }
 
@@ -357,5 +356,6 @@ tr:hover {
 
     .photo-grid img {
         height: 300px; /* Enforce a smaller height for mobile */
+        width: 300px; 
     }
 }
