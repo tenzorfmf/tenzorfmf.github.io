@@ -15,6 +15,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogodki</title>
+
+    <style>
+        /* Main container */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            gap: 10px; /* Space between the images */
+            padding: 10px;
+        }
+
+        /* Uniform image size with enforced width and height */
+        .photo-grid img {
+            width: 1000px; /* Force all images to be 1000px wide */
+            height: 600px; /* Force all images to be 600px high */
+            object-fit: cover; /* Crop the image to fit the size */
+        }
+
+        /* Responsive design for phones (stack images vertically) */
+        @media (max-width: 600px) {
+            .photo-grid {
+                grid-template-columns: 1fr; /* One column on small screens */
+            }
+
+            .photo-grid img {
+                width: 100%; /* Make images responsive */
+                height: auto; /* Maintain aspect ratio on smaller screens */
+            }
+        }
+    </style>
+
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <link rel="icon" href="assets/logo.ico" type="image/x-icon">
 </head>
