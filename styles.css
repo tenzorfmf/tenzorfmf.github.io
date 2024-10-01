@@ -334,20 +334,19 @@ tr:hover {
 }
 
 /* za slike */
-
- /* Main container */
- .photo-grid {
+/* Main container */
+.photo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: 10px; /* Space between the images */
     padding: 10px;
 }
 
-/* Styling individual images */
+/* Uniform image size */
 .photo-grid img {
     width: 100%; /* Make images take full width of the grid cell */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Cover the available space without stretching */
+    max-height: 400px; /* Set a max height to ensure uniformity */
+    object-fit: cover; /* Maintain aspect ratio, center and crop if needed */
 }
 
 /* Responsive design for phones (stack images vertically) */
