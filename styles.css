@@ -346,6 +346,7 @@ tr:hover {
 .photo-grid img {
     width: 100%; /* Make images take full width of the grid cell */
     max-height: 400px; /* Set a max height to ensure uniformity */
+    max-width: 300px;
     object-fit: cover; /* Maintain aspect ratio, center and crop if needed */
 }
 
