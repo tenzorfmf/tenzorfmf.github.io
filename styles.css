@@ -332,3 +332,31 @@ tr:hover {
         padding: 10px; /* Adjust padding for smaller screens */
     }
 }
+/* plakati */
+
+    /* Main container */
+    .photo-grid {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; 
+    padding: 10px;
+}
+
+/* Uniform image size with enforced width and height */
+.photo-grid img {
+    width: 1000px; /* Full width of the grid cell */
+}
+
+
+@media (max-width: 600px) {
+    .photo-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .photo-grid img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; 
+    }
+}

@@ -16,34 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogodki</title>
 
-    <style>
-        /* Main container */
-        .photo-grid {
-            grid-template-columns: 1fr 1fr;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px; 
-            padding: 10px;
-        }
-
-        /* Uniform image size with enforced width and height */
-        .photo-grid img {
-            width: 1000px; /* Full width of the grid cell */
-        }
-
-        
-        @media (max-width: 600px) {
-            .photo-grid {
-                grid-template-columns: 1fr; 
-            }
-
-            .photo-grid img {
-                width: 100%;
-                height: auto;
-                object-fit: contain; 
-            }
-        }
-    </style>
 
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <link rel="icon" href="assets/logo.ico" type="image/x-icon">
@@ -64,7 +36,7 @@
     <h1>Dogodki</h1>
     <p>Dogodki, ki jih orgarnizira stranka tenzor.</p>
     
-    <h1>Reklamno gradivo/Kampanija</h1>
+    <h1>Reklamno gradivo-letaki</h1>
     <div class="photo-grid">
         <!-- You can replace the src with your actual image paths -->
         <img src="letaki/program šz/program šz-1.png" alt="Image 1" >
@@ -79,6 +51,11 @@
         <img src="letaki/program šz-1/program šz-1-2.png" alt="Image 10" >
         <img src="letaki/zakaj volitve/zakaj volitve-1.png" alt="Image 11" >
         <img src="letaki/zakaj volitve/zakaj volitve-2.png" alt="Image 12" >
+    </div>
+    <h1>Plakati</h1>
+    <div style="text-align: center;">
+        <img src="plakati/FMF BOAT PARTY ZAKAJ /FMF BOAT PARTY ZAKAJ -1.png" alt="Image 13" style="max-width: 100%; height: auto;">
+        <img src="plakati/ZASTONJ BILJARD/ZASTONJ BILJARD-1.png" alt="Image 14" style="max-width: 100%; height: auto;">
     </div>
     <script src="scripts.js"></script>
 </body>
