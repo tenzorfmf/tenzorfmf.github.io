@@ -1,0 +1,58 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t, org, site } from '../../utils/i18n';
+
+interface Props {
+  locale: Locale;
+  contactHref: string;
+}
+const { locale, contactHref } = Astro.props;
+const strings = t(locale);
+const o = org(locale);
+---
+
+<footer class="site-footer">
+  <span class="site-footer__org">{o.footerText}</span>
+  <div class="site-footer__links">
+    <a href={contactHref}>{strings.contacts}</a>
+    <a href={`mailto:${o.contact.email}`}>{o.contact.email}</a>
+    <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: var(--pad);
+    border-top: 1px solid var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-footer-wrap);
+    justify-content: space-between;
+    font: var(--footer);
+    color: var(--ink-60);
+  }
+  .site-footer__links {
+    display: flex;
+    gap: var(--gap-footer-links);
+    flex-wrap: wrap;
+  }
+  .site-footer__links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .site-footer__links a:hover {
+    text-decoration: underline;
+  }
+  .site-footer__links a {
+    transition: color 150ms ease;
+  }
+  .site-footer__links a:hover {
+    color: var(--ink);
+  }
+  @media (min-width: 900px) {
+    .site-footer {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+</style>

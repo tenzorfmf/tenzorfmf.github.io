@@ -1,0 +1,44 @@
+---
+import { defaultLocale } from '../i18n/config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t } from '../utils/i18n';
+
+const locale = defaultLocale;
+const sl = t('sl');
+const en = t('en');
+---
+
+<BaseLayout
+  locale={locale}
+  title="404 — Stran ni najdena | Page not found | Tenzor"
+  description="Stran ne obstaja ali je bila premaknjena. This page does not exist or has been moved."
+  canonicalPath="/404/"
+  noindex={true}
+  pagefindBody={false}
+>
+  <h1 class="nf-h1">404</h1>
+  <p class="nf-body">Stran ne obstaja ali je bila premaknjena.</p>
+  <p class="nf-body">
+    <a class="nf-link" href={`/sl/`}>{sl.home}</a>
+  </p>
+  <p class="nf-body">This page does not exist or has been moved.</p>
+  <p class="nf-body">
+    <a class="nf-link" href={`/en/`}>{en.home}</a>
+  </p>
+
+  <style>
+    .nf-h1 {
+      font: var(--h1-page);
+      margin: 32px 0 14px;
+    }
+    .nf-body {
+      font: var(--page-intro);
+      color: var(--ink-80);
+      margin: 0 0 12px;
+    }
+    .nf-link {
+      color: var(--accent);
+      font: var(--quicklink);
+    }
+  </style>
+</BaseLayout>

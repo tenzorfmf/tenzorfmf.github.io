@@ -1,0 +1,29 @@
+---
+translationKey: "campaign-archive"
+lang: "en"
+title: "Campaign archive"
+slug: "campaign-archive"
+summary: "Promotional material from Tenzor's past election and informational campaigns — flyers and posters."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Campaign archive"
+  parent: "section-events"
+  order: 60
+search:
+  type: "archive"
+seo:
+  title: "Campaign archive | Tenzor"
+  description: "Flyers and posters from Tenzor's past campaigns."
+  noindex: false
+---
+
+import CampaignArchive from '@/components/content/CampaignArchive.astro';
+import PageIntro from '@/components/content/PageIntro.astro';
+
+<PageIntro text={frontmatter.summary} />
+
+Collected promotional material from past campaigns. For event reports, see
+[Past events](/en/events/past-events/).
+
+<CampaignArchive locale={frontmatter.lang} />

@@ -1,0 +1,20 @@
+---
+translationKey: "upcoming-events"
+lang: "sl"
+title: "Prihajajoči dogodki"
+slug: "prihajajoci-dogodki"
+summary: "Napovedani dogodki, ki jih pripravlja Tenzor."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Prihajajoči dogodki"
+  parent: "section-events"
+  order: 40
+---
+
+import PostList from '@/components/content/PostList.astro';
+
+Spodaj so dogodki, ki so že potrjeni. Za vsak dogodek objavimo tudi kratko napoved
+s časom in lokacijo.
+
+<PostList locale={frontmatter.lang} scope="upcoming" />

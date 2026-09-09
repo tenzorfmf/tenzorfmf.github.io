@@ -1,0 +1,20 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import { sectionChildren, sectionsForLocale } from '../../utils/content';
+import { pagePath } from '../../utils/routes';
+import SectionIndex from './SectionIndex.astro';
+
+interface Props {
+  locale: Locale;
+  sectionKey: string;
+}
+const { locale, sectionKey } = Astro.props;
+const sections = await sectionsForLocale(locale);
+const items = (await sectionChildren(locale, sectionKey)).map((entry) => ({
+  href: pagePath(entry, sections),
+  title: entry.data.title,
+}));
+---
+
+{items.length > 0 && <SectionIndex eyebrow={t(locale).explore} items={items} />}

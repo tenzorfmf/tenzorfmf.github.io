@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+<div class="group-heading eyebrow eyebrow--accent">{text}</div>
+
+<style>
+  .group-heading {
+    border-top: 2px solid var(--ink);
+    padding-top: 20px;
+    margin: 8px 0 20px;
+  }
+</style>

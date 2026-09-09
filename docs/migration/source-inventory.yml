@@ -1,0 +1,96 @@
+# Every legacy source file and what became of it.
+# Source of truth: docs/tenzorfmf.github.io-main/*.html (not the scrape).
+generated: 2026-08-29
+legacyRoot: docs/tenzorfmf.github.io-main/
+
+pages:
+  - legacy: index.html
+    target:
+      - src/content/pages/sl/home.md            # intro (3 lines)
+      - src/content/posts/sl/2024-06-01--zakaj-ne-podpiramo-stanja.md  # "Ker ne želimo" dossier + Viri, verbatim
+    notes: >
+      Home keeps only the 3-line intro. The numbered dossier (7 citations, the
+      Court of Audit quotation) and the "Viri" list moved verbatim into the
+      document post and became the "Important now" featured item. The two
+      relative PDF links were broken; repointed at /media/documents/.
+  - legacy: clani.html
+    target: src/content/pages/sl/members.md
+    notes: >
+      6 bios verbatim. Groups: "Študentski zbor" (Timen Bobnar, Aleksej Luka
+      Golobič), "Člani stranke Tenzor" (Lara Pustinek Miočić, Maj Požar, Staša
+      Korpič, Jakob Sever Klasinc). Names Title Case per blueprint (source was
+      UPPERCASE). The 6 assets/logo.png placeholder portraits dropped (blueprint
+      member block is text-only). Empty "## Sodelujoči" heading kept.
+  - legacy: finance.html
+    target: src/content/pages/sl/finance.md
+    notes: >
+      One paragraph (now the frontmatter summary) + a raw <iframe> to a published
+      Google Sheet. The iframe URL moved into a typed `embed:` field rendered by
+      SheetEmbed, with a visible fallback link. No MDX.
+  - legacy: program.html
+    target: src/content/pages/sl/programme.md
+    notes: >
+      Body was only an embedded sou.pdf via <object>. Now a page with an
+      `attachments` entry rendered by AttachmentList. The <object> embed is not
+      reproduced.
+  - legacy: letni_program.html
+    target: src/content/pages/sl/annual-programme.md
+    notes: >
+      Single <h1>: "Program za leto 2025/26 je v izdelavi in ga lahko
+      pričakujete kmalu." Verbatim, shown in the designed empty state.
+  - legacy: pretekli_dogodki.html
+    target:
+      - src/content/pages/sl/past-events.md      # archive index
+      - src/content/posts/sl/2024-*.md           # 14 kind:archive posts (12 letak + 2 plakat)
+    notes: >
+      Intro "Dogodki, ki jih je orgarnizira stranka tenzor." (typo verbatim).
+      "## Reklamno gradivo-letaki" (12 flyers) + "## Plakati" (2 posters). Each
+      image is its own archive post; the index groups them by tag.
+  - legacy: koristne_povezave.html
+    target: src/content/pages/sl/useful-links.md
+    notes: >
+      Deepest content. Nested headings h2->h3->h4 + a Markdown table, authored
+      verbatim in the body and styled by the LinkTree component. Roommate table
+      holds legacy placeholder data (Ime1 | 100E | contact@example.com | Lj.
+      center). Several sub-headings have no links under them (Uporabna
+      statistika, Medicinska fizika, Jedrska tehnika, Pedagoška fizika).
+  - legacy: kontakti.html
+    target: src/content/pages/sl/contacts.md
+    notes: >
+      Email + Instagram, rendered from src/data/site.sl.yml by the contact
+      layout. Inline Instagram SVG colour (#EC008C) dropped.
+  - legacy: studencka_soba.html
+    target: src/content/pages/sl/student-room.md
+    notes: Genuinely empty in the legacy source. Empty state, in nav, search.include:false.
+  - legacy: obvestilnik.html
+    target: src/content/pages/sl/newsletter.md
+    notes: Genuinely empty. Same treatment.
+  - legacy: ucbeniski_sklad.html
+    target: src/content/pages/sl/textbook-fund.md
+    notes: Four real paragraphs about the textbook buy-back scheme, verbatim, including the closing <em> line.
+
+newSectionPages:
+  - src/content/pages/sl/section-program.md    # "Program"     -> /sl/program/
+  - src/content/pages/sl/section-finance.md    # "Finance"     -> /sl/finance/
+  - src/content/pages/sl/section-events.md     # "Dogodki"     -> /sl/dogodki/
+  - src/content/pages/sl/section-students.md   # "Za študente" -> /sl/za-studente/
+  - src/content/pages/sl/section-about.md      # "O Tenzorju"  -> /sl/o-tenzorju/
+  notes: >
+    Five domain landing pages. Their intro prose is NEWLY WRITTEN (no source) and
+    needs Tenzor's sign-off — see unresolved-content.md.
+
+media:
+  pdfs:
+    - legacy: sou.pdf
+      target: public/media/documents/sou.pdf
+    - legacy: "ŠOU revizijsko poročilo.pdf"
+      target: public/media/documents/sou-revizijsko-porocilo.pdf
+    - legacy: "VSEBINSKA OBRAZLOŽITEV PREDLOGA REBALANSA FINANČNEGA NAČRTA ZA LETO 2024.pdf"
+      target: public/media/documents/vsebinska-obrazlozitev-rebalans-2024.pdf
+  images: see content-map.yml
+
+assetsNotShipped:
+  - docs/claude-design-blueprint-01/support.js        # canvas runtime
+  - docs/claude-design-blueprint-01/Tenzor Search - standalone.html
+  - docs/tenzorfmf.github.io-main/assets/logo*.png|ico  # placeholder logos; mark chosen instead
+  - Google Analytics snippet (G-CW1NQH713K) in every legacy page — dropped

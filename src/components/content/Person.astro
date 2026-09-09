@@ -1,0 +1,58 @@
+---
+interface Props {
+  id?: string;
+  name: string;
+  programme?: string;
+  role?: string;
+  candidate?: boolean;
+}
+const { id, name, programme, role, candidate = false } = Astro.props;
+const meta = [programme, role].filter(Boolean).join(' · ');
+---
+
+<article class="person" id={id} data-pagefind-meta={`person:${name}`}>
+  <h3 class:list={['person__name', { 'person__name--candidate': candidate }]}>{name}</h3>
+  {meta && <div class="person__meta">{meta}</div>}
+  <div class="person__bio"><slot /></div>
+</article>
+
+<style>
+  .person {
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 28px;
+  }
+  .person:last-child {
+    border-bottom: none;
+  }
+  .person__name {
+    font: var(--member-name);
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .person__name--candidate {
+    font: var(--member-name-candidate);
+  }
+  .person__meta {
+    font: 500 12px/1.5 var(--sans);
+    color: var(--ink-55);
+    margin-bottom: 10px;
+  }
+  .person__bio :global(p) {
+    font: 400 14px/1.7 var(--sans);
+    color: var(--ink-85);
+    margin: 0 0 10px;
+  }
+  .person__bio :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  .person__bio :global(ul) {
+    margin: 0 0 10px;
+    padding-left: 20px;
+    font: var(--list);
+    color: var(--ink-85);
+  }
+  .person__bio :global(ul:last-child) {
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+# Copy this file into src/content/pages/<sl|en>/<name>.mdx and edit.
+# Frontmatter is validated at build time. MDX components compose the page body.
+
+translationKey: "moja-stran"        # stable, language-independent id; translations share it
+lang: "sl"                          # must match sl/ or en/
+title: "Moja stran"                 # H1 and default <title>
+slug: "moja-stran"                  # locale-specific URL segment; lowercase-ascii-hyphens
+summary: "Ena poved, ki opiše stran." # SEO; render it explicitly with <PageIntro>
+draft: false
+updatedAt: 2026-01-01
+
+nav:
+  include: true
+  label: "Moja stran"
+  section: main
+  parent: "section-students"        # parent domain translationKey; null for a top-level domain
+  order: 50
+
+search:
+  include: true
+  type: page                         # page | person | document | archive
+
+seo:
+  title: "Moja stran | Tenzor"
+  description: "Meta description."
+  noindex: false
+
+aliases:
+  - /stara-pot.html
+
+# Keep reusable structured data in frontmatter. Render it where it belongs below.
+# attachments:
+#   - label: "Program (PDF)"
+#     path: /media/documents/program.pdf
+#     mediaType: application/pdf
+#     language: sl
+---
+
+import PageIntro from '@/components/content/PageIntro.astro';
+
+<PageIntro text={frontmatter.summary} />
+
+Prosto besedilo piši v Markdownu. Med besedilo lahko vstaviš omejen nabor
+komponent, na primer `<SheetEmbed />`, `<PageAttachments />`,
+`<EventList />`, `<PostArchive />`, `<CampaignArchive />`, `<SectionChildren />`,
+`<ContactDetails />` ali `<LinkTree>`.
+
+Za seznam ljudi (npr. kandidatov) uporabi `<PeopleGroup heading="..." candidate>`
+z gnezdenimi `<Person id="..." name="..." programme="...">`, kjer je telo
+komponente navadni Markdown životopis:
+
+```mdx
+<PeopleGroup heading="Skupina">
+
+<Person id="ime-priimek" name="Ime Priimek" programme="Matematika">
+
+Kratek opis v Markdownu, po potrebi z odstavki ali seznami.
+
+</Person>
+
+</PeopleGroup>
+```
+
+`candidate` na `<PeopleGroup>` je izbiren in poudari imena znotraj skupine.
+
+Vsaka slika `![alt](pot)` mora imeti neprazen alt.

@@ -1,0 +1,35 @@
+---
+translationKey: "programme"
+lang: "sl"
+title: "Program 2023/24"
+slug: "program-2023-24"
+summary: "Arhivski program študentske liste Tenzor za mandat 2023/24, na voljo kot dokument PDF."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Program 2023/24"
+  parent: "section-program"
+  order: 30
+search:
+  type: "document"
+seo:
+  title: "Program 2023/24 | Tenzor"
+  description: "Arhivski program študentske liste Tenzor za mandat 2023/24."
+  noindex: false
+aliases:
+  - "/program.html"
+  - "/sl/program/program/"
+attachments:
+  - label: "Program (PDF)"
+    path: "/media/documents/sou.pdf"
+    mediaType: "application/pdf"
+    language: "sl"
+---
+
+import AttachmentList from '@/components/content/AttachmentList.astro';
+
+To je program za mandat 2023/24. Aktualne prioritete so opisane v
+razdelku [Program](/sl/program/), načrt za tekoče leto pa v
+[Letnem programu](/sl/program/letni-program/). Arhivski dokument odpri spodaj.
+
+<AttachmentList locale={frontmatter.lang} attachments={frontmatter.attachments} />

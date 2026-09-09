@@ -1,0 +1,73 @@
+---
+interface Props {
+  loadingText: string;
+  emptyText: string;
+  errorText: string;
+}
+const { loadingText, emptyText, errorText } = Astro.props;
+---
+
+<div class="results" data-search-results aria-live="polite">
+  <p class="results__status" data-results-count hidden></p>
+  <p class="results__msg" data-results-loading hidden>{loadingText}</p>
+  <p class="results__msg" data-results-empty hidden>{emptyText}</p>
+  <p class="results__msg results__msg--error" data-results-error hidden>{errorText}</p>
+  <div data-results-list></div>
+</div>
+
+<template data-result-template>
+  <a class="result" href="#">
+    <div class="result__title"></div>
+    <div class="result__meta"></div>
+    <p class="result__snippet"></p>
+  </a>
+</template>
+
+<style>
+  .results {
+    border-top: 1px solid var(--ink);
+  }
+  .results__status {
+    font: var(--footer);
+    color: var(--ink-45);
+    padding: 16px 0 0;
+  }
+  .results__msg {
+    font: 400 13px/1.6 var(--sans);
+    color: var(--ink-60);
+    padding: 16px 0;
+  }
+  .results__msg--error {
+    color: var(--accent);
+  }
+  .results :global(.result) {
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .results :global(.result:last-child) {
+    border-bottom: none;
+  }
+  .results :global(.result__title) {
+    font: var(--search-result-title);
+    margin-bottom: 5px;
+  }
+  .results :global(.result__meta) {
+    font: var(--meta);
+    color: var(--ink-50);
+    margin-bottom: 6px;
+  }
+  .results :global(.result__snippet) {
+    margin: 0;
+    font: 400 13px/1.6 var(--sans);
+    color: var(--ink-80);
+  }
+  .results :global(mark) {
+    background: var(--tint);
+    color: var(--ink);
+    font-weight: 600;
+    padding: 0 1px;
+  }
+</style>

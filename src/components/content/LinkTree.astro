@@ -1,0 +1,116 @@
+---
+/**
+ * Editorial styling wrapper for a deeply nested MDX link page.
+ * The content itself is authored as Markdown (headings h2–h4 + bullet lists);
+ * this component gives it the ruled-index look without changing the source.
+ */
+---
+
+<div class="linktree">
+  <slot />
+</div>
+
+<style>
+  .linktree :global(h2) {
+    font: 700 18px/1.3 var(--serif);
+    color: var(--ink);
+    padding-top: 16px;
+    margin: 32px 0 12px;
+  }
+  .linktree :global(h2:first-child) {
+    margin-top: 0;
+  }
+  .linktree :global(h3) {
+    font: 600 13px/1.3 var(--sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 22px 0 8px;
+  }
+  .linktree :global(h3 a) {
+    color: var(--accent);
+  }
+  .linktree :global(h4) {
+    font: 700 14px/1.3 var(--serif);
+    color: var(--ink);
+    margin: 16px 0 6px;
+  }
+  .linktree :global(p) {
+    font: 400 13px/1.6 var(--sans);
+    color: var(--ink-60);
+    margin: 6px 0 10px;
+  }
+  .linktree :global(ul) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+  }
+  .linktree :global(li) {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    margin: 0;
+  }
+  .linktree :global(li:last-child) {
+    border-bottom: none;
+  }
+  .linktree :global(li a) {
+    font: var(--linkrow-md);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .linktree :global(li a:hover) {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .linktree :global(details) {
+    border-bottom: 1px solid var(--rule);
+  }
+  .linktree :global(details[open]) {
+    padding-bottom: 8px;
+  }
+  .linktree :global(summary) {
+    font: 700 14px/1.3 var(--serif);
+    color: var(--ink);
+    padding: 12px 0;
+    cursor: pointer;
+    /* Keep the native disclosure marker inside the row: the label then starts
+       after it instead of aligning where the marker would otherwise sit. */
+    list-style-position: inside;
+  }
+  .linktree :global(summary::-webkit-details-marker) {
+    color: var(--ink-50);
+  }
+  .linktree :global(summary:hover) {
+    color: var(--accent);
+  }
+  .linktree :global(details ul) {
+    margin: 0 0 4px;
+  }
+  .linktree :global(details li:first-child) {
+    border-top: 1px solid var(--rule);
+  }
+  .linktree :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font: 400 13px/1.6 var(--sans);
+    margin: 10px 0 20px;
+    display: block;
+    overflow-x: auto;
+  }
+  .linktree :global(th),
+  .linktree :global(td) {
+    border: 1px solid var(--rule);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .linktree :global(th) {
+    font-weight: 600;
+  }
+
+  .linktree :global(li a) {
+    transition: color 150ms ease;
+  }
+  .linktree :global(summary) {
+    transition: color 150ms ease;
+  }
+</style>

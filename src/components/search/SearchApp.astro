@@ -1,0 +1,253 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import { postsForLocale, pagesForLocale } from '../../utils/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../navigation/Breadcrumbs.astro';
+import SearchBox from './SearchBox.astro';
+import FilterChips from './FilterChips.astro';
+import SearchResults from './SearchResults.astro';
+
+interface Props {
+  locale: Locale;
+  canonicalPath: string;
+}
+const { locale, canonicalPath } = Astro.props;
+const strings = t(locale);
+
+// Build-time facets, derived from indexed content (never hard-coded).
+const pages = (await pagesForLocale(locale)).filter((p) => p.data.search.include !== false && !p.data.draft);
+const posts = (await postsForLocale(locale)).filter((p) => p.data.search.include !== false && !p.data.draft);
+
+const typeSet = new Set<string>();
+pages.forEach((p) => typeSet.add(p.data.search.type));
+posts.forEach((p) => typeSet.add(p.data.search.type));
+
+const yearSet = new Set<string>();
+posts.forEach((p) => yearSet.add(String(p.data.publishedAt.getUTCFullYear())));
+pages.forEach((p) => p.data.updatedAt && yearSet.add(String(p.data.updatedAt.getUTCFullYear())));
+
+const TYPE_LABELS: Record<string, string> = {
+  page: strings.filterPage,
+  news: strings.filterNews,
+  event: strings.filterEvent,
+  document: strings.filterDocument,
+  person: strings.filterPerson,
+  archive: strings.filterArchive,
+};
+
+const typeChips = [
+  { value: '', label: strings.filterAll },
+  ...[...typeSet].sort().map((v) => ({ value: v, label: TYPE_LABELS[v] ?? v })),
+];
+const yearChips = [
+  { value: '', label: strings.filterAll },
+  ...[...yearSet].sort().reverse().map((v) => ({ value: v, label: v })),
+];
+
+const crumbs = [
+  { label: strings.breadcrumbHome, href: `/${locale}/` },
+  { label: strings.search, href: null },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${strings.search} | Tenzor`}
+  description={strings.searchPlaceholder}
+  canonicalPath={canonicalPath}
+  noindex={true}
+  pagefindBody={false}
+  wide={true}
+  currentPath={canonicalPath}
+>
+  <Breadcrumbs crumbs={crumbs} locale={locale} />
+  <h1 class="search-h1">{strings.search}</h1>
+
+  <SearchBox label={strings.searchLabel} placeholder={strings.searchPlaceholder} />
+
+  <div data-facet="type">
+    <FilterChips chips={typeChips} group="type" />
+  </div>
+  {
+    yearChips.length > 1 && (
+      <div data-facet="year">
+        <FilterChips chips={yearChips} group="year" />
+      </div>
+    )
+  }
+
+  <SearchResults
+    loadingText={strings.searchLoading}
+    emptyText={strings.noResults}
+    errorText={strings.searchError}
+  />
+</BaseLayout>
+
+<style>
+  .search-h1 {
+    font: var(--h1-page);
+    color: var(--ink);
+    margin: 0 0 20px;
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-search-results]');
+  const input = document.querySelector<HTMLInputElement>('[data-search-input]');
+  const listEl = document.querySelector<HTMLElement>('[data-results-list]');
+  const tpl = document.querySelector<HTMLTemplateElement>('[data-result-template]');
+  const countEl = document.querySelector<HTMLElement>('[data-results-count]');
+  const loadingEl = document.querySelector<HTMLElement>('[data-results-loading]');
+  const emptyEl = document.querySelector<HTMLElement>('[data-results-empty]');
+  const errorEl = document.querySelector<HTMLElement>('[data-results-error]');
+  const html = document.documentElement;
+  const locale = html.lang.startsWith('sl') ? 'sl' : 'en';
+
+  if (root && input && listEl && tpl) {
+    let pagefind: any = null;
+    let loadFailed = false;
+
+    const state = { q: '', type: '', year: '' };
+
+    const readURL = () => {
+      const p = new URLSearchParams(location.search);
+      state.q = p.get('q') ?? '';
+      state.type = p.get('type') ?? '';
+      state.year = p.get('year') ?? '';
+    };
+
+    const writeURL = (push: boolean) => {
+      const p = new URLSearchParams();
+      if (state.q) p.set('q', state.q);
+      if (state.type) p.set('type', state.type);
+      if (state.year) p.set('year', state.year);
+      const url = `${location.pathname}${p.toString() ? '?' + p.toString() : ''}`;
+      if (push) history.pushState(null, '', url);
+      else history.replaceState(null, '', url);
+    };
+
+    const syncChips = () => {
+      document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+        const key = group.getAttribute('data-filter-group')!;
+        const active = (state as any)[key] ?? '';
+        group.querySelectorAll<HTMLButtonElement>('[data-filter-value]').forEach((btn) => {
+          const on = (btn.getAttribute('data-filter-value') ?? '') === active;
+          btn.classList.toggle('chip--active', on);
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      });
+    };
+
+    const show = (el: HTMLElement | null, on: boolean) => el && (on ? el.removeAttribute('hidden') : el.setAttribute('hidden', ''));
+
+    const ensurePagefind = async () => {
+      if (pagefind || loadFailed) return;
+      try {
+        // @ts-ignore - resolved at runtime from the built site; excluded from the Vite bundle (astro.config.mjs)
+        pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+        await pagefind.options({ excerptLength: 24 });
+        await pagefind.init();
+      } catch (e) {
+        loadFailed = true;
+        console.warn('Pagefind unavailable:', e);
+      }
+    };
+
+    const clearResults = () => {
+      listEl.replaceChildren();
+      show(countEl, false);
+      show(emptyEl, false);
+      show(errorEl, false);
+    };
+
+    const render = (items: any[], total: number) => {
+      listEl.replaceChildren();
+      for (const data of items) {
+        const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+        const a = node as HTMLAnchorElement;
+        a.href = data.url;
+        node.querySelector('.result__title')!.textContent = data.meta?.title ?? data.url;
+        const f = data.filters ?? {};
+        const metaBits = [f.type?.[0], f.category?.[0], f.year?.[0]].filter(Boolean);
+        node.querySelector('.result__meta')!.textContent = metaBits.join(' · ');
+        node.querySelector('.result__snippet')!.innerHTML = data.excerpt ?? '';
+        listEl.appendChild(node);
+      }
+      countEl!.textContent =
+        locale === 'sl'
+          ? `Rezultati: ${items.length} od ${total}.`
+          : `Showing ${items.length} of ${total} results.`;
+      show(countEl, true);
+      show(emptyEl, items.length === 0);
+    };
+
+    let seq = 0;
+    const runSearch = async () => {
+      const mine = ++seq;
+      clearResults();
+      if (!state.q.trim()) return;
+
+      show(loadingEl, true);
+      await ensurePagefind();
+      if (mine !== seq) return;
+
+      if (loadFailed || !pagefind) {
+        show(loadingEl, false);
+        show(errorEl, true);
+        return;
+      }
+
+      const filters: Record<string, string[]> = { lang: [locale] };
+      if (state.type) filters.type = [state.type];
+      if (state.year) filters.year = [state.year];
+
+      try {
+        const res = await pagefind.search(state.q, { filters });
+        if (mine !== seq) return;
+        const slice = await Promise.all(res.results.slice(0, 30).map((r: any) => r.data()));
+        show(loadingEl, false);
+        render(slice, res.results.length);
+      } catch (e) {
+        console.warn(e);
+        show(loadingEl, false);
+        show(errorEl, true);
+      }
+    };
+
+    let debounce: number | undefined;
+    input.addEventListener('input', () => {
+      window.clearTimeout(debounce);
+      debounce = window.setTimeout(() => {
+        state.q = input.value;
+        writeURL(false);
+        runSearch();
+      }, 180);
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+      const key = group.getAttribute('data-filter-group')!;
+      group.querySelectorAll<HTMLButtonElement>('[data-filter-value]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          (state as any)[key] = btn.getAttribute('data-filter-value') ?? '';
+          syncChips();
+          writeURL(true);
+          runSearch();
+        });
+      });
+    });
+
+    window.addEventListener('popstate', () => {
+      readURL();
+      input.value = state.q;
+      syncChips();
+      runSearch();
+    });
+
+    // initial load
+    readURL();
+    input.value = state.q;
+    syncChips();
+    if (state.q) runSearch();
+  }
+</script>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#efece4;font-family:system-ui,sans-serif}
+.dv-turn{padding:40px 44px 60px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 14px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-tsub{font:400 12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.55);margin:0 0 26px;max-width:680px}
+.dv-opts{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:600 13px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.75)}
+.dv-odesc{font:400 11.5px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5);max-width:340px;margin:-4px 0 0}
+.dv-card{display:flex;gap:20px;flex-wrap:wrap}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:30px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.mark{-webkit-mask:url(assets/tenzor-mark.svg) center/contain no-repeat;mask:url(assets/tenzor-mark.svg) center/contain no-repeat}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Brand directions — Landing page &amp; mobile navigation</span></div>
+<p class="dv-tsub">Three conceptual directions for the same information architecture: search, one important item, five domains, latest, quick links — and the mobile drill-down pattern (global menu → Finance → sub-sections). Content is drawn from Tenzor's real material, translated to English for this mockup.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Editorial / Journal</div>
+<div class="dv-odesc">Serif headlines, ruled indexes, warm paper. Reads like a student publication — dense, literate, unhurried.</div>
+<div style="display:flex;align-items:center;gap:18px;padding:12px 16px;background:#f4f0e8;border:1px solid rgba(36,26,20,.12)">
+  <div style="display:flex;align-items:center;gap:8px">
+    <img src="assets/tenzor-mark.svg" alt="" style="width:26px;height:26px;display:block">
+    <span style="font:700 17px 'Source Serif 4',Georgia,serif;letter-spacing:.03em;color:#241a14">TENZOR</span>
+  </div>
+  <div style="display:flex;gap:6px">
+    <div style="width:16px;height:16px;border-radius:50%;background:#241a14"></div>
+    <div style="width:16px;height:16px;border-radius:50%;background:#7a1f1f"></div>
+    <div style="width:16px;height:16px;border-radius:50%;border:1px solid #241a14"></div>
+  </div>
+  <span style="font:500 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.5)">Source Serif 4 / IBM Plex Sans</span>
+</div>
+<div class="dv-card">
+
+<div style="width:375px;height:760px;border-radius:34px;border:1px solid rgba(36,26,20,.18);overflow:hidden;background:#f4f0e8;box-shadow:0 24px 48px rgba(36,26,20,.15);display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif">
+  <div style="padding:14px 22px 6px;display:flex;justify-content:space-between;font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.5)"><span>9:41</span><span>100%</span></div>
+  <div style="padding:14px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(36,26,20,.15)">
+    <div style="display:flex;align-items:center;gap:9px">
+      <img src="assets/tenzor-mark.svg" alt="" style="width:22px;height:22px;display:block">
+      <span style="font:700 16px 'Source Serif 4',Georgia,serif;letter-spacing:.03em;color:#241a14">TENZOR</span>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <div style="width:15px;height:15px;border:1.5px solid #241a14;border-radius:50%;position:relative"><div style="position:absolute;width:6px;height:1.5px;background:#241a14;bottom:-3px;right:-4px;transform:rotate(45deg)"></div></div>
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="width:18px;height:1.5px;background:#241a14"></div><div style="width:18px;height:1.5px;background:#241a14"></div><div style="width:18px;height:1.5px;background:#241a14"></div></div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:16px">
+    <p style="margin:0;font:400 13.5px/1.6 'Source Serif 4',Georgia,serif;color:#241a14">A student list at the Faculty of Mathematics and Physics, continuing the work of Vektor. Programme, finances and documents for FMF students.</p>
+    <div style="display:flex;align-items:center;gap:8px;border-bottom:1.5px solid #241a14;padding-bottom:8px">
+      <span style="font:400 13px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Search documents, news, people…</span>
+    </div>
+    <div>
+      <div style="font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.12em;color:#7a1f1f;margin-bottom:8px">IMPORTANT NOW</div>
+      <div style="border-top:1px solid #241a14;border-bottom:1px solid #241a14;padding:10px 0">
+        <div style="font:700 15px/1.3 'Source Serif 4',Georgia,serif;color:#241a14;margin-bottom:5px">Why we didn't back the status quo</div>
+        <p style="margin:0 0 7px;font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.75)">The Court of Audit's report on ŠOU, and reporting from Radio Študent and RTV, raised questions we think students should see for themselves.</p>
+        <span style="font:600 11px 'IBM Plex Sans',sans-serif;color:#7a1f1f;text-decoration:underline">Read the dossier →</span>
+      </div>
+    </div>
+    <div>
+      <div style="font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.12em;color:rgba(36,26,20,.55);margin-bottom:6px">EXPLORE</div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">01</span><span style="font:600 14px 'Source Serif 4',Georgia,serif;color:#241a14;flex:1">Programme</span><span style="font:400 10.5px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Platform &amp; initiatives</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">02</span><span style="font:600 14px 'Source Serif 4',Georgia,serif;color:#241a14;flex:1">Finance</span><span style="font:400 10.5px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Plans, spending, audits</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">03</span><span style="font:600 14px 'Source Serif 4',Georgia,serif;color:#241a14;flex:1">Events</span><span style="font:400 10.5px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Upcoming &amp; past</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">04</span><span style="font:600 14px 'Source Serif 4',Georgia,serif;color:#241a14;flex:1">For Students</span><span style="font:400 10.5px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Room, textbooks, links</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px;padding:9px 0"><span style="font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">05</span><span style="font:600 14px 'Source Serif 4',Georgia,serif;color:#241a14;flex:1">About Tenzor</span><span style="font:400 10.5px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Who we are, contact</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.12em;color:rgba(36,26,20,.55);margin-bottom:6px">LATEST</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:10px;font:400 12px 'IBM Plex Sans',sans-serif;color:#241a14"><span style="color:rgba(36,26,20,.45);width:64px;flex:none">18 Aug</span><span>2025/26 programme in progress</span></div>
+        <div style="display:flex;gap:10px;font:400 12px 'IBM Plex Sans',sans-serif;color:#241a14"><span style="color:rgba(36,26,20,.45);width:64px;flex:none">12 Jun</span><span>Financial rebalance, explained</span></div>
+        <div style="display:flex;gap:10px;font:400 12px 'IBM Plex Sans',sans-serif;color:#241a14"><span style="color:rgba(36,26,20,.45);width:64px;flex:none">03 Sep</span><span>FMF Boat Party — recap</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;border-top:1px solid #241a14;padding-top:10px;font:600 11px 'IBM Plex Sans',sans-serif;color:#7a1f1f">
+      <span>Documents</span><span>Contacts</span><span>Archive</span><span>Useful Links</span>
+    </div>
+  </div>
+</div>
+
+<div style="width:375px;height:760px;border-radius:34px;border:1px solid rgba(36,26,20,.18);overflow:hidden;background:#f4f0e8;box-shadow:0 24px 48px rgba(36,26,20,.15);display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif">
+  <div style="padding:14px 22px 6px;display:flex;justify-content:space-between;font:600 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.5)"><span>9:41</span><span>100%</span></div>
+  <div style="padding:14px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(36,26,20,.15)">
+    <span style="font:600 13px 'IBM Plex Sans',sans-serif;color:#7a1f1f">← Back</span>
+    <span style="font:700 15px 'Source Serif 4',Georgia,serif;letter-spacing:.04em;color:#241a14">FINANCE</span>
+  </div>
+  <div style="flex:1;padding:16px 22px;display:flex;flex-direction:column">
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">01</span><span style="font:600 15px 'Source Serif 4',Georgia,serif;color:#241a14">Overview</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">02</span><span style="font:600 15px 'Source Serif 4',Georgia,serif;color:#241a14">Financial plans</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">03</span><span style="font:600 15px 'Source Serif 4',Georgia,serif;color:#241a14">Spending</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">04</span><span style="font:600 15px 'Source Serif 4',Georgia,serif;color:#241a14">Audits</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15)"><span style="font:600 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">05</span><span style="font:600 15px 'Source Serif 4',Georgia,serif;color:#241a14">Reports</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:14px 0"><span style="font:600 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">06</span><span style="font:600 15px 'Source Serif 4',Georgia,serif;color:#241a14">Documents</span></div>
+    </div>
+    <p style="margin-top:auto;font:400 11px/1.5 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.45)">Domov / Finance</p>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Academic / Technical</div>
+<div class="dv-odesc">Mono labels, coordinate-style numbering, cool neutral ground. Reads like a lab notebook or a spec — precise, structured.</div>
+<div style="display:flex;align-items:center;gap:18px;padding:12px 16px;background:#f2f4f6;border:1px solid rgba(20,24,28,.12)">
+  <div style="display:flex;align-items:center;gap:8px">
+    <img src="assets/tenzor-mark.svg" alt="" style="width:26px;height:26px;display:block">
+    <span style="font:600 16px 'IBM Plex Mono',monospace;letter-spacing:.02em;color:#14181c">TENZOR</span>
+  </div>
+  <div style="display:flex;gap:6px">
+    <div style="width:16px;height:16px;border-radius:50%;background:#14181c"></div>
+    <div style="width:16px;height:16px;border-radius:50%;background:#2c8f9e"></div>
+    <div style="width:16px;height:16px;border-radius:50%;border:1px solid #14181c"></div>
+  </div>
+  <span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.5)">IBM Plex Mono / IBM Plex Sans</span>
+</div>
+<div class="dv-card">
+
+<div style="width:375px;height:760px;border-radius:20px;border:1px solid rgba(20,24,28,.2);overflow:hidden;background:#f2f4f6;box-shadow:0 24px 48px rgba(20,24,28,.15);display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif">
+  <div style="padding:14px 22px 6px;display:flex;justify-content:space-between;font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.5)"><span>09:41</span><span>100%</span></div>
+  <div style="padding:14px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(20,24,28,.15)">
+    <div style="display:flex;align-items:center;gap:9px">
+      <img src="assets/tenzor-mark.svg" alt="" style="width:22px;height:22px;display:block">
+      <span style="font:600 15px 'IBM Plex Mono',monospace;letter-spacing:.02em;color:#14181c">TENZOR</span>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <div style="width:15px;height:15px;border:1.5px solid #14181c;position:relative"><div style="position:absolute;width:6px;height:1.5px;background:#14181c;bottom:-3px;right:-4px;transform:rotate(45deg)"></div></div>
+      <div style="display:flex;flex-direction:column;gap:3px"><div style="width:18px;height:1.5px;background:#14181c"></div><div style="width:18px;height:1.5px;background:#14181c"></div><div style="width:18px;height:1.5px;background:#14181c"></div></div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:14px">
+    <p style="margin:0;font:400 13px/1.6 'IBM Plex Sans',sans-serif;color:#14181c">A student list at the Faculty of Mathematics and Physics, continuing the work of Vektor. Programme, finances and documents for FMF students.</p>
+    <div style="display:flex;align-items:center;gap:8px;border:1px solid #14181c;padding:9px 10px">
+      <span style="font:400 12.5px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.45)">search://documents, news, people</span>
+    </div>
+    <div>
+      <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#2c8f9e;margin-bottom:8px">[ IMPORTANT_NOW ]</div>
+      <div style="border-left:2px solid #2c8f9e;padding-left:10px">
+        <div style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#14181c;margin-bottom:5px">Why we didn't back the status quo</div>
+        <p style="margin:0 0 7px;font:400 11.5px/1.5 'IBM Plex Sans',sans-serif;color:rgba(20,24,28,.7)">The Court of Audit's report on ŠOU, and reporting from Radio Študent and RTV, raised questions we think students should see for themselves.</p>
+        <span style="font:500 11px 'IBM Plex Mono',monospace;color:#2c8f9e">→ read_dossier()</span>
+      </div>
+    </div>
+    <div>
+      <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(20,24,28,.5);margin-bottom:6px">[ EXPLORE ]</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(20,24,28,.15);border:1px solid rgba(20,24,28,.15)">
+        <div style="background:#f2f4f6;padding:10px"><div style="font:500 10px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">01</div><div style="font:600 13px 'IBM Plex Sans',sans-serif;color:#14181c">Programme</div></div>
+        <div style="background:#f2f4f6;padding:10px"><div style="font:500 10px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">02</div><div style="font:600 13px 'IBM Plex Sans',sans-serif;color:#14181c">Finance</div></div>
+        <div style="background:#f2f4f6;padding:10px"><div style="font:500 10px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">03</div><div style="font:600 13px 'IBM Plex Sans',sans-serif;color:#14181c">Events</div></div>
+        <div style="background:#f2f4f6;padding:10px"><div style="font:500 10px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">04</div><div style="font:600 13px 'IBM Plex Sans',sans-serif;color:#14181c">For Students</div></div>
+        <div style="background:#f2f4f6;padding:10px;grid-column:1/3"><div style="font:500 10px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">05</div><div style="font:600 13px 'IBM Plex Sans',sans-serif;color:#14181c">About Tenzor</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(20,24,28,.5);margin-bottom:6px">[ LATEST ]</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:10px;font:400 12px 'IBM Plex Sans',sans-serif;color:#14181c"><span style="font-family:'IBM Plex Mono',monospace;color:rgba(20,24,28,.45);width:70px;flex:none">2026-08-18</span><span>Programme in progress</span></div>
+        <div style="display:flex;gap:10px;font:400 12px 'IBM Plex Sans',sans-serif;color:#14181c"><span style="font-family:'IBM Plex Mono',monospace;color:rgba(20,24,28,.45);width:70px;flex:none">2024-06-12</span><span>Financial rebalance, explained</span></div>
+        <div style="display:flex;gap:10px;font:400 12px 'IBM Plex Sans',sans-serif;color:#14181c"><span style="font-family:'IBM Plex Mono',monospace;color:rgba(20,24,28,.45);width:70px;flex:none">2024-09-03</span><span>FMF Boat Party — recap</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;border-top:1px solid #14181c;padding-top:10px;font:500 11px 'IBM Plex Mono',monospace;color:#2c8f9e">
+      <span>/docs</span><span>/contacts</span><span>/archive</span><span>/links</span>
+    </div>
+  </div>
+</div>
+
+<div style="width:375px;height:760px;border-radius:20px;border:1px solid rgba(20,24,28,.2);overflow:hidden;background:#f2f4f6;box-shadow:0 24px 48px rgba(20,24,28,.15);display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif">
+  <div style="padding:14px 22px 6px;display:flex;justify-content:space-between;font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.5)"><span>09:41</span><span>100%</span></div>
+  <div style="padding:14px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(20,24,28,.15)">
+    <span style="font:500 12.5px 'IBM Plex Mono',monospace;color:#2c8f9e">&lt;- back</span>
+    <span style="font:600 14px 'IBM Plex Mono',monospace;letter-spacing:.04em;color:#14181c">FINANCE</span>
+  </div>
+  <div style="flex:1;padding:16px 22px;display:flex;flex-direction:column">
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid rgba(20,24,28,.15)"><span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">3.01</span><span style="font:500 14px 'IBM Plex Sans',sans-serif;color:#14181c">Overview</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid rgba(20,24,28,.15)"><span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">3.02</span><span style="font:500 14px 'IBM Plex Sans',sans-serif;color:#14181c">Financial plans</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid rgba(20,24,28,.15)"><span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">3.03</span><span style="font:500 14px 'IBM Plex Sans',sans-serif;color:#14181c">Spending</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid rgba(20,24,28,.15)"><span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">3.04</span><span style="font:500 14px 'IBM Plex Sans',sans-serif;color:#14181c">Audits</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid rgba(20,24,28,.15)"><span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">3.05</span><span style="font:500 14px 'IBM Plex Sans',sans-serif;color:#14181c">Reports</span></div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0"><span style="font:500 11px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.4)">3.06</span><span style="font:500 14px 'IBM Plex Sans',sans-serif;color:#14181c">Documents</span></div>
+    </div>
+    <p style="margin-top:auto;font:500 10.5px 'IBM Plex Mono',monospace;color:rgba(20,24,28,.45)">/ home / finance</p>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Civic / Institutional</div>
+<div class="dv-odesc">Clean sans, generous tap targets, pale green retained from the current site. Reads like a public-information portal — plain, trustworthy.</div>
+<div style="display:flex;align-items:center;gap:18px;padding:12px 16px;background:#e3ecd9;border:1px solid rgba(28,42,23,.12)">
+  <div style="display:flex;align-items:center;gap:8px">
+    <img src="assets/tenzor-mark.svg" alt="" style="width:26px;height:26px;display:block">
+    <span style="font:800 17px 'Source Sans 3',sans-serif;letter-spacing:.02em;color:#1c2a17">TENZOR</span>
+  </div>
+  <div style="display:flex;gap:6px">
+    <div style="width:16px;height:16px;border-radius:50%;background:#1c2a17"></div>
+    <div style="width:16px;height:16px;border-radius:50%;background:#a9832e"></div>
+    <div style="width:16px;height:16px;border-radius:50%;border:1px solid #1c2a17"></div>
+  </div>
+  <span style="font:600 11px 'Source Sans 3',sans-serif;color:rgba(28,42,23,.55)">Source Sans 3</span>
+</div>
+<div class="dv-card">
+
+<div style="width:375px;height:760px;border-radius:28px;border:1px solid rgba(28,42,23,.2);overflow:hidden;background:#e3ecd9;box-shadow:0 24px 48px rgba(28,42,23,.15);display:flex;flex-direction:column;font-family:'Source Sans 3',sans-serif">
+  <div style="padding:14px 22px 6px;display:flex;justify-content:space-between;font:600 11px 'Source Sans 3',sans-serif;color:rgba(28,42,23,.55)"><span>9:41</span><span>100%</span></div>
+  <div style="padding:14px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #1c2a17">
+    <div style="display:flex;align-items:center;gap:9px">
+      <img src="assets/tenzor-mark.svg" alt="" style="width:24px;height:24px;display:block">
+      <span style="font:800 16px 'Source Sans 3',sans-serif;letter-spacing:.02em;color:#1c2a17">TENZOR</span>
+    </div>
+    <div style="display:flex;gap:18px;align-items:center">
+      <div style="width:17px;height:17px;border:2px solid #1c2a17;border-radius:50%;position:relative"><div style="position:absolute;width:7px;height:2px;background:#1c2a17;bottom:-4px;right:-5px;transform:rotate(45deg)"></div></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><div style="width:20px;height:2px;background:#1c2a17"></div><div style="width:20px;height:2px;background:#1c2a17"></div><div style="width:20px;height:2px;background:#1c2a17"></div></div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:14px">
+    <p style="margin:0;font:400 13.5px/1.6 'Source Sans 3',sans-serif;color:#1c2a17">A student list at the Faculty of Mathematics and Physics, continuing the work of Vektor. Programme, finances and documents for FMF students.</p>
+    <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(28,42,23,.3);border-radius:8px;padding:11px 12px">
+      <span style="font:400 13px 'Source Sans 3',sans-serif;color:rgba(28,42,23,.5)">Search documents, news, people…</span>
+    </div>
+    <div style="background:#fff;border-radius:8px;padding:14px;border-left:4px solid #a9832e">
+      <div style="font:700 10px 'Source Sans 3',sans-serif;letter-spacing:.08em;color:#a9832e;margin-bottom:6px">IMPORTANT NOW</div>
+      <div style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#1c2a17;margin-bottom:5px">Why we didn't back the status quo</div>
+      <p style="margin:0 0 8px;font:400 12px/1.5 'Source Sans 3',sans-serif;color:rgba(28,42,23,.75)">The Court of Audit's report on ŠOU, and reporting from Radio Študent and RTV, raised questions we think students should see for themselves.</p>
+      <span style="font:700 12px 'Source Sans 3',sans-serif;color:#1c2a17;text-decoration:underline">Read the dossier</span>
+    </div>
+    <div>
+      <div style="font:700 10px 'Source Sans 3',sans-serif;letter-spacing:.08em;color:rgba(28,42,23,.6);margin-bottom:8px">EXPLORE</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:13px 14px"><span style="font:700 14px 'Source Sans 3',sans-serif;color:#1c2a17">Programme</span><span style="color:#1c2a17">›</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:13px 14px"><span style="font:700 14px 'Source Sans 3',sans-serif;color:#1c2a17">Finance</span><span style="color:#1c2a17">›</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:13px 14px"><span style="font:700 14px 'Source Sans 3',sans-serif;color:#1c2a17">Events</span><span style="color:#1c2a17">›</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:13px 14px"><span style="font:700 14px 'Source Sans 3',sans-serif;color:#1c2a17">For Students</span><span style="color:#1c2a17">›</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:13px 14px"><span style="font:700 14px 'Source Sans 3',sans-serif;color:#1c2a17">About Tenzor</span><span style="color:#1c2a17">›</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font:700 10px 'Source Sans 3',sans-serif;letter-spacing:.08em;color:rgba(28,42,23,.6);margin-bottom:8px">LATEST</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;font:400 12.5px 'Source Sans 3',sans-serif;color:#1c2a17"><span style="font-weight:700;width:64px;flex:none">18 Aug</span><span>2025/26 programme in progress</span></div>
+        <div style="display:flex;gap:10px;font:400 12.5px 'Source Sans 3',sans-serif;color:#1c2a17"><span style="font-weight:700;width:64px;flex:none">12 Jun</span><span>Financial rebalance, explained</span></div>
+        <div style="display:flex;gap:10px;font:400 12.5px 'Source Sans 3',sans-serif;color:#1c2a17"><span style="font-weight:700;width:64px;flex:none">03 Sep</span><span>FMF Boat Party — recap</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;border-top:1px solid rgba(28,42,23,.3);padding-top:12px;font:700 11.5px 'Source Sans 3',sans-serif;color:#1c2a17">
+      <span>Documents</span><span>Contacts</span><span>Archive</span><span>Useful Links</span>
+    </div>
+  </div>
+</div>
+
+<div style="width:375px;height:760px;border-radius:28px;border:1px solid rgba(28,42,23,.2);overflow:hidden;background:#e3ecd9;box-shadow:0 24px 48px rgba(28,42,23,.15);display:flex;flex-direction:column;font-family:'Source Sans 3',sans-serif">
+  <div style="padding:14px 22px 6px;display:flex;justify-content:space-between;font:600 11px 'Source Sans 3',sans-serif;color:rgba(28,42,23,.55)"><span>9:41</span><span>100%</span></div>
+  <div style="padding:14px 22px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #1c2a17">
+    <span style="font:700 13px 'Source Sans 3',sans-serif;color:#1c2a17">‹ Back</span>
+    <span style="font:800 15px 'Source Sans 3',sans-serif;letter-spacing:.02em;color:#1c2a17">FINANCE</span>
+  </div>
+  <div style="flex:1;padding:16px 22px;display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="background:#fff;border-radius:8px;padding:14px;font:700 14.5px 'Source Sans 3',sans-serif;color:#1c2a17">Overview</div>
+      <div style="background:#fff;border-radius:8px;padding:14px;font:700 14.5px 'Source Sans 3',sans-serif;color:#1c2a17">Financial plans</div>
+      <div style="background:#fff;border-radius:8px;padding:14px;font:700 14.5px 'Source Sans 3',sans-serif;color:#1c2a17">Spending</div>
+      <div style="background:#fff;border-radius:8px;padding:14px;font:700 14.5px 'Source Sans 3',sans-serif;color:#1c2a17">Audits</div>
+      <div style="background:#fff;border-radius:8px;padding:14px;font:700 14.5px 'Source Sans 3',sans-serif;color:#1c2a17">Reports</div>
+      <div style="background:#fff;border-radius:8px;padding:14px;font:700 14.5px 'Source Sans 3',sans-serif;color:#1c2a17">Documents</div>
+    </div>
+    <p style="margin-top:auto;font:600 11.5px 'Source Sans 3',sans-serif;color:rgba(28,42,23,.55)">Home / Finance</p>
+  </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "more like <a class="dv-oid" href="#1b">1b</a> but warmer" · "combine the type of <a class="dv-oid" href="#1a">1a</a> with the color of <a class="dv-oid" href="#1c">1c</a>" · "build out the Finance section for one of these"</p>
+</section>
+</x-dc>
+</body>
+</html>

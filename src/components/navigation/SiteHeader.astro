@@ -1,0 +1,200 @@
+---
+import type { Locale } from '../../i18n/config';
+import { locales, localeShort, localeNames } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import markRaw from '../../assets/brand/tenzor-mark.svg?raw';
+
+interface DomainLink {
+  href: string;
+  label: string;
+}
+interface Props {
+  locale: Locale;
+  homeHref: string;
+  brandName: string;
+  domains: DomainLink[];
+  currentPath?: string;
+  translationLinks?: { locale: Locale; href: string | null }[];
+}
+
+const {
+  locale,
+  homeHref,
+  brandName,
+  domains,
+  currentPath = '',
+  translationLinks = [],
+} = Astro.props;
+const strings = t(locale);
+const linkByLocale = new Map(translationLinks.map((l) => [l.locale, l.href]));
+const otherLocale = locales.find((l) => l !== locale) ?? locale;
+const otherHref = linkByLocale.get(otherLocale) ?? null;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href={homeHref} aria-label={brandName}>
+      <span class="site-header__mark" aria-hidden="true" set:html={markRaw} />
+      <span class="site-header__wordmark">{brandName.toUpperCase()}</span>
+    </a>
+
+    <nav class="site-header__inline" aria-label={strings.menu}>
+      {
+        domains.map((d) => (
+          <a
+            class="site-header__inline-link"
+            href={d.href}
+            aria-current={currentPath.startsWith(d.href) ? 'page' : undefined}
+          >
+            {d.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="site-header__actions">
+      {
+        otherHref ? (
+          <a
+            class="site-header__langswitch"
+            href={otherHref}
+            hreflang={otherLocale}
+            lang={otherLocale}
+            aria-label={`${strings.language}: ${localeNames[otherLocale]}`}
+          >
+            {localeShort[otherLocale]}
+          </a>
+        ) : (
+          <span
+            class="site-header__langswitch site-header__langswitch--disabled"
+            aria-disabled="true"
+            title={`${localeNames[otherLocale]} — ${strings.translationMissing}`}
+          >
+            {localeShort[otherLocale]}
+          </span>
+        )
+      }
+      <button
+        type="button"
+        class="site-header__hamburger"
+        data-menu-toggle
+        aria-label={strings.openMenu}
+        aria-expanded="false"
+        aria-controls="site-menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 2px solid var(--ink);
+    font-family: var(--sans);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px var(--pad);
+  }
+  .site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-logo);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .site-header__mark {
+    width: 26px;
+    height: 26px;
+    flex: none;
+    display: block;
+    color: var(--ink);
+  }
+  .site-header__mark :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .site-header__wordmark {
+    font: var(--logotype);
+    letter-spacing: var(--logotype-tracking);
+    color: var(--ink);
+  }
+
+  .site-header__inline {
+    display: none;
+  }
+
+  .site-header__actions {
+    display: flex;
+    gap: var(--gap-header-icons);
+    align-items: center;
+  }
+  .site-header__langswitch {
+    font: 600 12px/1 var(--sans);
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  .site-header__langswitch--disabled {
+    color: var(--ink-50);
+    border-color: var(--rule-chip);
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  a.site-header__langswitch:hover {
+    color: var(--on-ink);
+    background: var(--ink);
+  }
+  .site-header__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+  }
+  .site-header__hamburger span {
+    width: 20px;
+    height: 2px;
+    background: var(--ink);
+    display: block;
+  }
+
+  @media (min-width: 900px) {
+    .site-header {
+      max-width: none;
+    }
+    .site-header__inner {
+      max-width: var(--measure-wide);
+      margin: 0 auto;
+    }
+    .site-header__hamburger {
+      display: none;
+    }
+    .site-header__inline {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .site-header__inline-link {
+      font: var(--subnav-tab);
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .site-header__inline-link[aria-current='page'] {
+      color: var(--accent);
+    }
+    .site-header__inline-link:hover {
+      color: var(--accent);
+    }
+  }
+</style>

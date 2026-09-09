@@ -1,0 +1,27 @@
+---
+translationKey: "section-finance"
+lang: "en"
+title: "Finance"
+slug: "finance"
+summary: "A comprehensive overview of Tenzor's and the student organisation's finances, published for transparency."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Finance"
+  order: 20
+---
+
+import SectionChildren from '@/components/content/SectionChildren.astro';
+import SheetEmbed from '@/components/content/SheetEmbed.astro';
+
+The table below shows all recorded expenditure of Tenzor and the student organisation.
+The data are not always fully up to date — we generally update them in batches covering
+longer periods. If the table doesn't load, open it directly via the link below.
+
+<SheetEmbed
+  url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSuvqP899uKZOrxSpBwLhuCQpQNRZ44iSq0e74IrXr_bIyM-8auVhgY5xzQAMxK-EPmuAd3WMN8kUDk/pubhtml?gid=386504413&single=true&widget=true&headers=false"
+  title="Public overview of Tenzor and student-organisation finances"
+  fallbackLabel="Open the finance spreadsheet in Google Sheets ↗"
+/>
+
+<SectionChildren locale={frontmatter.lang} sectionKey={frontmatter.translationKey} />

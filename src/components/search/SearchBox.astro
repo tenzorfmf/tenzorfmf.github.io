@@ -1,0 +1,55 @@
+---
+interface Props {
+  label: string;
+  placeholder: string;
+}
+const { label, placeholder } = Astro.props;
+---
+
+<div class="searchbox">
+  <label class="searchbox__label" for="search-input">{label}</label>
+  <input
+    id="search-input"
+    class="searchbox__input"
+    type="search"
+    name="q"
+    autocomplete="off"
+    autocapitalize="off"
+    spellcheck="false"
+    placeholder={placeholder}
+    data-search-input
+  />
+</div>
+
+<style>
+  .searchbox {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .searchbox__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .searchbox__input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font: 400 16px/1.4 var(--serif);
+    color: var(--ink);
+    padding: 6px 0;
+  }
+  .searchbox__input::placeholder {
+    color: var(--ink-45);
+  }
+  .searchbox__input:focus {
+    outline: none;
+  }
+  .searchbox:focus-within {
+    border-bottom-color: var(--accent);
+  }
+</style>

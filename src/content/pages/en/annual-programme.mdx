@@ -1,0 +1,17 @@
+---
+translationKey: "annual-programme"
+lang: "en"
+title: "Annual programme"
+slug: "annual-programme"
+summary: "The 2026/27 programme is being prepared."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Annual programme"
+  parent: "section-program"
+  order: 10
+---
+
+import EmptyState from '@/components/content/EmptyState.astro';
+
+<EmptyState title={frontmatter.summary} />

@@ -1,0 +1,58 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import type { Crumb } from '../../utils/content';
+
+interface Props {
+  crumbs: Crumb[];
+  locale: Locale;
+}
+const { crumbs, locale } = Astro.props;
+---
+
+{
+  crumbs.length > 1 && (
+    <nav class="breadcrumb" aria-label={t(locale).breadcrumbNav}>
+      {crumbs.map((c, i) => (
+        <>
+          {i > 0 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+          {c.href ? (
+            <a class="breadcrumb__link" href={c.href}>
+              {c.label}
+            </a>
+          ) : (
+            <span class="breadcrumb__current" aria-current="page">
+              {c.label}
+            </span>
+          )}
+        </>
+      ))}
+    </nav>
+  )
+}
+
+<style>
+  .breadcrumb {
+    font: var(--breadcrumb);
+    color: var(--ink-50);
+    margin: 24px 0 20px;
+  }
+  .breadcrumb__sep {
+    margin: 0 6px;
+  }
+  .breadcrumb__link {
+    color: var(--ink-50);
+    text-decoration: none;
+  }
+  .breadcrumb__link:hover {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+  .breadcrumb__current {
+    color: var(--ink-60);
+  }
+
+  .breadcrumb__link {
+    transition: color 150ms ease;
+  }
+</style>

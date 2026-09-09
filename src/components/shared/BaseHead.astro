@@ -1,0 +1,54 @@
+---
+import type { Locale } from '../../i18n/config';
+import { locales, ogLocale } from '../../i18n/config';
+import { localeHtmlLang } from '../../utils/i18n';
+
+interface HreflangEntry {
+  locale: Locale;
+  href: string | null;
+}
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  canonicalPath: string;
+  noindex?: boolean;
+  hreflang?: HreflangEntry[];
+}
+
+const { locale, title, description, canonicalPath, noindex = false, hreflang = [] } = Astro.props;
+
+const canonical = new URL(canonicalPath, Astro.site).href;
+
+// Only emit hreflang alternates for translations that actually exist.
+const alternates = hreflang.filter((h): h is { locale: Locale; href: string } => !!h.href);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+{noindex && <meta name="robots" content="noindex" />}
+
+{
+  alternates.map((a) => (
+    <link rel="alternate" hreflang={localeHtmlLang(a.locale)} href={new URL(a.href, Astro.site).href} />
+  ))
+}
+{
+  alternates.length > 1 && (
+    <link rel="alternate" hreflang="x-default" href={new URL(alternates[0].href, Astro.site).href} />
+  )
+}
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={ogLocale[locale]} />
+{locales.filter((l) => l !== locale).map((l) => (
+  <meta property="og:locale:alternate" content={ogLocale[l]} />
+))}

@@ -1,0 +1,57 @@
+---
+import type { Locale } from '../i18n/config';
+import { org } from '../utils/i18n';
+import type { PageEntry } from '../utils/routes';
+import type { Crumb } from '../utils/content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/navigation/Breadcrumbs.astro';
+
+interface Props {
+  entry: PageEntry;
+  locale: Locale;
+  canonicalPath: string;
+  translationLinks: { locale: Locale; href: string | null }[];
+  crumbs: Crumb[];
+}
+
+const { entry, locale, canonicalPath, translationLinks, crumbs } = Astro.props;
+const d = entry.data;
+const organisation = org(locale);
+const seoTitle = d.seo.title ?? `${d.title} | ${organisation.organisationName}`;
+const seoDesc = d.seo.description ?? d.summary ?? organisation.siteDescription;
+const indexable = d.search.include !== false && d.draft !== true;
+const pagefindFilters: Record<string, string | string[]> = indexable
+  ? {
+      lang: locale,
+      collection: 'page',
+      type: d.search.type,
+      ...(d.updatedAt ? { year: String(d.updatedAt.getUTCFullYear()) } : {}),
+    }
+  : {};
+const pagefindMeta: Record<string, string> = indexable ? { title: d.title } : {};
+---
+
+<BaseLayout
+  locale={locale}
+  title={seoTitle}
+  description={seoDesc}
+  canonicalPath={canonicalPath}
+  noindex={d.seo.noindex}
+  translationLinks={translationLinks}
+  currentPath={canonicalPath}
+  pagefindBody={indexable}
+  pagefindFilters={pagefindFilters}
+  pagefindMeta={pagefindMeta}
+>
+  <Breadcrumbs crumbs={crumbs} locale={locale} />
+  <h1 class="page-h1">{d.title}</h1>
+  <div class="prose page-content"><slot name="body" /></div>
+</BaseLayout>
+
+<style>
+  .page-h1 {
+    font: var(--h1-page);
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+</style>

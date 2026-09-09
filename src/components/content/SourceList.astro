@@ -1,0 +1,64 @@
+---
+interface Source {
+  label: string;
+  url: string;
+  archivedUrl?: string | null;
+  accessedAt?: Date | null;
+}
+interface Props {
+  eyebrow: string;
+  sources: Source[];
+  archivedLabel: string;
+}
+const { eyebrow, sources, archivedLabel } = Astro.props;
+---
+
+{
+  sources.length > 0 && (
+    <section class="sources">
+      <div class="eyebrow eyebrow--accent sources__eyebrow">{eyebrow}</div>
+      {sources.map((s, i) => (
+        <div class:list={['sources__row', { 'sources__row--last': i === sources.length - 1 }]}>
+          <a class="sources__link" href={s.url} target="_blank" rel="noopener noreferrer">
+            {s.label} <span aria-hidden="true">↗</span>
+          </a>
+          {s.archivedUrl && (
+            <a class="sources__archived" href={s.archivedUrl} target="_blank" rel="noopener noreferrer">
+              ({archivedLabel})
+            </a>
+          )}
+        </div>
+      ))}
+    </section>
+  )
+}
+
+<style>
+  .sources {
+    padding-bottom: var(--sec-last-pad);
+  }
+  .sources__eyebrow {
+    border-top: 1px solid var(--ink);
+    padding-top: 20px;
+  }
+  .sources__row {
+    padding: var(--row-dense) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sources__row--last {
+    border-bottom: none;
+  }
+  .sources__link {
+    font: var(--linkrow-sm);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .sources__link:hover {
+    color: var(--accent);
+  }
+  .sources__archived {
+    font: var(--meta);
+    color: var(--ink-50);
+    margin-left: 8px;
+  }
+</style>

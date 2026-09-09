@@ -1,0 +1,162 @@
+---
+import { render } from 'astro:content';
+import { locales, type Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import {
+  allPages,
+  allPosts,
+  isSectionPage,
+  navTree,
+  translationLinks,
+  pageBreadcrumbs,
+  postBreadcrumbs,
+} from '../../utils/content';
+import { pagePath, postPath, searchPath, stripLang } from '../../utils/routes';
+import type { PageEntry, PostEntry } from '../../utils/routes';
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostLayout from '../../layouts/PostLayout.astro';
+import SearchApp from '../../components/search/SearchApp.astro';
+
+type PathProps =
+  | { kind: 'page'; locale: Locale; entry: PageEntry }
+  | { kind: 'post'; locale: Locale; entry: PostEntry }
+  | { kind: 'search'; locale: Locale };
+
+export async function getStaticPaths() {
+  const out: { params: { lang: Locale; slug: string }; props: PathProps }[] = [];
+
+  const pages = await allPages();
+  const posts = await allPosts();
+
+  for (const locale of locales) {
+    const sections = pages.filter((p) => p.data.lang === locale && isSectionPage(p));
+
+    for (const entry of pages.filter((p) => p.data.lang === locale)) {
+      if (entry.data.slug === '/') continue; // home handled by index.astro
+      const full = pagePath(entry, sections);
+      const slug = stripLang(full, locale);
+      if (!slug) continue;
+      out.push({ params: { lang: locale, slug }, props: { kind: 'page', locale, entry } });
+    }
+
+    for (const entry of posts.filter((p) => p.data.lang === locale)) {
+      const slug = stripLang(postPath(entry), locale);
+      out.push({ params: { lang: locale, slug }, props: { kind: 'post', locale, entry } });
+    }
+
+    // Only ship a search page for a locale that actually has indexable content.
+    const localeHasContent =
+      pages.some((p) => p.data.lang === locale && !p.data.draft) ||
+      posts.some((p) => p.data.lang === locale && !p.data.draft);
+    if (localeHasContent) {
+      const searchSlug = stripLang(searchPath(locale), locale);
+      out.push({ params: { lang: locale, slug: searchSlug }, props: { kind: 'search', locale } });
+    }
+  }
+
+  return out;
+}
+
+const props = Astro.props as PathProps;
+const { locale } = props;
+const strings = t(locale);
+const canonicalPath = `/${locale}/${Astro.params.slug}/`;
+
+/* ---------------- page ---------------- */
+let pageData:
+  | {
+      entry: PageEntry;
+      Content: any;
+      tLinks: Awaited<ReturnType<typeof translationLinks>>;
+      crumbs: Awaited<ReturnType<typeof pageBreadcrumbs>>;
+    }
+  | null = null;
+
+if (props.kind === 'page') {
+  const entry = props.entry;
+  const rendered = await render(entry);
+  const tLinks = await translationLinks(entry, 'pages');
+  const crumbs = await pageBreadcrumbs(entry, strings.breadcrumbHome);
+  pageData = { entry, Content: rendered.Content, tLinks, crumbs };
+}
+
+/* ---------------- post ---------------- */
+let postData:
+  | {
+      entry: PostEntry;
+      Content: any;
+      tLinks: Awaited<ReturnType<typeof translationLinks>>;
+      crumbs: Awaited<ReturnType<typeof postBreadcrumbs>>;
+      backHref: string;
+      backLabel: string;
+      posterKey?: string;
+    }
+  | null = null;
+
+if (props.kind === 'post') {
+  const entry = props.entry;
+  const rendered = await render(entry);
+  const tLinks = await translationLinks(entry, 'posts');
+  const tree = await navTree(locale);
+
+  // Pick a "back" target section from the post category.
+  const categoryToSection: Record<string, string> = {
+    dogodki: 'section-events',
+    finance: 'section-finance',
+    program: 'section-program',
+  };
+  const sectKey = categoryToSection[entry.data.category] ?? 'section-events';
+  const node = tree.find((n) => n.entry.data.translationKey === sectKey);
+  const backHref = node?.href ?? `/${locale}/`;
+  const backLabel = `${strings.backToSection} ${node?.label ?? strings.home}`;
+
+  const crumbs = await postBreadcrumbs(
+    entry,
+    strings.breadcrumbHome,
+    node ? { label: node.label, href: node.href } : undefined,
+  );
+
+  // Hero artwork is useful beyond the migrated poster archive: current news and
+  // event posts can carry their original campaign visual as well.
+  const posterKey = entry.data.hero?.src ?? undefined;
+
+  postData = { entry, Content: rendered.Content, tLinks, crumbs, backHref, backLabel, posterKey };
+}
+---
+
+{
+  props.kind === 'search' && (
+    <SearchApp locale={locale} canonicalPath={canonicalPath} />
+  )
+}
+
+{
+  props.kind === 'page' && pageData && (
+    <PageLayout
+      entry={pageData.entry}
+      locale={locale}
+      canonicalPath={canonicalPath}
+      translationLinks={pageData.tLinks}
+      crumbs={pageData.crumbs}
+    >
+      <pageData.Content slot="body" />
+    </PageLayout>
+  )
+}
+
+{
+  props.kind === 'post' && postData && (
+    <PostLayout
+      entry={postData.entry}
+      locale={locale}
+      canonicalPath={canonicalPath}
+      translationLinks={postData.tLinks}
+      crumbs={postData.crumbs}
+      backHref={postData.backHref}
+      backLabel={postData.backLabel}
+      posterKey={postData.posterKey}
+    >
+      <postData.Content slot="body" />
+    </PostLayout>
+  )
+}

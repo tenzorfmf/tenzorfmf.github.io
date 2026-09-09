@@ -1,0 +1,24 @@
+---
+translationKey: "section-students"
+lang: "sl"
+title: "Za študente"
+slug: "za-studente"
+summary: "Viri za študente FMF — študentska soba, učbeniški sklad, obvestila in koristne povezave."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Za študente"
+  order: 40
+seo:
+  title: "Za študente | Tenzor"
+  description: "Viri za študente FMF: študentska soba, učbeniški sklad, obvestila in koristne povezave."
+  noindex: false
+---
+
+import SectionChildren from '@/components/content/SectionChildren.astro';
+
+Na enem mestu so zbrani praktični viri za študij na FMF: študentska soba za učenje in
+druženje, učbeniški sklad, prijava na obvestilnik ter povezave do gradiv, zapiskov in
+informacij o štipendijah in bivanju.
+
+<SectionChildren locale={frontmatter.lang} sectionKey={frontmatter.translationKey} />

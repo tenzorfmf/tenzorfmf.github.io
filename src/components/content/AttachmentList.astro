@@ -1,0 +1,82 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+
+interface Attachment {
+  label: string;
+  path: string;
+  mediaType: string;
+  language?: string;
+}
+interface Props {
+  locale: Locale;
+  attachments: Attachment[];
+}
+const { locale, attachments } = Astro.props;
+const eyebrow = t(locale).attachments;
+
+const typeLabel = (mt: string) => {
+  if (mt === 'application/pdf') return 'PDF';
+  return mt.split('/').pop()?.toUpperCase() ?? 'DAT';
+};
+---
+
+{
+  attachments.length > 0 && (
+    <section class="attachments">
+      <div class="eyebrow">{eyebrow}</div>
+      {attachments.map((a, i) => (
+        <a
+          class:list={['attachments__row', { 'attachments__row--last': i === attachments.length - 1 }]}
+          href={a.path}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="attachments__label">{a.label}</span>
+          <span class="attachments__meta">
+            {typeLabel(a.mediaType)}
+            {a.language ? ` · ${a.language.toUpperCase()}` : ''} ↗
+          </span>
+        </a>
+      ))}
+    </section>
+  )
+}
+
+<style>
+  .attachments {
+    margin: 24px 0 var(--sec-md);
+  }
+  .attachments__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--gap-index-row);
+    padding: var(--row-linklist) 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    font: var(--linkrow-lg);
+  }
+  .attachments__row--last {
+    border-bottom: none;
+  }
+  .attachments__meta {
+    font: var(--meta);
+    color: var(--ink-45);
+    flex: none;
+  }
+  .attachments__row:hover .attachments__label {
+    color: var(--accent);
+  }
+
+  .attachments__row {
+    transition: border-color 160ms ease;
+  }
+  .attachments__label {
+    transition: color 150ms ease;
+  }
+  .attachments__row:hover {
+    border-color: var(--ink-40);
+  }
+</style>

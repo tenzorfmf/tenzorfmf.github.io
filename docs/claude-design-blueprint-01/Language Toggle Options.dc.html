@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e9e5dc;font-family:'IBM Plex Sans',sans-serif}a{color:inherit}</style>
+</helmet>
+<div style="padding:40px 44px">
+<h1 style="font:700 20px 'IBM Plex Sans',sans-serif;color:#241a14;margin:0 0 6px">Language toggle — placement options</h1>
+<p style="font:400 13px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.55);margin:0 0 30px;max-width:640px">Three places it could live. Each phone below shows the Home page with that placement.</p>
+<div style="display:flex;flex-wrap:wrap;gap:40px">
+
+<div style="display:flex;flex-direction:column;gap:10px;max-width:375px">
+  <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px 'IBM Plex Sans',sans-serif;background:#241a14;color:#f4f0e8;padding:3px 8px;border-radius:3px">A</span><span style="font:600 13px 'IBM Plex Sans',sans-serif;color:#241a14">Header, next to search icon</span></div>
+  <p style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.55);margin:0 0 4px">Always visible, one tap. Adds a third icon to an already-busy header row.</p>
+  <div style="width:375px;height:812px;border-radius:38px;border:8px solid #1a1a1a;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.18);background:#f4f0e8">
+    <header style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #241a14">
+      <div style="display:flex;align-items:center;gap:10px"><img src="assets/tenzor-mark.svg" alt="" style="width:26px;height:26px;display:block"><span style="font:700 19px 'Source Serif 4',Georgia,serif;letter-spacing:.03em;color:#241a14">TENZOR</span></div>
+      <div style="display:flex;gap:14px;align-items:center">
+        <span style="font:700 12px 'IBM Plex Sans',sans-serif;color:#7a1f1f;border:1.5px solid #7a1f1f;border-radius:11px;padding:2px 8px">EN</span>
+        <span aria-label="Search" style="width:17px;height:17px;border:1.5px solid #241a14;border-radius:50%;position:relative;display:block"><span style="position:absolute;width:7px;height:1.5px;background:#241a14;bottom:-4px;right:-5px;transform:rotate(45deg)"></span></span>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="width:20px;height:2px;background:#241a14"></span><span style="width:20px;height:2px;background:#241a14"></span><span style="width:20px;height:2px;background:#241a14"></span></div>
+      </div>
+    </header>
+    <div style="padding:24px;font:400 14px/1.6 'Source Serif 4',Georgia,serif;color:rgba(36,26,20,.6)">We are students from the Faculty of Mathematics and Physics…</div>
+  </div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px;max-width:375px">
+  <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px 'IBM Plex Sans',sans-serif;background:#241a14;color:#f4f0e8;padding:3px 8px;border-radius:3px">B</span><span style="font:600 13px 'IBM Plex Sans',sans-serif;color:#241a14">Inside the hamburger menu</span></div>
+  <p style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.55);margin:0 0 4px">Keeps the header clean — one extra tap to reach it, grouped with other utility links.</p>
+  <div style="width:375px;height:812px;border-radius:38px;border:8px solid #1a1a1a;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.18);background:#f4f0e8;padding:20px 24px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px"><span style="font:700 18px 'Source Serif 4',Georgia,serif;color:#241a14">Menu</span><span style="font:400 26px 'IBM Plex Sans',sans-serif;color:#241a14">×</span></div>
+    <div style="padding:12px 0;border-bottom:1px solid rgba(36,26,20,.15);font:500 15px 'IBM Plex Sans',sans-serif;color:#241a14">Search</div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15);font:600 16px 'Source Serif 4',Georgia,serif;color:#241a14">Program <span>›</span></div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15);font:600 16px 'Source Serif 4',Georgia,serif;color:#241a14">Finance <span>›</span></div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15);font:600 16px 'Source Serif 4',Georgia,serif;color:#241a14">Events <span>›</span></div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15);font:600 16px 'Source Serif 4',Georgia,serif;color:#241a14">For Students <span>›</span></div>
+    <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(36,26,20,.15);font:600 16px 'Source Serif 4',Georgia,serif;color:#241a14">About Tenzor <span>›</span></div>
+    <div style="display:flex;gap:10px;margin-top:20px;padding:12px 0;border-top:1px solid rgba(36,26,20,.15)">
+      <span style="font:700 12px 'IBM Plex Sans',sans-serif;color:#f4f0e8;background:#241a14;padding:4px 10px;border-radius:12px">EN</span>
+      <span style="font:700 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.5);padding:4px 10px;border-radius:12px;border:1px solid rgba(36,26,20,.25)">SL</span>
+    </div>
+  </div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px;max-width:375px">
+  <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px 'IBM Plex Sans',sans-serif;background:#241a14;color:#f4f0e8;padding:3px 8px;border-radius:3px">C</span><span style="font:600 13px 'IBM Plex Sans',sans-serif;color:#241a14">Footer, next to Contact</span></div>
+  <p style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.55);margin:0 0 4px">Out of the way, treated like a utility link — but requires scrolling to page bottom.</p>
+  <div style="width:375px;height:812px;border-radius:38px;border:8px solid #1a1a1a;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.18);background:#f4f0e8;display:flex;flex-direction:column;justify-content:flex-end">
+    <div style="padding:20px 24px;font:400 13px 'Source Serif 4',Georgia,serif;color:rgba(36,26,20,.4);flex:1;display:flex;align-items:center;justify-content:center">(page content)</div>
+    <footer style="padding:20px 24px;border-top:1px solid #241a14;display:flex;flex-direction:column;gap:12px;font:400 12px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.6)">
+      <span>Tenzor — student list, FMF</span>
+      <div style="display:flex;gap:14px;align-items:center">
+        <span style="color:#7a1f1f">Contact</span>
+        <span style="color:#7a1f1f">tenzorfmf@proton.me</span>
+        <span style="display:flex;gap:6px;margin-left:auto"><span style="font:700 11px 'IBM Plex Sans',sans-serif;text-decoration:underline;color:#241a14">EN</span><span style="font:700 11px 'IBM Plex Sans',sans-serif;color:rgba(36,26,20,.4)">SL</span></span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+</div>
+</div>
+</x-dc>
+</body>
+</html>

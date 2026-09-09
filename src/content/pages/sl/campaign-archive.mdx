@@ -1,0 +1,29 @@
+---
+translationKey: "campaign-archive"
+lang: "sl"
+title: "Arhiv kampanj"
+slug: "arhiv-kampanj"
+summary: "Promocijsko gradivo preteklih volilnih in informativnih kampanj Tenzorja — letaki in plakati."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Arhiv kampanj"
+  parent: "section-events"
+  order: 60
+search:
+  type: "archive"
+seo:
+  title: "Arhiv kampanj | Tenzor"
+  description: "Letaki in plakati preteklih kampanj Tenzorja."
+  noindex: false
+---
+
+import CampaignArchive from '@/components/content/CampaignArchive.astro';
+import PageIntro from '@/components/content/PageIntro.astro';
+
+<PageIntro text={frontmatter.summary} />
+
+Zbrano promocijsko gradivo preteklih kampanj. Poročila o dogodkih so v razdelku
+[Pretekli dogodki](/sl/dogodki/pretekli-dogodki/).
+
+<CampaignArchive locale={frontmatter.lang} />
