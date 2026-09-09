@@ -1,0 +1,24 @@
+---
+translationKey: "section-students"
+lang: "en"
+title: "For students"
+slug: "for-students"
+summary: "Resources for FMF students — the student room, textbook fund, newsletter, and useful links."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "For students"
+  order: 40
+seo:
+  title: "For students | Tenzor"
+  description: "Resources for FMF students: student room, textbook fund, newsletter sign-up, and useful links."
+  noindex: false
+---
+
+import SectionChildren from '@/components/content/SectionChildren.astro';
+
+This page brings together practical resources for studying at FMF: a student room for
+studying and socialising, a textbook fund, newsletter sign-up, and links to materials,
+notes, and information on scholarships and housing.
+
+<SectionChildren locale={frontmatter.lang} sectionKey={frontmatter.translationKey} />

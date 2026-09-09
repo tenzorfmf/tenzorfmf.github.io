@@ -1,0 +1,24 @@
+---
+translationKey: "past-events"
+lang: "sl"
+title: "Pretekli dogodki"
+slug: "pretekli-dogodki"
+summary: "Poročila o dogodkih, ki jih je Tenzor že izvedel."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Pretekli dogodki"
+  parent: "section-events"
+  order: 50
+search:
+  type: "archive"
+aliases:
+  - "/pretekli_dogodki.html"
+---
+
+import PostList from '@/components/content/PostList.astro';
+
+Kronološki pregled izvedenih dogodkov, od najnovejšega naprej. Promocijsko gradivo
+preteklih kampanj (letaki in plakati) je v [Arhivu kampanj](/sl/dogodki/arhiv-kampanj/).
+
+<PostList locale={frontmatter.lang} scope="past" />

@@ -1,0 +1,56 @@
+# Old -> new mapping for media files (deterministic ASCII names).
+generated: 2026-08-29
+
+flyers:
+  - old: "letaki/program šz/program šz-1.png"
+    new: src/assets/media/images/flyers/program-sz-1.png
+    post: src/content/posts/sl/2024-11-01--letak-program-sz-1.md
+  - old: "letaki/program šz/program šz-2.png"
+    new: src/assets/media/images/flyers/program-sz-2.png
+    post: src/content/posts/sl/2024-11-01--letak-program-sz-2.md
+  - old: "letaki/ŠOVZ program/ŠOVZ program-1.png"
+    new: src/assets/media/images/flyers/sovz-program-1.png
+    post: src/content/posts/sl/2024-11-01--letak-sovz-program-1.md
+  - old: "letaki/ŠOVZ program/ŠOVZ program-2.png"
+    new: src/assets/media/images/flyers/sovz-program-2.png
+    post: src/content/posts/sl/2024-11-01--letak-sovz-program-2.md
+  - old: "letaki/KAJ PA SO INTERESI ŠTUDENTOV IN ŠTUDENTK/KAJ PA SO INTERESI ŠTUDENTOV IN ŠTUDENTK-1.png"
+    new: src/assets/media/images/flyers/interesi-studentov-1.png
+    post: src/content/posts/sl/2024-11-01--letak-interesi-studentov-1.md
+  - old: "letaki/KAJ PA SO INTERESI ŠTUDENTOV IN ŠTUDENTK/KAJ PA SO INTERESI ŠTUDENTOV IN ŠTUDENTK-2.png"
+    new: src/assets/media/images/flyers/interesi-studentov-2.png
+    post: src/content/posts/sl/2024-11-01--letak-interesi-studentov-2.md
+  - old: "letaki/kaj je šz_šovz/kaj je šz_šovz-1.png"
+    new: src/assets/media/images/flyers/kaj-je-sz-sovz-1.png
+    post: src/content/posts/sl/2024-11-01--letak-kaj-je-sz-sovz-1.md
+  - old: "letaki/kaj je šz_šovz/kaj je šz_šovz-2.png"
+    new: src/assets/media/images/flyers/kaj-je-sz-sovz-2.png
+    post: src/content/posts/sl/2024-11-01--letak-kaj-je-sz-sovz-2.md
+  - old: "letaki/program šz-1/program šz-1-1.png"
+    new: src/assets/media/images/flyers/program-sz-b-1.png
+    post: src/content/posts/sl/2024-11-01--letak-program-sz-b-1.md
+  - old: "letaki/program šz-1/program šz-1-2.png"
+    new: src/assets/media/images/flyers/program-sz-b-2.png
+    post: src/content/posts/sl/2024-11-01--letak-program-sz-b-2.md
+  - old: "letaki/zakaj volitve/zakaj volitve-1.png"
+    new: src/assets/media/images/flyers/zakaj-volitve-1.png
+    post: src/content/posts/sl/2024-11-01--letak-zakaj-volitve-1.md
+  - old: "letaki/zakaj volitve/zakaj volitve-2.png"
+    new: src/assets/media/images/flyers/zakaj-volitve-2.png
+    post: src/content/posts/sl/2024-11-01--letak-zakaj-volitve-2.md
+
+posters:
+  - old: "plakati/FMF BOAT PARTY ZAKAJ /FMF BOAT PARTY ZAKAJ -1.png"   # note trailing space in dir name
+    new: src/assets/media/images/posters/fmf-boat-party-zakaj-1.png
+    post: src/content/posts/sl/2024-05-01--plakat-fmf-boat-party-zakaj.md
+  - old: "plakati/ZASTONJ BILJARD/ZASTONJ BILJARD-1.png"
+    new: src/assets/media/images/posters/zastonj-biljard-1.png
+    post: src/content/posts/sl/2024-05-01--plakat-zastonj-biljard.md
+
+documents:
+  - old: sou.pdf
+    new: public/media/documents/sou.pdf
+  - old: "ŠOU revizijsko poročilo.pdf"
+    new: public/media/documents/sou-revizijsko-porocilo.pdf
+  - old: "VSEBINSKA OBRAZLOŽITEV PREDLOGA REBALANSA FINANČNEGA NAČRTA ZA LETO 2024.pdf"
+    new: public/media/documents/vsebinska-obrazlozitev-rebalans-2024.pdf

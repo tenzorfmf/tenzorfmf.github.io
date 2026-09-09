@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string | null | undefined;
+}
+const { text } = Astro.props;
+---
+
+{text && <p class="page-intro">{text}</p>}
+
+<style>
+  .page-intro {
+    font: var(--page-intro);
+    color: var(--ink-80);
+    margin: 0 0 30px;
+  }
+</style>

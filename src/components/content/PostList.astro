@@ -1,0 +1,62 @@
+---
+import type { Locale } from '../../i18n/config';
+import { bcp47 } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import { postsForLocale } from '../../utils/content';
+import { postPath } from '../../utils/routes';
+import DocumentRow from './DocumentRow.astro';
+import EmptyState from './EmptyState.astro';
+
+interface Props {
+  locale: Locale;
+  scope: 'upcoming' | 'past' | 'all';
+}
+const { locale, scope } = Astro.props;
+const strings = t(locale);
+const formatter = new Intl.DateTimeFormat(bcp47[locale], {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'Europe/Ljubljana',
+});
+const now = Date.now();
+
+const posts = await postsForLocale(locale);
+const sortKey = (entry: (typeof posts)[number]) =>
+  scope === 'all' ? entry.data.publishedAt : entry.data.event!.start;
+
+const filtered =
+  scope === 'all'
+    ? posts.filter((entry) => entry.data.kind !== 'archive')
+    : posts
+        .filter((entry) => entry.data.kind === 'event' && entry.data.event != null)
+        .filter((entry) =>
+          scope === 'upcoming'
+            ? entry.data.event!.start.getTime() >= now
+            : entry.data.event!.start.getTime() < now,
+        );
+
+const items = filtered
+  .sort((a, b) =>
+    scope === 'upcoming'
+      ? sortKey(a).getTime() - sortKey(b).getTime()
+      : sortKey(b).getTime() - sortKey(a).getTime(),
+  )
+  .map((entry) => ({ href: postPath(entry), title: entry.data.title, meta: formatter.format(sortKey(entry)) }));
+
+const emptyTitle =
+  scope === 'upcoming' ? strings.noUpcomingEvents : scope === 'past' ? strings.noPastEvents : strings.noResults;
+const emptyBody = scope === 'upcoming' ? strings.noUpcomingEventsBody : scope === 'past' ? strings.noPastEventsBody : undefined;
+---
+
+{items.length > 0 ? (
+  <section class="post-list">
+    {items.map((item, index) => <DocumentRow {...item} last={index === items.length - 1} />)}
+  </section>
+) : (
+  <EmptyState title={emptyTitle} body={emptyBody} />
+)}
+
+<style>
+  .post-list { margin-bottom: var(--sec-md); }
+</style>

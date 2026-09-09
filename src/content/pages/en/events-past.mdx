@@ -1,0 +1,23 @@
+---
+translationKey: "past-events"
+lang: "en"
+title: "Past events"
+slug: "past-events"
+summary: "Reports on events Tenzor has already held."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Past events"
+  parent: "section-events"
+  order: 50
+search:
+  type: "archive"
+---
+
+import PostList from '@/components/content/PostList.astro';
+
+A reverse-chronological overview of past events. Promotional material from
+past campaigns (flyers and posters) is in the
+[Campaign archive](/en/events/campaign-archive/).
+
+<PostList locale={frontmatter.lang} scope="past" />

@@ -1,0 +1,34 @@
+---
+import type { Locale } from '../../i18n/config';
+import { postsForLocale } from '../../utils/content';
+import { postPath } from '../../utils/routes';
+import DocumentRow from './DocumentRow.astro';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const posts = (await postsForLocale(locale)).filter(
+  (entry) => entry.data.kind === 'archive' && entry.data.category === 'dogodki',
+);
+const rows = (entries: typeof posts) => entries
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'sl'))
+  .map((entry) => ({
+    href: postPath(entry),
+    title: entry.data.title,
+    meta: entry.data.tags.includes('plakat') ? (locale === 'sl' ? 'Plakat' : 'Poster') : (locale === 'sl' ? 'Letak' : 'Flyer'),
+  }));
+const groups = [
+  { heading: locale === 'sl' ? 'Promocijsko gradivo — letaki' : 'Campaign material — flyers', rows: rows(posts.filter((entry) => entry.data.tags.includes('letak'))) },
+  { heading: locale === 'sl' ? 'Plakati' : 'Posters', rows: rows(posts.filter((entry) => entry.data.tags.includes('plakat'))) },
+].filter((group) => group.rows.length > 0);
+---
+
+{groups.map((group) => (
+  <section class="archive-group">
+    <div class="eyebrow">{group.heading}</div>
+    {group.rows.map((row, index) => <DocumentRow {...row} last={index === group.rows.length - 1} />)}
+  </section>
+))}
+
+<style>
+  .archive-group { margin-top: 24px; }
+</style>

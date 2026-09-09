@@ -1,0 +1,54 @@
+---
+interface Link {
+  href: string;
+  label: string;
+}
+interface Props {
+  eyebrow: string;
+  links: Link[];
+}
+const { eyebrow, links } = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <section class="quicklinks">
+      <div class="eyebrow">{eyebrow}</div>
+      <div class="quicklinks__row">
+        {links.map((l) => (
+          <a class="quicklinks__link" href={l.href}>
+            {l.label}
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .quicklinks {
+    padding-bottom: var(--sec-last-pad);
+  }
+  .quicklinks__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-quicklinks);
+    border-top: 1px solid var(--ink);
+    padding-top: 14px;
+  }
+  .quicklinks__link {
+    font: var(--quicklink);
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .quicklinks__link:hover {
+    text-decoration: underline;
+  }
+
+  .quicklinks__link {
+    transition: opacity 150ms ease;
+  }
+  .quicklinks__link:hover {
+    opacity: 0.72;
+  }
+</style>

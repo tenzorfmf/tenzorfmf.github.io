@@ -1,0 +1,22 @@
+# Translation pairing is by `translationKey`. hreflang alternates are emitted
+# only for translations that actually exist. Everything below has no English
+# file yet, so the language toggle renders the EN chip disabled (aria-disabled),
+# never a broken link.
+generated: 2026-08-30
+
+pages: []
+# All 17 pages now have an English counterpart in src/content/pages/en/
+# (translationKey shared, lang: en, English slug). Only posts remain untranslated.
+
+posts:
+  - translationKey: zakaj-ne-podpiramo-stanja
+    status: missing-en
+  # 14 archive posts (letak-*, plakat-*) — all missing-en
+
+summary: >
+  All pages have English translations (src/content/pages/en/). Posts (news,
+  statements, events, documents, the campaign-archive flyers/posters) are still
+  Slovenian-only, so /en/novice-equivalent listings and /en/search/ currently
+  surface no post-type results. Adding an English post is: copy the SL file into
+  src/content/posts/en/, translate the body, keep the same `translationKey`, set
+  `lang: en`, give it an English `slug`. See README.

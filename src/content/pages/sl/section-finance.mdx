@@ -1,0 +1,30 @@
+---
+translationKey: "section-finance"
+lang: "sl"
+title: "Finance"
+slug: "finance"
+summary: "Celovit pregled financ Tenzorja in študentske organizacije, objavljen zaradi transparentnosti."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Finance"
+  order: 20
+aliases:
+  - "/finance.html"
+  - "/sl/finance/finance/"
+---
+
+import SectionChildren from '@/components/content/SectionChildren.astro';
+import SheetEmbed from '@/components/content/SheetEmbed.astro';
+
+Spodnja preglednica prikazuje vso evidentirano porabo Tenzorja in študentske organizacije.
+Podatki niso vedno popolnoma posodobljeni — praviloma jih posodabljamo v večjih časovnih
+sklopih. Če se preglednica ne naloži, jo odpri neposredno prek povezave pod njo.
+
+<SheetEmbed
+  url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSuvqP899uKZOrxSpBwLhuCQpQNRZ44iSq0e74IrXr_bIyM-8auVhgY5xzQAMxK-EPmuAd3WMN8kUDk/pubhtml?gid=386504413&single=true&widget=true&headers=false"
+  title="Javni pregled financ Tenzorja in študentske organizacije"
+  fallbackLabel="Odpri preglednico financ v Google Preglednicah ↗"
+/>
+
+<SectionChildren locale={frontmatter.lang} sectionKey={frontmatter.translationKey} />

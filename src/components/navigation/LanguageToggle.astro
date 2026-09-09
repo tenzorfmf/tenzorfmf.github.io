@@ -1,0 +1,91 @@
+---
+import type { Locale } from '../../i18n/config';
+import { locales, localeShort, localeNames } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+
+interface Props {
+  locale: Locale;
+  links: { locale: Locale; href: string | null }[];
+}
+
+const { locale, links } = Astro.props;
+const strings = t(locale);
+const byLocale = new Map(links.map((l) => [l.locale, l.href]));
+---
+
+<div class="langtoggle">
+  <span class="langtoggle__label">{strings.language}</span>
+  <div class="langtoggle__chips">
+    {
+      locales.map((loc) => {
+        const href = byLocale.get(loc) ?? null;
+        const isActive = loc === locale;
+        if (isActive) {
+          return (
+            <span class="langtoggle__chip langtoggle__chip--active" aria-current="true">
+              {localeShort[loc]}
+            </span>
+          );
+        }
+        if (!href) {
+          return (
+            <span
+              class="langtoggle__chip langtoggle__chip--disabled"
+              aria-disabled="true"
+              title={`${localeNames[loc]} — ${strings.translationMissing}`}
+            >
+              {localeShort[loc]}
+            </span>
+          );
+        }
+        return (
+          <a class="langtoggle__chip" href={href} hreflang={loc} lang={loc}>
+            {localeShort[loc]}
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  .langtoggle {
+    border-top: 1px solid var(--rule);
+    margin-top: 20px;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .langtoggle__label {
+    font: var(--meta);
+    color: var(--ink-60);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .langtoggle__chips {
+    display: flex;
+    gap: 10px;
+  }
+  .langtoggle__chip {
+    font: 600 12px/1 var(--sans);
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink-50);
+    border: 1px solid var(--rule-chip);
+  }
+  .langtoggle__chip--active {
+    color: var(--on-ink);
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .langtoggle__chip--disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  a.langtoggle__chip:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+</style>

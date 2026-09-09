@@ -1,0 +1,35 @@
+# Legacy URL -> new canonical path. Emitted as redirect stubs into dist/ by
+# scripts/build-redirects.mjs (runs AFTER pagefind so stubs stay out of the index).
+generated: 2026-08-29
+domain: tenzor-fmf.org
+
+redirects:
+  - from: /index.html
+    to: /sl/
+  - from: /letni_program.html
+    to: /sl/program/letni-program/
+  - from: /finance.html
+    to: /sl/finance/finance/
+  - from: /program.html
+    to: /sl/program/program/
+  - from: /clani.html
+    to: /sl/o-tenzorju/clani/
+  - from: /pretekli_dogodki.html
+    to: /sl/dogodki/pretekli-dogodki/
+  - from: /studencka_soba.html
+    to: /sl/za-studente/studencka-soba/
+  - from: /ucbeniski_sklad.html
+    to: /sl/za-studente/ucbeniski-sklad/
+  - from: /obvestilnik.html
+    to: /sl/za-studente/obvestilnik/
+  - from: /koristne_povezave.html
+    to: /sl/za-studente/koristne-povezave/
+  - from: /kontakti.html
+    to: /sl/o-tenzorju/kontakti/
+
+notes: >
+  /finance/finance/ and /program/program/ read redundantly: the section slug and
+  the migrated child slug (locked by the runbook's slug table) collide at one
+  level. Flagged for Tenzor in unresolved-content.md — a future rename of the
+  child pages would clean this up without breaking the redirect (regenerated from
+  frontmatter).

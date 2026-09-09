@@ -1,0 +1,62 @@
+---
+import type { Locale } from '../../i18n/config';
+import { bcp47 } from '../../i18n/config';
+
+interface Item {
+  href: string;
+  title: string;
+  date: Date;
+}
+interface Props {
+  eyebrow: string;
+  locale: Locale;
+  items: Item[];
+}
+const { eyebrow, locale, items } = Astro.props;
+const fmt = new Intl.DateTimeFormat(bcp47[locale], {
+  day: '2-digit',
+  month: 'short',
+});
+---
+
+{
+  items.length > 0 && (
+    <section class="latest">
+      <div class="eyebrow">{eyebrow}</div>
+      {items.map((item) => (
+        <a class="latest__row" href={item.href}>
+          <span class="latest__date">
+            <time datetime={item.date.toISOString().slice(0, 10)}>{fmt.format(item.date)}</time>
+          </span>
+          <span class="latest__title">{item.title}</span>
+        </a>
+      ))}
+    </section>
+  )
+}
+
+<style>
+  .latest {
+    margin-bottom: var(--sec-home);
+  }
+  .latest__row {
+    display: flex;
+    gap: var(--gap-index-row);
+    padding: var(--row-latest) 0;
+    text-decoration: none;
+    color: var(--ink);
+    font: var(--latest-item);
+  }
+  .latest__date {
+    color: var(--ink-45);
+    width: 64px;
+    flex: none;
+  }
+  .latest__row:hover .latest__title {
+    color: var(--accent);
+  }
+
+  .latest__title {
+    transition: color 150ms ease;
+  }
+</style>

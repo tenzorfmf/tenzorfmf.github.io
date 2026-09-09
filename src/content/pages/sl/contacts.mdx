@@ -1,0 +1,23 @@
+---
+translationKey: "contacts"
+lang: "sl"
+title: "Kontakt"
+slug: "kontakti"
+summary: "Tu najdete informacije o tem, kako stopiti v stik z nami."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Kontakt"
+  parent: "section-about"
+  order: 100
+aliases:
+  - "/kontakti.html"
+---
+
+import ContactDetails from '@/components/content/ContactDetails.astro';
+import PageIntro from '@/components/content/PageIntro.astro';
+
+<PageIntro text={frontmatter.summary} />
+<ContactDetails locale={frontmatter.lang} />
+
+Če želiš, da s spletne strani odstranimo kakšno gradivo, ali želiš prispevati študijsko gradivo, nam piši na e-poštni naslov.

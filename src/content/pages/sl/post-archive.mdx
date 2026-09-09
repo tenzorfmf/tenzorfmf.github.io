@@ -1,0 +1,21 @@
+---
+translationKey: "post-archive"
+lang: "sl"
+title: "Arhiv objav"
+slug: "arhiv-objav"
+summary: "Vse objave Tenzorja na enem mestu, od najnovejše naprej."
+updatedAt: 2026-08-30
+nav:
+  include: true
+  label: "Arhiv objav"
+  parent: "section-events"
+  order: 55
+search:
+  type: "archive"
+---
+
+import PostList from '@/components/content/PostList.astro';
+
+Kronološki pregled vseh objav Tenzorja, od najnovejše naprej.
+
+<PostList locale={frontmatter.lang} scope="all" />

@@ -1,0 +1,71 @@
+---
+interface Item {
+  href: string;
+  title: string;
+  descriptor?: string;
+}
+interface Props {
+  eyebrow: string;
+  items: Item[];
+}
+const { eyebrow, items } = Astro.props;
+const pad2 = (n: number) => String(n).padStart(2, '0');
+---
+
+<section class="section-index">
+  <div class="eyebrow">{eyebrow}</div>
+  {
+    items.map((item, i) => (
+      <a href={item.href} class:list={['section-index__row', { 'section-index__row--last': i === items.length - 1 }]}>
+        <span class="section-index__num" aria-hidden="true">{pad2(i + 1)}</span>
+        <span class="section-index__title">{item.title}</span>
+        {item.descriptor && <span class="section-index__desc">{item.descriptor}</span>}
+      </a>
+    ))
+  }
+</section>
+
+<style>
+  .section-index {
+    margin-bottom: var(--sec-md);
+  }
+  .section-index__row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--gap-index-row);
+    padding: var(--row-index) 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .section-index__row--last {
+    border-bottom: none;
+  }
+  .section-index__num {
+    font: var(--explore-numeral);
+    color: var(--ink-40);
+    width: 20px;
+    flex: none;
+  }
+  .section-index__title {
+    font: var(--explore-item);
+    flex: 1;
+  }
+  .section-index__desc {
+    font: 400 12px/1.4 var(--sans);
+    color: var(--ink-45);
+  }
+  .section-index__row:hover .section-index__title {
+    color: var(--accent);
+  }
+
+  .section-index__row {
+    transition: border-color 160ms ease;
+  }
+  .section-index__title {
+    transition: color 150ms ease;
+  }
+  .section-index__row:hover {
+    border-color: var(--ink-40);
+  }
+</style>

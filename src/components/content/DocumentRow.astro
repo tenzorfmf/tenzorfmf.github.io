@@ -1,0 +1,49 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  meta?: string;
+  last?: boolean;
+}
+const { href, title, meta, last = false } = Astro.props;
+---
+
+<a href={href} class:list={['docrow', { 'docrow--last': last }]}>
+  <span class="docrow__title">{title}</span>
+  {meta && <span class="docrow__meta">{meta}</span>}
+</a>
+
+<style>
+  .docrow {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gap-index-row);
+    align-items: baseline;
+    padding: var(--row-linklist) 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    font: var(--linkrow-sm);
+  }
+  .docrow--last {
+    border-bottom: none;
+  }
+  .docrow__meta {
+    font: var(--meta);
+    color: var(--ink-45);
+    flex: none;
+  }
+  .docrow:hover .docrow__title {
+    color: var(--accent);
+  }
+
+  .docrow {
+    transition: border-color 160ms ease;
+  }
+  .docrow__title {
+    transition: color 150ms ease;
+  }
+  .docrow:hover {
+    border-color: var(--ink-40);
+  }
+</style>

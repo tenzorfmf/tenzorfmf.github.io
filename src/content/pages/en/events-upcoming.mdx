@@ -1,0 +1,20 @@
+---
+translationKey: "upcoming-events"
+lang: "en"
+title: "Upcoming events"
+slug: "upcoming-events"
+summary: "Confirmed upcoming events organised by Tenzor."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Upcoming events"
+  parent: "section-events"
+  order: 40
+---
+
+import PostList from '@/components/content/PostList.astro';
+
+Confirmed events are listed below. For each event we also publish a short
+announcement with the time and location.
+
+<PostList locale={frontmatter.lang} scope="upcoming" />

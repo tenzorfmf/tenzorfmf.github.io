@@ -1,0 +1,245 @@
+---
+import type { Locale } from '../i18n/config';
+import { bcp47 } from '../i18n/config';
+import { t, org } from '../utils/i18n';
+import type { PostEntry } from '../utils/routes';
+import type { Crumb } from '../utils/content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/navigation/Breadcrumbs.astro';
+import AttachmentList from '../components/content/AttachmentList.astro';
+import SourceList from '../components/content/SourceList.astro';
+import PosterFigure from '../components/content/PosterFigure.astro';
+
+interface Props {
+  entry: PostEntry;
+  locale: Locale;
+  canonicalPath: string;
+  translationLinks: { locale: Locale; href: string | null }[];
+  crumbs: Crumb[];
+  backHref: string;
+  backLabel: string;
+  posterKey?: string;
+}
+
+const { entry, locale, canonicalPath, translationLinks, crumbs, backHref, backLabel, posterKey } =
+  Astro.props;
+
+const strings = t(locale);
+const o = org(locale);
+const d = entry.data;
+
+const seoTitle = `${d.title} | ${o.organisationName}`;
+const seoDesc = d.summary;
+
+const kindLabel: Record<string, string> = {
+  news: locale === 'sl' ? 'Novica' : 'News',
+  statement: locale === 'sl' ? 'Izjava' : 'Statement',
+  event: locale === 'sl' ? 'Dogodek' : 'Event',
+  document: locale === 'sl' ? 'Dokument' : 'Document',
+  archive: locale === 'sl' ? 'Arhiv' : 'Archive',
+};
+
+/*
+ * Only exceptions to the kebab-case -> Title Case fallback below: acronyms
+ * (fmf, aluo, om-fmf), a spelling the tag slug doesn't carry (icozathlon),
+ * and multi-word phrases where Slovenian/English convention keeps a
+ * connector word lowercase.
+ */
+const tagLabels: Record<Locale, Record<string, string>> = {
+  sl: {
+    'akademski-zbor': 'Akademski zbor',
+    'čajni-kotiček': 'Čajni kotiček',
+    'fmf': 'FMF',
+    'študentsko-življenje': 'Študentsko življenje',
+    'mesec-mladosti': 'Mesec mladosti',
+    'aluo': 'ALUO',
+    'om-fmf': 'OM FMF',
+  },
+  en: {
+    'om-fmf': 'OM FMF',
+    'fmf': 'FMF',
+    'icozathlon': 'Ikozatlon',
+    'month-of-youth': 'Month of Youth',
+    'aluo': 'ALUO',
+  },
+};
+const tagLabel = (tag: string) =>
+  tagLabels[locale][tag] ?? tag.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+const year = d.publishedAt.getUTCFullYear();
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const metaParts = [
+  kindLabel[d.kind],
+  cap(d.category),
+  ...(d.kind === 'archive' ? [] : d.tags.map(tagLabel)),
+  String(year),
+].filter(Boolean);
+const metaLine = metaParts.join(' · ');
+
+const h1Class = d.kind === 'event' ? 'post-h1 post-h1--event' : 'post-h1 post-h1--document';
+
+/* Event date / venue line (kind: event) */
+const ev = d.event;
+const dateF = new Intl.DateTimeFormat(bcp47[locale], {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'Europe/Ljubljana',
+});
+const timeF = new Intl.DateTimeFormat(bcp47[locale], {
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Europe/Ljubljana',
+});
+const hasTime = (dt: Date) => timeF.format(dt) !== '00:00';
+let eventWhen = '';
+if (ev) {
+  const startDay = dateF.format(ev.start);
+  if (ev.end && dateF.format(ev.end) !== startDay) {
+    eventWhen = `${startDay} – ${dateF.format(ev.end)}`;
+  } else if (hasTime(ev.start)) {
+    eventWhen = ev.end
+      ? `${startDay}, ${timeF.format(ev.start)}–${timeF.format(ev.end)}`
+      : `${startDay}, ${timeF.format(ev.start)}`;
+  } else {
+    eventWhen = startDay;
+  }
+}
+const eventWhere = ev
+  ? [ev.venue, ev.address].filter(Boolean).join(', ')
+  : '';
+const whenLabel = locale === 'sl' ? 'Kdaj' : 'When';
+const whereLabel = locale === 'sl' ? 'Kje' : 'Where';
+
+const indexable = d.search.include !== false && d.draft !== true;
+const pagefindFilters: Record<string, string | string[]> = indexable
+  ? {
+      lang: locale,
+      collection: 'post',
+      type: d.search.type,
+      year: String(year),
+      category: d.category,
+      ...(d.tags.length ? { tags: d.tags } : {}),
+    }
+  : {};
+const pagefindMeta: Record<string, string> = indexable ? { title: d.title } : {};
+---
+
+<BaseLayout
+  locale={locale}
+  title={seoTitle}
+  description={seoDesc}
+  canonicalPath={canonicalPath}
+  noindex={d.search.include === false}
+  translationLinks={translationLinks}
+  currentPath={canonicalPath}
+  pagefindBody={indexable}
+  pagefindFilters={pagefindFilters}
+  pagefindMeta={pagefindMeta}
+>
+  <Breadcrumbs crumbs={crumbs} locale={locale} />
+  <div class="post-meta">{metaLine}</div>
+  <h1 class={h1Class}>{d.title}</h1>
+
+  {
+    d.kind === 'event' && ev && (
+      <dl class="event-detail">
+        <div class="event-detail__row">
+          <dt>{whenLabel}</dt>
+          <dd>{eventWhen}</dd>
+        </div>
+        {eventWhere && (
+          <div class="event-detail__row">
+            <dt>{whereLabel}</dt>
+            <dd>{eventWhere}</dd>
+          </div>
+        )}
+      </dl>
+    )
+  }
+
+  {
+    posterKey && (
+      <PosterFigure imageKey={posterKey} alt={d.hero?.alt ?? d.title} caption={d.hero?.caption} />
+    )
+  }
+
+  <div class="prose post-body">
+    <slot name="body" />
+  </div>
+
+  {d.attachments.length > 0 && (
+    <AttachmentList locale={locale} attachments={d.attachments} />
+  )}
+
+  {d.sources.length > 0 && (
+    <SourceList eyebrow={strings.relatedAndSources} sources={d.sources} archivedLabel={locale === 'sl' ? 'arhivirano' : 'archived'} />
+  )}
+
+  <a class="post-back" href={backHref}>
+    <span aria-hidden="true">←</span> {backLabel}
+  </a>
+</BaseLayout>
+
+<style>
+  .post-meta {
+    font: var(--meta);
+    color: var(--ink-50);
+    margin-bottom: 10px;
+  }
+  .post-h1 {
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .post-h1--document {
+    font: var(--h1-document);
+  }
+  .post-h1--event {
+    font: var(--h1-event);
+  }
+  .event-detail {
+    margin: 0 0 28px;
+    padding: 14px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .event-detail__row {
+    display: flex;
+    gap: 12px;
+    padding: 4px 0;
+  }
+  .event-detail dt {
+    font: 600 12px/1.5 var(--sans);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-55);
+    width: 64px;
+    flex: none;
+  }
+  .event-detail dd {
+    margin: 0;
+    font: 400 14px/1.5 var(--sans);
+    color: var(--ink);
+  }
+  .post-body {
+    margin-bottom: 36px;
+  }
+  .post-back {
+    display: inline-block;
+    padding-bottom: var(--sec-last-pad);
+    font: var(--quicklink);
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .post-back:hover {
+    text-decoration: underline;
+  }
+
+  .post-back span {
+    display: inline-block;
+    transition: transform 160ms ease;
+  }
+  .post-back:hover span {
+    transform: translateX(-3px);
+  }
+</style>

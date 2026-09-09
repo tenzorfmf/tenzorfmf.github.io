@@ -1,0 +1,66 @@
+---
+interface Props {
+  eyebrow: string;
+  href: string;
+  title: string;
+  deck?: string;
+  cta: string;
+}
+const { eyebrow, href, title, deck, cta } = Astro.props;
+---
+
+<section class="featured">
+  <div class="eyebrow eyebrow--accent">{eyebrow}</div>
+  <a class="featured__card" href={href}>
+    <div class="featured__title">{title}</div>
+    {deck && <p class="featured__deck">{deck}</p>}
+    <span class="featured__cta">{cta} <span aria-hidden="true">→</span></span>
+  </a>
+</section>
+
+<style>
+  .featured {
+    margin-bottom: var(--sec-home);
+  }
+  .featured__card {
+    display: block;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: var(--row-featured) 0;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .featured__title {
+    font: var(--featured-home);
+    margin-bottom: 8px;
+  }
+  .featured__deck {
+    margin: 0 0 10px;
+    font: 400 14px/1.6 var(--sans);
+    color: var(--ink-75);
+  }
+  .featured__cta {
+    font: var(--cta);
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .featured__card {
+    transition: background-color 200ms ease;
+  }
+  .featured__card:hover {
+    background: var(--tint);
+  }
+  .featured__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .featured__cta span {
+    transition: transform 160ms ease;
+  }
+  .featured__card:hover .featured__cta span {
+    transform: translateX(3px);
+  }
+</style>

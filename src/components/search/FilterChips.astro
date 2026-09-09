@@ -1,0 +1,50 @@
+---
+interface Chip {
+  value: string;
+  label: string;
+}
+interface Props {
+  chips: Chip[];
+  group: string;
+}
+const { chips, group } = Astro.props;
+---
+
+{/* SSR defaults every group to its "all" chip (value ""); the client script re-syncs from the URL on load. */}
+<div class="chips" role="group" data-filter-group={group}>
+  {
+    chips.map((c) => (
+      <button
+        type="button"
+        class:list={['chip', { 'chip--active': c.value === '' }]}
+        data-filter-value={c.value}
+        aria-pressed={c.value === '' ? 'true' : 'false'}
+      >
+        {c.label}
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .chip {
+    font: var(--chip-inactive);
+    padding: 6px 12px;
+    border: 1px solid var(--rule-chip);
+    color: var(--ink-50);
+    background: transparent;
+    border-radius: 0;
+    cursor: pointer;
+  }
+  .chip--active {
+    font: var(--chip-active);
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+</style>

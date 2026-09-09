@@ -1,0 +1,25 @@
+---
+translationKey: "section-events"
+lang: "sl"
+title: "Dogodki"
+slug: "dogodki"
+summary: "Dogodki, ki jih organizira Tenzor, in pripadajoče promocijsko gradivo."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Dogodki"
+  order: 30
+seo:
+  title: "Dogodki | Tenzor"
+  description: "Dogodki in promocijsko gradivo Tenzorja."
+  noindex: false
+---
+
+import SectionChildren from '@/components/content/SectionChildren.astro';
+
+Tenzor med letom pripravlja druženja, predavanja in tradicionalne dogodke, ki
+povezujejo študente matematike in fizike. Napovedi so v razdelku **Prihajajoči
+dogodki**, poročila o že izvedenih dogodkih pa med **Preteklimi dogodki**. V
+**Arhivu kampanj** je zbrano promocijsko gradivo (letaki in plakati) preteklih kampanj.
+
+<SectionChildren locale={frontmatter.lang} sectionKey={frontmatter.translationKey} />

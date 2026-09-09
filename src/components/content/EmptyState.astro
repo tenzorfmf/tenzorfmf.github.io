@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  body?: string;
+}
+const { title, body } = Astro.props;
+---
+
+<div class="empty" data-pagefind-ignore>
+  <p class="empty__title">{title}</p>
+  {body && <p class="empty__body">{body}</p>}
+  <slot />
+</div>
+
+<style>
+  .empty {
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 40px 0;
+    text-align: left;
+  }
+  .empty__title {
+    font: var(--featured-section);
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .empty__body {
+    margin: 0;
+    font: 400 13.5px/1.6 var(--sans);
+    color: var(--ink-55);
+  }
+</style>

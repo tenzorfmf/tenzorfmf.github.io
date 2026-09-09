@@ -1,0 +1,103 @@
+/* ============================================================
+   Tenzor design tokens — direction 1a "Editorial / Journal".
+   Every value is lifted verbatim from the blueprint artboards.
+   Components must not use magic numbers; reference these tokens.
+   ============================================================ */
+
+:root {
+  /* ---- colour ---- */
+  --paper: #f4f0e8;
+  --ink: #241a14;
+  --accent: #7a1f1f;
+
+  --ink-85: rgba(36, 26, 20, 0.85);
+  --ink-80: rgba(36, 26, 20, 0.8);
+  --ink-75: rgba(36, 26, 20, 0.75);
+  /* WCAG 2.2 AA fix (see plan §7.1): the blueprint's .40–.60 tints render 2.4–4.3:1
+     on --paper and fail 4.5:1 for text. Content-bearing muted tokens are floored
+     at alpha .63 (>=4.5:1) while keeping a monotonic hierarchy. --ink-40 stays at
+     .40 because it is only ever the decorative 01–05 index numerals. */
+  --ink-60: rgba(36, 26, 20, 0.68);
+  --ink-55: rgba(36, 26, 20, 0.66);
+  --ink-50: rgba(36, 26, 20, 0.64);
+  --ink-45: rgba(36, 26, 20, 0.63);
+  --ink-40: rgba(36, 26, 20, 0.4);
+
+  --rule: rgba(36, 26, 20, 0.15);
+  --rule-chip: rgba(36, 26, 20, 0.25);
+  --tint: rgba(36, 26, 20, 0.03);
+  --on-ink: #f4f0e8;
+
+  /* ---- type families ---- */
+  --serif: "Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  /* ---- type scale (element => declaration) ---- */
+  --logotype: 700 19px / 1.2 var(--serif);
+  --logotype-tracking: 0.03em;
+
+  --h1-page: 700 32px / 1.15 var(--serif);
+  --h1-document: 700 26px / 1.3 var(--serif);
+  --h1-event: 700 28px / 1.3 var(--serif);
+
+  --home-lede: 400 17px / 1.7 var(--serif);
+  --page-intro: 400 15px / 1.7 var(--sans);
+
+  --featured-home: 700 21px / 1.3 var(--serif);
+  --featured-section: 700 18px / 1.3 var(--serif);
+  --search-result-title: 700 17px / 1.3 var(--serif);
+
+  --member-name-candidate: 700 19px / 1.25 var(--serif);
+  --member-name: 700 18px / 1.25 var(--serif);
+
+  --explore-item: 600 17px / 1.3 var(--serif);
+  --menu-item: 600 16px / 1.3 var(--serif);
+  --menu-title: 700 18px / 1.2 var(--serif);
+
+  --eyebrow: 600 11px / 1.2 var(--sans);
+  --eyebrow-tracking: 0.14em;
+
+  --subnav-tab: 600 13px / 1.2 var(--sans);
+  --body: 400 14px / 1.7 var(--sans);
+  --list: 400 14px / 1.8 var(--sans);
+  --linkrow-sm: 500 13.5px / 1.4 var(--sans);
+  --linkrow-md: 500 14px / 1.4 var(--sans);
+  --linkrow-lg: 500 14.5px / 1.4 var(--sans);
+  --meta: 500 11px / 1.4 var(--sans);
+  --breadcrumb: 400 12px / 1.5 var(--sans);
+  --latest-item: 400 13px / 1.5 var(--sans);
+  --explore-numeral: 600 12px / 1.2 var(--sans);
+  --quicklink: 600 13px / 1.3 var(--sans);
+  --footer: 400 12px / 1.5 var(--sans);
+  --cta: 600 12px / 1.3 var(--sans);
+  --blockquote: 400 14px / 1.7 var(--serif);
+  --button: 600 13px / 1.2 var(--sans);
+  --chip-active: 600 11px / 1.2 var(--sans);
+  --chip-inactive: 500 11px / 1.2 var(--sans);
+
+  /* ---- layout ---- */
+  --measure: 680px; /* prose */
+  --measure-wide: 860px; /* index / archive / search rows, desktop only */
+  --pad: 24px;
+
+  /* section rhythm */
+  --sec-home: 40px;
+  --sec-md: 32px;
+  --sec-last-pad: 40px;
+
+  /* row padding */
+  --row-index: 13px;
+  --row-linklist: 12px;
+  --row-dense: 11px;
+  --row-menu: 14px;
+  --row-featured: 16px;
+  --row-latest: 9px;
+
+  /* gaps */
+  --gap-header-icons: 18px;
+  --gap-logo: 10px;
+  --gap-index-row: 14px;
+  --gap-quicklinks: 20px;
+  --gap-footer-links: 16px;
+  --gap-footer-wrap: 14px;
+}

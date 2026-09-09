@@ -1,0 +1,33 @@
+---
+translationKey: "programme"
+lang: "en"
+title: "Programme 2023/24"
+slug: "programme-2023-24"
+summary: "Tenzor's archival programme from the 2023/24 term, available as a PDF document."
+updatedAt: 2025-09-30
+nav:
+  include: true
+  label: "Programme 2023/24"
+  parent: "section-program"
+  order: 30
+search:
+  type: "document"
+seo:
+  title: "Programme 2023/24 | Tenzor"
+  description: "Tenzor's archival programme for the 2023/24 mandate."
+  noindex: false
+attachments:
+  - label: "Programme (PDF)"
+    path: "/media/documents/sou.pdf"
+    mediaType: "application/pdf"
+    language: "sl"
+---
+
+import AttachmentList from '@/components/content/AttachmentList.astro';
+
+This is Tenzor's programme for 2023/24. Current priorities are described
+in the [Programme](/en/programme/) section, and the plan for the current year is in
+the [Annual programme](/en/programme/annual-programme/). Open the archival document
+below.
+
+<AttachmentList locale={frontmatter.lang} attachments={frontmatter.attachments} />

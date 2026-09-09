@@ -1,0 +1,26 @@
+---
+translationKey: "section-events"
+lang: "en"
+title: "Events"
+slug: "events"
+summary: "Events organised by Tenzor, and the associated campaign material."
+updatedAt: 2025-10-05
+nav:
+  include: true
+  label: "Events"
+  order: 30
+seo:
+  title: "Events | Tenzor"
+  description: "Events and the Tenzor student list's campaign material."
+  noindex: false
+---
+
+import SectionChildren from '@/components/content/SectionChildren.astro';
+
+Throughout the year Tenzor organises gatherings, talks, and traditional events that
+bring together mathematics and physics students. Announcements are in the
+**Upcoming events** section, and reports on events already held are under
+**Past events**. The **Campaign archive** collects promotional material (flyers and
+posters) from past campaigns.
+
+<SectionChildren locale={frontmatter.lang} sectionKey={frontmatter.translationKey} />

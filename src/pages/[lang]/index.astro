@@ -1,0 +1,230 @@
+---
+import { render } from 'astro:content';
+import { locales, type Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+import {
+  pagesForLocale,
+  postsForLocale,
+  navTree,
+  translationLinks,
+} from '../../utils/content';
+import { postPath, searchPath } from '../../utils/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeaturedItem from '../../components/content/FeaturedItem.astro';
+import SectionIndex from '../../components/content/SectionIndex.astro';
+import LatestList from '../../components/content/LatestList.astro';
+import QuickLinks from '../../components/content/QuickLinks.astro';
+
+export async function getStaticPaths() {
+  const paths: { params: { lang: Locale }; props: { locale: Locale } }[] = [];
+  for (const locale of locales) {
+    const pages = await pagesForLocale(locale);
+    if (pages.some((p) => p.data.translationKey === 'home')) {
+      paths.push({ params: { lang: locale }, props: { locale } });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const strings = t(locale);
+
+const pages = await pagesForLocale(locale);
+const home = pages.find((p) => p.data.translationKey === 'home')!;
+const { Content } = await render(home);
+const tLinks = await translationLinks(home, 'pages');
+
+const tree = await navTree(locale);
+
+const SECTION_DESCRIPTORS: Record<string, Record<Locale, string>> = {
+  'section-program': { sl: 'Načela in pobude', en: 'Platform & initiatives' },
+  'section-finance': { sl: 'Načrti, poraba, revizije', en: 'Plans, spending, audits' },
+  'section-events': { sl: 'Prihajajoči in pretekli', en: 'Upcoming & past' },
+  'section-students': { sl: 'Soba, učbeniki, povezave', en: 'Room, textbooks, links' },
+  'section-about': { sl: 'Ekipa, poslanstvo, kontakt', en: 'Team, mission, contact' },
+};
+
+const exploreItems = tree.map((n) => ({
+  href: n.href,
+  title: n.label,
+  descriptor: SECTION_DESCRIPTORS[n.entry.data.translationKey]?.[locale],
+}));
+
+const posts = await postsForLocale(locale);
+const featured = posts
+  .filter((p) => !p.data.draft && p.data.featured)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())[0];
+
+const latest = posts
+  .filter(
+    (p) =>
+      p.data.search.include !== false &&
+      p.data.kind !== 'archive' &&
+      p.id !== featured?.id,
+  )
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 5)
+  .map((p) => ({
+    href: postPath(p),
+    title: p.data.title,
+    date: p.data.publishedAt,
+  }));
+
+const navChildren = tree.flatMap((n) => n.children);
+const postArchiveChild = navChildren.find((c) => c.entry.data.translationKey === 'post-archive');
+const contactChild = navChildren.find((c) => c.entry.data.translationKey === 'contacts');
+const usefulLinksChild = navChildren.find((c) => c.entry.data.translationKey === 'useful-links');
+const notesChild = navChildren.find((c) => c.entry.data.translationKey === 'study-notes');
+
+const quickLinks = [
+  ...(postArchiveChild ? [{ href: postArchiveChild.href, label: postArchiveChild.label }] : []),
+  ...(contactChild ? [{ href: contactChild.href, label: contactChild.label }] : []),
+  ...(usefulLinksChild ? [{ href: usefulLinksChild.href, label: usefulLinksChild.label }] : []),
+  ...(notesChild ? [{ href: notesChild.href, label: notesChild.label }] : []),
+];
+
+const seoTitle = home.data.seo.title ?? 'Tenzor';
+const seoDesc = home.data.seo.description ?? home.data.summary ?? '';
+---
+
+<BaseLayout
+  locale={locale}
+  title={seoTitle}
+  description={seoDesc}
+  canonicalPath={`/${locale}/`}
+  translationLinks={tLinks}
+  mainClass="site-main--home"
+  currentPath={`/${locale}/`}
+>
+  <div class="home-lede prose">
+    <Content />
+  </div>
+
+  <a class="home-search" href={searchPath(locale)}>
+    <span>{strings.searchPlaceholder}</span>
+  </a>
+
+  {
+    featured && (
+      <FeaturedItem
+        eyebrow={strings.importantNow}
+        href={postPath(featured)}
+        title={featured.data.title}
+        deck={featured.data.summary}
+        cta={strings.readMore}
+      />
+    )
+  }
+
+  <SectionIndex eyebrow={strings.explore} items={exploreItems} />
+
+  <LatestList eyebrow={strings.latest} locale={locale} items={latest} />
+
+  <QuickLinks eyebrow={strings.quickLinks} links={quickLinks} />
+</BaseLayout>
+
+<style>
+  .home-lede {
+    font: var(--home-lede);
+    color: var(--ink);
+    margin: 0 0 28px;
+  }
+  .home-lede :global(p) {
+    font: var(--home-lede);
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .home-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 36px;
+    text-decoration: none;
+  }
+  .home-search span {
+    font: 400 15px/1.4 var(--sans);
+    color: var(--ink-45);
+  }
+
+  .home-search {
+    transition: border-color 150ms ease;
+  }
+  .home-search:hover {
+    border-color: var(--accent);
+  }
+
+  :global(.site-main--home) > .home-lede,
+  :global(.site-main--home) > .home-search,
+  :global(.site-main--home) > :global(.featured),
+  :global(.site-main--home) > :global(.section-index),
+  :global(.site-main--home) > :global(.latest),
+  :global(.site-main--home) > :global(.quicklinks) {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: home-reveal 400ms ease-out forwards;
+  }
+  :global(.site-main--home) > .home-lede {
+    animation-delay: 0ms;
+  }
+  :global(.site-main--home) > .home-search {
+    animation-delay: 40ms;
+  }
+  :global(.site-main--home) > :global(.featured) {
+    animation-delay: 80ms;
+  }
+  :global(.site-main--home) > :global(.section-index) {
+    animation-delay: 120ms;
+  }
+  :global(.site-main--home) > :global(.latest) {
+    animation-delay: 160ms;
+  }
+  :global(.site-main--home) > :global(.quicklinks) {
+    animation-delay: 200ms;
+  }
+  @keyframes home-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 900px) {
+    :global(.site-main--home.site-main--home) {
+      max-width: var(--measure-wide);
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      column-gap: 56px;
+      grid-template-areas:
+        'lede lede'
+        'search search'
+        'featured sections'
+        'latest sections'
+        'quicklinks quicklinks';
+    }
+    :global(.site-main--home) > .home-lede {
+      grid-area: lede;
+    }
+    :global(.site-main--home) > .home-search {
+      grid-area: search;
+    }
+    :global(.site-main--home) > :global(.featured) {
+      grid-area: featured;
+    }
+    :global(.site-main--home) > :global(.section-index) {
+      grid-area: sections;
+      padding-left: 40px;
+      border-left: 1px solid var(--rule);
+    }
+    :global(.site-main--home) > :global(.latest) {
+      grid-area: latest;
+    }
+    :global(.site-main--home) > :global(.quicklinks) {
+      grid-area: quicklinks;
+    }
+  }
+</style>

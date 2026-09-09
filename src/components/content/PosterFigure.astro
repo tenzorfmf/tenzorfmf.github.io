@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { image } from '../../utils/media';
+
+interface Props {
+  imageKey: string;
+  alt: string;
+  caption?: string;
+}
+const { imageKey, alt, caption } = Astro.props;
+const src = image(imageKey);
+---
+
+<figure class="poster">
+  <Image
+    src={src}
+    alt={alt}
+    widths={[400, 800, 1400]}
+    sizes="(min-width: 900px) 680px, 100vw"
+    loading="lazy"
+    class="poster__image"
+  />
+  {caption && <figcaption class="poster__caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .poster {
+    margin: 0 0 16px;
+  }
+  .poster__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    border: 1px solid var(--rule);
+  }
+  .poster__caption {
+    font: var(--meta);
+    color: var(--ink-55);
+    margin-top: 6px;
+  }
+</style>

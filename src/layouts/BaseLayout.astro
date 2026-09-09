@@ -1,0 +1,129 @@
+---
+import '@fontsource-variable/source-serif-4';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-sans/700.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+import type { Locale } from '../i18n/config';
+import { t, localeHtmlLang, site } from '../utils/i18n';
+import { navTree } from '../utils/content';
+import { searchPath, homePath } from '../utils/routes';
+import BaseHead from '../components/shared/BaseHead.astro';
+import SiteHeader from '../components/navigation/SiteHeader.astro';
+import MenuOverlay from '../components/navigation/MenuOverlay.astro';
+import SiteFooter from '../components/navigation/SiteFooter.astro';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  canonicalPath: string;
+  noindex?: boolean;
+  translationLinks?: { locale: Locale; href: string | null }[];
+  currentPath?: string;
+  mainClass?: string;
+  wide?: boolean;
+  pagefindBody?: boolean;
+  pagefindFilters?: Record<string, string | string[]>;
+  pagefindMeta?: Record<string, string>;
+}
+
+const {
+  locale,
+  title,
+  description,
+  canonicalPath,
+  noindex = false,
+  translationLinks = [],
+  currentPath = canonicalPath,
+  mainClass = '',
+  wide = false,
+  pagefindBody = true,
+  pagefindFilters = {},
+  pagefindMeta = {},
+} = Astro.props;
+
+// Pagefind reads one filter key per element; emit a hidden block, one line each.
+const filterPairs: [string, string][] = Object.entries(pagefindFilters).flatMap(([k, v]) =>
+  Array.isArray(v) ? v.map((vv) => [k, vv] as [string, string]) : [[k, String(v)] as [string, string]],
+);
+const metaPairs: [string, string][] = Object.entries(pagefindMeta);
+
+const strings = t(locale);
+const tree = await navTree(locale);
+
+const domains = tree.map((n) => ({ href: n.href, label: n.label }));
+const homeHref = homePath(locale);
+const searchHref = searchPath(locale);
+
+const financeNode = tree.find((n) => n.entry.data.translationKey === 'section-finance');
+const contactChild = tree
+  .flatMap((n) => n.children)
+  .find((c) => c.entry.data.translationKey === 'contacts');
+const contactHref = contactChild?.href ?? homeHref;
+
+const utilityLinks = [
+  { href: `${homeHref}#latest`, label: strings.news },
+  ...(financeNode ? [{ href: financeNode.href, label: strings.documents }] : []),
+  { href: contactHref, label: strings.contacts },
+];
+
+const mainClasses = ['site-main', mainClass, wide ? 'site-main--wide' : ''].filter(Boolean).join(' ');
+---
+
+<!doctype html>
+<html lang={localeHtmlLang(locale)}>
+  <head>
+    <BaseHead
+      locale={locale}
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      noindex={noindex}
+      hreflang={translationLinks}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{strings.skipToContent}</a>
+    <div class="frame">
+      <SiteHeader
+        locale={locale}
+        homeHref={homeHref}
+        brandName={site.brand.name}
+        domains={domains}
+        currentPath={currentPath}
+        translationLinks={translationLinks}
+      />
+      <MenuOverlay
+        locale={locale}
+        searchHref={searchHref}
+        domains={domains}
+        utilityLinks={utilityLinks}
+        translationLinks={translationLinks}
+      />
+      <main
+        id="main"
+        class={mainClasses}
+        {...(pagefindBody ? { 'data-pagefind-body': true } : { 'data-pagefind-ignore': true })}
+      >
+        {
+          pagefindBody && (filterPairs.length > 0 || metaPairs.length > 0) && (
+            <div hidden>
+              {filterPairs.map(([k, v]) => (
+                <span data-pagefind-filter={k}>{v}</span>
+              ))}
+              {metaPairs.map(([k, v]) => (
+                <span data-pagefind-meta={k}>{v}</span>
+              ))}
+            </div>
+          )
+        }
+        <slot />
+      </main>
+      <SiteFooter locale={locale} contactHref={contactHref} />
+    </div>
+  </body>
+</html>
