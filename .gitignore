@@ -13,3 +13,7 @@ public/pagefind/
 .env.*
 .DS_Store
 *.log
+
+# local agent config (token-auth MCP servers)
+.mcp.json
+.claude/settings.local.json
