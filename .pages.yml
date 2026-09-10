@@ -1,0 +1,610 @@
+# Pages CMS configuration for tenzorfmf/tenzorfmf.github.io
+# https://pagescms.org/docs/configuration/
+#
+# Content remains Git-native. Astro's Zod schema and the existing GitHub Actions
+# validation/build pipeline remain the authoritative validation layer.
+
+media:
+  # Astro-managed images. `output: .` keeps stored references relative to
+  # src/assets/media/images, matching hero.src values such as
+  # `news/om-fmf-job-shadowing.webp`.
+  - name: images
+    label: Slike / Images
+    input: src/assets/media/images
+    output: .
+    categories: [image]
+    rename: safe
+
+  # Files in public/ are served from the site root, so this maps repository
+  # files to attachment paths such as `/media/documents/program.pdf`.
+  - name: documents
+    label: Dokumenti / Documents
+    input: public/media/documents
+    output: /media/documents
+    extensions: [pdf]
+    rename: safe
+
+components:
+  translation_key:
+    type: string
+    label: Translation key
+    required: true
+    description: Stable language-independent ID. Slovenian and English versions must use the same value.
+    pattern:
+      regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      message: Use lowercase ASCII words separated by single hyphens.
+
+  slug:
+    type: string
+    label: Slug
+    required: true
+    description: Locale-specific URL segment. Use lowercase ASCII words separated by hyphens.
+    pattern:
+      regex: "^(?:/|[a-z0-9]+(?:-[a-z0-9]+)*)$"
+      message: Use lowercase ASCII words separated by single hyphens (or / for the home page).
+
+  hero:
+    type: object
+    label: Hero image
+    fields:
+      - name: src
+        label: Image
+        type: image
+        required: true
+        options:
+          media: images
+          categories: [image]
+          rename: safe
+      - name: alt
+        label: Alt text
+        type: string
+        required: true
+        description: Required accessibility description; never leave empty.
+      - name: caption
+        label: Caption
+        type: string
+
+  attachments:
+    type: object
+    label: Attachments
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{label}"
+    fields:
+      - name: label
+        label: Label
+        type: string
+        required: true
+      - name: path
+        label: File
+        type: file
+        required: true
+        options:
+          media: documents
+          extensions: [pdf]
+          rename: safe
+      - name: mediaType
+        label: Media type
+        type: string
+        required: true
+        default: application/pdf
+        description: MIME type; PDFs should use application/pdf.
+      - name: language
+        label: Language
+        type: select
+        options:
+          values:
+            - name: sl
+              label: Slovenščina
+            - name: en
+              label: English
+
+  sources:
+    type: object
+    label: Sources
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{label}"
+    fields:
+      - name: label
+        label: Label
+        type: string
+        required: true
+      - name: url
+        label: URL
+        type: string
+        required: true
+      - name: archivedUrl
+        label: Archived URL
+        type: string
+        description: Optional archive copy (for example, Internet Archive).
+      - name: accessedAt
+        label: Accessed at
+        type: date
+        default: ""
+        options:
+          format: yyyy-MM-dd
+
+  post_event:
+    type: object
+    label: Event details
+    description: Fill this only when kind is event. Astro requires start and timezone for event posts.
+    fields:
+      - name: start
+        label: Start
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ss"
+      - name: end
+        label: End
+        type: date
+        default: ""
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ss"
+      - name: timezone
+        label: Time zone
+        type: string
+        required: true
+        description: Usually Europe/Ljubljana.
+      - name: venue
+        label: Venue
+        type: string
+      - name: address
+        label: Address
+        type: string
+
+  post_search:
+    type: object
+    label: Search
+    fields:
+      - name: include
+        label: Include in search
+        type: boolean
+        default: true
+      - name: type
+        label: Search type
+        type: select
+        default: news
+        options:
+          values:
+            - page
+            - news
+            - event
+            - document
+            - person
+            - archive
+
+  page_search:
+    type: object
+    label: Search
+    fields:
+      - name: include
+        label: Include in search
+        type: boolean
+        default: true
+      - name: type
+        label: Search type
+        type: select
+        default: page
+        options:
+          values:
+            - page
+            - person
+            - document
+            - archive
+
+  nav:
+    type: object
+    label: Navigation
+    required: true
+    fields:
+      - name: include
+        label: Include in navigation
+        type: boolean
+        default: false
+      - name: label
+        label: Navigation label
+        type: string
+        required: true
+        description: Required by the Astro schema even when the page is not shown in navigation.
+      - name: section
+        label: Navigation section
+        type: select
+        required: true
+        default: main
+        options:
+          values:
+            - main
+            - utility
+      - name: parent
+        label: Parent translation key
+        type: string
+        description: Leave empty for a top-level domain; otherwise use its translationKey.
+      - name: order
+        label: Order
+        type: number
+        default: 999
+
+  seo:
+    type: object
+    label: SEO
+    fields:
+      - name: title
+        label: SEO title
+        type: string
+      - name: description
+        label: Meta description
+        type: text
+      - name: noindex
+        label: Noindex
+        type: boolean
+        default: false
+
+content:
+  - name: posts
+    label: Objave / Posts
+    type: group
+    items:
+      - name: posts_sl
+        label: Objave — SL
+        type: collection
+        path: src/content/posts/sl
+        format: yaml-frontmatter
+        subfolders: false
+        filename:
+          template: "{publishedAt}--{translationKey}.md"
+          field: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        view:
+          fields: [title, kind, publishedAt, category, draft, featured]
+          primary: title
+          sort: [publishedAt, title, kind, category]
+          search: [title, summary, translationKey, slug, category, tags]
+          default:
+            sort: publishedAt
+            order: desc
+        fields:
+          - name: translationKey
+            component: translation_key
+          - name: lang
+            type: string
+            hidden: true
+            default: sl
+          - name: title
+            label: Naslov
+            type: string
+            required: true
+          - name: slug
+            component: slug
+          - name: summary
+            label: Povzetek
+            type: text
+            required: true
+            description: One concise sentence; required by the Astro post schema.
+          - name: kind
+            label: Vrsta
+            type: select
+            required: true
+            default: news
+            options:
+              values:
+                - name: news
+                  label: Novica
+                - name: statement
+                  label: Izjava
+                - name: event
+                  label: Dogodek
+                - name: document
+                  label: Dokument
+                - name: archive
+                  label: Arhiv
+          - name: publishedAt
+            label: Datum objave
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: category
+            label: Kategorija
+            type: string
+            required: true
+            description: Free text; also determines the section targeted by the back link.
+          - name: tags
+            label: Oznake
+            type: string
+            list: true
+          - name: featured
+            label: Izpostavljeno
+            type: boolean
+            default: false
+            description: Only one featured post per locale should normally be active.
+          - name: draft
+            label: Osnutek
+            type: boolean
+            default: false
+          - name: hero
+            component: hero
+          - name: attachments
+            component: attachments
+          - name: sources
+            component: sources
+          - name: event
+            component: post_event
+          - name: search
+            component: post_search
+          - name: aliases
+            label: Stari URL-ji / aliases
+            type: string
+            list: true
+            pattern:
+              regex: "^/.*"
+              message: Aliases must be site-absolute paths beginning with /.
+          - name: body
+            label: Vsebina
+            type: rich-text
+            options:
+              format: markdown
+              switcher: true
+              media: images
+              rename: safe
+
+      - name: posts_en
+        label: Posts — EN
+        type: collection
+        path: src/content/posts/en
+        format: yaml-frontmatter
+        subfolders: false
+        filename:
+          template: "{publishedAt}--{translationKey}.md"
+          field: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        view:
+          fields: [title, kind, publishedAt, category, draft, featured]
+          primary: title
+          sort: [publishedAt, title, kind, category]
+          search: [title, summary, translationKey, slug, category, tags]
+          default:
+            sort: publishedAt
+            order: desc
+        fields:
+          - name: translationKey
+            component: translation_key
+          - name: lang
+            type: string
+            hidden: true
+            default: en
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: slug
+            component: slug
+          - name: summary
+            label: Summary
+            type: text
+            required: true
+            description: One concise sentence; required by the Astro post schema.
+          - name: kind
+            label: Kind
+            type: select
+            required: true
+            default: news
+            options:
+              values:
+                - news
+                - statement
+                - event
+                - document
+                - archive
+          - name: publishedAt
+            label: Publication date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: category
+            label: Category
+            type: string
+            required: true
+            description: Free text; also determines the section targeted by the back link.
+          - name: tags
+            label: Tags
+            type: string
+            list: true
+          - name: featured
+            label: Featured
+            type: boolean
+            default: false
+            description: Only one featured post per locale should normally be active.
+          - name: draft
+            label: Draft
+            type: boolean
+            default: false
+          - name: hero
+            component: hero
+          - name: attachments
+            component: attachments
+          - name: sources
+            component: sources
+          - name: event
+            component: post_event
+          - name: search
+            component: post_search
+          - name: aliases
+            label: Legacy URLs / aliases
+            type: string
+            list: true
+            pattern:
+              regex: "^/.*"
+              message: Aliases must be site-absolute paths beginning with /.
+          - name: body
+            label: Body
+            type: rich-text
+            options:
+              format: markdown
+              switcher: true
+              media: images
+              rename: safe
+
+  - name: pages
+    label: Strani / Pages
+    type: group
+    items:
+      - name: pages_sl
+        label: Strani — SL
+        type: collection
+        path: src/content/pages/sl
+        format: yaml-frontmatter
+        subfolders: false
+        filename:
+          template: "{translationKey}.mdx"
+          field: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        view:
+          fields: [title, slug, draft, nav.include, nav.order]
+          primary: title
+          sort: [title, nav.order]
+          search: [title, summary, translationKey, slug, nav.label]
+          default:
+            sort: title
+            order: asc
+        fields:
+          - name: translationKey
+            component: translation_key
+          - name: lang
+            type: string
+            hidden: true
+            default: sl
+          - name: title
+            label: Naslov
+            type: string
+            required: true
+          - name: slug
+            component: slug
+          - name: summary
+            label: Povzetek
+            type: text
+            required: true
+            description: The Astro schema allows null, but CMS-created pages should normally provide a summary.
+          - name: draft
+            label: Osnutek
+            type: boolean
+            default: false
+          - name: nav
+            component: nav
+          - name: search
+            component: page_search
+          - name: seo
+            component: seo
+          - name: aliases
+            label: Stari URL-ji / aliases
+            type: string
+            list: true
+            pattern:
+              regex: "^/.*"
+              message: Aliases must be site-absolute paths beginning with /.
+          - name: attachments
+            component: attachments
+          - name: hero
+            component: hero
+          - name: body
+            label: MDX vsebina
+            type: code
+            description: Kept as source code so imports and Astro/MDX components are preserved exactly.
+            options:
+              format: mdx
+
+      - name: pages_en
+        label: Pages — EN
+        type: collection
+        path: src/content/pages/en
+        format: yaml-frontmatter
+        subfolders: false
+        filename:
+          template: "{translationKey}.mdx"
+          field: false
+        operations:
+          create: true
+          rename: false
+          delete: false
+        view:
+          fields: [title, slug, draft, nav.include, nav.order]
+          primary: title
+          sort: [title, nav.order]
+          search: [title, summary, translationKey, slug, nav.label]
+          default:
+            sort: title
+            order: asc
+        fields:
+          - name: translationKey
+            component: translation_key
+          - name: lang
+            type: string
+            hidden: true
+            default: en
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: slug
+            component: slug
+          - name: summary
+            label: Summary
+            type: text
+            required: true
+            description: The Astro schema allows null, but CMS-created pages should normally provide a summary.
+          - name: draft
+            label: Draft
+            type: boolean
+            default: false
+          - name: nav
+            component: nav
+          - name: search
+            component: page_search
+          - name: seo
+            component: seo
+          - name: aliases
+            label: Legacy URLs / aliases
+            type: string
+            list: true
+            pattern:
+              regex: "^/.*"
+              message: Aliases must be site-absolute paths beginning with /.
+          - name: attachments
+            component: attachments
+          - name: hero
+            component: hero
+          - name: body
+            label: MDX body
+            type: code
+            description: Kept as source code so imports and Astro/MDX components are preserved exactly.
+            options:
+              format: mdx
+
+settings:
+  # Preserve frontmatter keys not represented above. This is useful while the
+  # Astro schema evolves and avoids destructive rewrites of legacy metadata.
+  content:
+    merge: true
+
+  commit:
+    identity: user
+    templates:
+      create: "content: create {path} via Pages CMS"
+      update: "content: update {path} via Pages CMS"
+      delete: "content: delete {path} via Pages CMS"
+      rename: "content: rename {oldPath} -> {newPath} via Pages CMS"
