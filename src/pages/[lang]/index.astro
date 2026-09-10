@@ -195,9 +195,9 @@ const seoDesc = home.data.seo.description ?? home.data.summary ?? '';
 
   @media (min-width: 900px) {
     :global(.site-main--home.site-main--home) {
-      max-width: var(--measure-wide);
+      max-width: calc(var(--measure-wide) + 60px);
       display: grid;
-      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       column-gap: 56px;
       grid-template-areas:
         'lede lede'
