@@ -1,0 +1,42 @@
+---
+translationKey: "scholarships"
+lang: "sl"
+title: "Štipendije"
+slug: "stipendije"
+summary: "Povezave do državne, Zoisove in kadrovske štipendije ter posebnih dosežkov za Zoisovo štipendijo."
+updatedAt: 2026-09-28
+nav:
+  include: true
+  label: "Štipendije"
+  parent: "section-students"
+  order: 92
+seo:
+  title: "Štipendije | Tenzor"
+  description: "Povezave do državne, Zoisove in kadrovske štipendije ter posebnih dosežkov za Zoisovo štipendijo."
+  noindex: false
+---
+
+import LinkTree from '@/components/content/LinkTree.astro';
+import PageIntro from '@/components/content/PageIntro.astro';
+
+<PageIntro text={frontmatter.summary} />
+
+<LinkTree>
+
+## Štipendije
+
+- [Državna štipendija](https://e-uprava.gov.si/si/podrocja/izobrazevanje-kultura/stipendije/drzavna-stipendija.html)
+- [Zoisova štipendija](https://www.srips-rs.si/stipendije/zois)
+- [Kadrovska štipendija](https://www.srips-rs.si/stipendije/kadrovske-stipendije)
+
+## Posebni dosežki za Zoisovo štipendijo
+
+Objava v reviji:
+
+- [Revija Matrika](https://matrika.fmf.uni-lj.si/index.html)
+
+Tekmovanja:
+
+- [Vegovo priznanje (DMFA)](https://www.dmfa.si/Tekmovanja/MaVS/OpisTekmovanj.aspx)
+
+</LinkTree>

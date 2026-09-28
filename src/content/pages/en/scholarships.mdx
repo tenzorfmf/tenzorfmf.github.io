@@ -1,0 +1,42 @@
+---
+translationKey: "scholarships"
+lang: "en"
+title: "Scholarships"
+slug: "scholarships"
+summary: "Links to the state, Zois, and employer-sponsored scholarships, plus qualifying achievements for the Zois scholarship."
+updatedAt: 2026-09-28
+nav:
+  include: true
+  label: "Scholarships"
+  parent: "section-students"
+  order: 92
+seo:
+  title: "Scholarships | Tenzor"
+  description: "Links to the state, Zois, and employer-sponsored scholarships, plus qualifying achievements for the Zois scholarship."
+  noindex: false
+---
+
+import LinkTree from '@/components/content/LinkTree.astro';
+import PageIntro from '@/components/content/PageIntro.astro';
+
+<PageIntro text={frontmatter.summary} />
+
+<LinkTree>
+
+## Scholarships
+
+- [State scholarship](https://e-uprava.gov.si/si/podrocja/izobrazevanje-kultura/stipendije/drzavna-stipendija.html)
+- [Zois scholarship](https://www.srips-rs.si/stipendije/zois)
+- [Employer-sponsored scholarship](https://www.srips-rs.si/stipendije/kadrovske-stipendije)
+
+## Qualifying special achievements for the Zois Scholarship
+
+Publication in a journal:
+
+- [Matrika journal](https://matrika.fmf.uni-lj.si/index.html)
+
+Competitions:
+
+- [Vegovo priznanje (DMFA)](https://www.dmfa.si/Tekmovanja/MaVS/OpisTekmovanj.aspx)
+
+</LinkTree>
