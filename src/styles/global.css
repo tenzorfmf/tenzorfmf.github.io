@@ -242,10 +242,10 @@ img {
 }
 
 /* ============================================================
-   Desktop — one breakpoint, 900px (§7.6).
+   Desktop — one breakpoint, 1100px.
    Prose stays capped at --measure; type & spacing step up.
    ============================================================ */
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .prose {
     font: 400 15px/1.75 var(--sans);
   }
