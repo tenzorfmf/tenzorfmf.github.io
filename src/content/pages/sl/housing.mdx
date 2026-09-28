@@ -18,6 +18,7 @@ seo:
 
 import LinkTree from '@/components/content/LinkTree.astro';
 import PageIntro from '@/components/content/PageIntro.astro';
+import SheetEmbed from '@/components/content/SheetEmbed.astro';
 
 <PageIntro text={frontmatter.summary} />
 
@@ -51,6 +52,14 @@ import PageIntro from '@/components/content/PageIntro.astro';
 
 - [mojcimer.si](https://www.mojcimer.si/) — stran je namenjena predvsem primorski regiji, občasno se najde tudi kaj za Ljubljano
 
-**Poišči cimra ali cimro na FMF.** Če želiš oddati oglas, nam piši na [tenzorfmf@proton.me](mailto:tenzorfmf@proton.me?subject=I%C5%A1%C4%8Dem%20sostanovalca%20ali%20sostanovalko).
-
 </LinkTree>
+
+**Poišči cimra ali cimro na FMF.** Če se preglednica ne naloži, jo odpri prek povezave pod njo.
+
+<SheetEmbed
+  url="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_q2Q4rjNys7_MOTzzY5DIIr0QxVY-5m3W1KcQoOhmQJLZjGYhFpDTLhzWiOv0y6VVMzc2Xk7pax9y/pubhtml?widget=true&headers=false"
+  title="Iskanje cimra na FMF"
+  fallbackLabel="Odpri preglednico cimrov v Google Preglednicah ↗"
+/>
+
+<a class="button" href="https://docs.google.com/spreadsheets/d/1GUyTS54J-hQ_OfEgCD6qlpT1CB28IeDMetL-FRTidcc/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Dodaj svoj oglas ↗</a>

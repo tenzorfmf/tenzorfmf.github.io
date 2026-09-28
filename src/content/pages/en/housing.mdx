@@ -18,6 +18,7 @@ seo:
 
 import LinkTree from '@/components/content/LinkTree.astro';
 import PageIntro from '@/components/content/PageIntro.astro';
+import SheetEmbed from '@/components/content/SheetEmbed.astro';
 
 <PageIntro text={frontmatter.summary} />
 
@@ -51,6 +52,14 @@ import PageIntro from '@/components/content/PageIntro.astro';
 
 - [mojcimer.si](https://www.mojcimer.si/) — mostly aimed at the Primorska region, but Ljubljana listings turn up occasionally
 
-**Find a flatmate at FMF.** If you'd like to post a listing, write to us at [tenzorfmf@proton.me](mailto:tenzorfmf@proton.me?subject=Looking%20for%20a%20flatmate).
-
 </LinkTree>
+
+**Find a flatmate at FMF.** If the spreadsheet doesn't load, open it via the link below.
+
+<SheetEmbed
+  url="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_q2Q4rjNys7_MOTzzY5DIIr0QxVY-5m3W1KcQoOhmQJLZjGYhFpDTLhzWiOv0y6VVMzc2Xk7pax9y/pubhtml?widget=true&headers=false"
+  title="Finding a flatmate at FMF"
+  fallbackLabel="Open the flatmate spreadsheet in Google Sheets ↗"
+/>
+
+<a class="button" href="https://docs.google.com/spreadsheets/d/1GUyTS54J-hQ_OfEgCD6qlpT1CB28IeDMetL-FRTidcc/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Add your listing ↗</a>

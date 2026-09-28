@@ -133,6 +133,19 @@ img {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.prose a.button,
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--on-ink);
+  padding: 10px 16px;
+  font: var(--button);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+.button:hover {
+  opacity: 0.85;
+}
 .prose ul,
 .prose ol {
   font: var(--list);
