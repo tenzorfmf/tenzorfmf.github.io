@@ -1,20 +1,15 @@
-// Separate Cloudflare Worker for the `dev` branch. The existing production
-// Worker (`tenzorfmf-github-io`) remains attached to tenzor-fmf.org.
+// Cloudflare's production Worker. The dev workflow uses `wrangler preview`
+// against this Worker, so it updates the existing `dev` Preview without
+// deploying production.
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "tenzor-fmf-dev",
+  "name": "tenzorfmf-github-io",
   "account_id": "2e62c15f5af47ec2ab7b0ad7084d1b7b",
   "compatibility_date": "2026-09-30",
-  "workers_dev": true,
-  "routes": [
-    {
-      "pattern": "dev.tenzor-fmf.org",
-      "custom_domain": true
-    }
-  ],
   "assets": {
     "directory": "./dist/",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  "previews": {}
 }
