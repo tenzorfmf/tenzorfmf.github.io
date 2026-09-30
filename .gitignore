@@ -8,6 +8,9 @@ dist/
 # pagefind
 public/pagefind/
 
+# wrangler local state
+.wrangler/
+
 # env / editor
 .env
 .env.*
