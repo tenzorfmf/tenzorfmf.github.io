@@ -40,7 +40,8 @@ jobs:
           set -o pipefail
           output="$(npx wrangler preview --worker-name tenzorfmf-github-io --name dev --json)"
           printf '%s\n' "$output"
-          url="$(printf '%s' "$output" | jq -er '.preview.urls[0]')"
+          # Wrangler writes upload progress before the JSON document.
+          url="$(printf '%s\n' "$output" | sed -n '/^{/,$p' | jq -er '.preview.urls[0]')"
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Preview: $url" >> "$GITHUB_STEP_SUMMARY"
         env:
