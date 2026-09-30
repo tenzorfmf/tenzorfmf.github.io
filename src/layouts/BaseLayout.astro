@@ -162,21 +162,21 @@ const mainClasses = ['site-main', mainClass, wide ? 'site-main--wide' : ''].filt
             document.body.append(hex);
             logo.style.opacity = '0';
             setTimeout(function () {
-              hex.classList.add('is-in');
-            }, 50);
-            setTimeout(function () {
-              // Fly to the real logo, measured now rather than hard-coded.
+              // Fly to the real logo, measured now rather than hard-coded. The scale
+              // uses the untransformed CSS width so a still-settling entrance can't skew it.
               var a = hex.getBoundingClientRect();
               var b = logo.getBoundingClientRect();
               var dx = b.left + b.width / 2 - (a.left + a.width / 2);
               var dy = b.top + b.height / 2 - (a.top + a.height / 2);
-              hex.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + b.width / a.width + ')';
+              var s = b.width / parseFloat(getComputedStyle(hex).width);
+              hex.classList.add('is-flying');
+              hex.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')';
               root.dataset.intro = 'run';
-            }, 850);
+            }, 350);
             setTimeout(function () {
               logo.style.opacity = '';
               hex.remove();
-            }, 1460);
+            }, 810);
           })();
         </script>
       )
