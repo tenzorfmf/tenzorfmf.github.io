@@ -222,7 +222,7 @@ komponent**:
 - domena je nastavljena v `astro.config.mjs`, `scripts/build-redirects.mjs` in `public/CNAME`
 - `public/CNAME` — domena za GitHub Pages
 
-Vsebina (`src/content/`), logotip (`src/assets/brand/tenzor-mark.svg`) in
+Vsebina (`src/content/`), logotip (vgrajen SVG v `src/components/navigation/SiteHeader.astro`) in
 `public/favicon.svg` so seveda specifični za Tenzor.
 
 ---

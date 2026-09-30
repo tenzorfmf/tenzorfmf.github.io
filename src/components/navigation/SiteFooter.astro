@@ -11,48 +11,59 @@ const strings = t(locale);
 const o = org(locale);
 ---
 
-<footer class="site-footer">
-  <span class="site-footer__org">{o.footerText}</span>
-  <div class="site-footer__links">
-    <a href={contactHref}>{strings.contacts}</a>
+<footer class="site-footer" data-reveal style="--d: 0.7s">
+  <svg class="site-footer__cube" viewBox="0 0 100 115.5" aria-hidden="true" focusable="false">
+    <polygon points="50,0 100,28.9 50,57.7 0,28.9" fill="#E6007E"></polygon>
+    <polygon points="0,28.9 50,57.7 50,115.5 0,86.6" fill="#FFCE00"></polygon>
+    <polygon points="100,28.9 50,57.7 50,115.5 100,86.6" fill="#0090F5"></polygon>
+  </svg>
+  <div class="site-footer__contact">
+    <a class="site-footer__label" href={contactHref}>{strings.contacts}</a>
     <a href={`mailto:${o.contact.email}`}>{o.contact.email}</a>
-    <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">{o.contact.instagram}</a>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    padding: var(--pad);
-    border-top: 1px solid var(--ink);
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-footer-wrap);
-    justify-content: space-between;
+    position: relative;
+    min-height: 320px;
+    margin-top: 10px;
+    padding: 50px 30px 0;
+    overflow: hidden;
+  }
+  .site-footer__cube {
+    position: absolute;
+    width: 220px;
+    left: 210px;
+    top: 120px;
+  }
+  .site-footer__contact {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--paper);
+    padding: 10px 12px 12px 0;
     font: var(--footer);
-    color: var(--ink-60);
   }
-  .site-footer__links {
-    display: flex;
-    gap: var(--gap-footer-links);
-    flex-wrap: wrap;
-  }
-  .site-footer__links a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .site-footer__links a:hover {
-    text-decoration: underline;
-  }
-  .site-footer__links a {
+  .site-footer__contact a {
+    color: var(--ink);
     transition: color 150ms ease;
   }
-  .site-footer__links a:hover {
-    color: var(--ink);
+  .site-footer__contact a:hover {
+    color: var(--accent);
+  }
+  .site-footer__contact .site-footer__label {
+    font: var(--eyebrow);
+    letter-spacing: var(--eyebrow-tracking);
+    text-transform: uppercase;
+    text-decoration: none;
   }
   @media (min-width: 1100px) {
-    .site-footer {
-      padding-left: 0;
-      padding-right: 0;
+    .site-footer__cube {
+      left: auto;
+      right: -40px;
     }
   }
 </style>

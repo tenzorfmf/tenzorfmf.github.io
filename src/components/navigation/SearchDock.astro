@@ -1,0 +1,111 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t } from '../../utils/i18n';
+
+interface Props {
+  locale: Locale;
+  searchHref: string;
+}
+const { locale, searchHref } = Astro.props;
+const strings = t(locale);
+---
+
+<div class="search-dock">
+  <form class="search-dock__form" action={searchHref} method="get" role="search">
+    <span class="search-dock__icon" aria-hidden="true"></span>
+    <input
+      class="search-dock__input"
+      type="search"
+      name="q"
+      placeholder={strings.searchPlaceholder}
+      aria-label={strings.searchLabel}
+      autocomplete="off"
+    />
+  </form>
+  <button
+    type="button"
+    class="search-dock__menu"
+    data-menu-toggle
+    aria-label={strings.openMenu}
+    aria-expanded="false"
+    aria-controls="site-menu"
+  >
+    <span aria-hidden="true"></span>
+  </button>
+</div>
+
+<style>
+  .search-dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+    padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+  }
+  .search-dock__form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--rule-field);
+    padding: 8px 0 10px;
+    transition: border-color 150ms ease;
+  }
+  .search-dock__form:focus-within {
+    border-color: var(--ink);
+  }
+  .search-dock__icon {
+    width: 13px;
+    height: 13px;
+    border: 2.5px solid var(--ink);
+    border-radius: 50%;
+    flex: none;
+  }
+  .search-dock__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+    /* 16px keeps iOS Safari from zooming on focus */
+    font: 400 16px/1.2 var(--sans);
+    color: var(--ink);
+    outline: none;
+  }
+  .search-dock__input::placeholder {
+    color: var(--ink-60);
+  }
+  .search-dock__menu {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    background: var(--ink);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .search-dock__menu span {
+    width: 13px;
+    height: 13px;
+    background: var(--yellow);
+    transform: rotate(45deg);
+    transition: transform 200ms ease;
+  }
+  .search-dock__menu:hover span {
+    transform: rotate(135deg);
+  }
+
+  @media (min-width: 1100px) {
+    .search-dock {
+      display: none;
+    }
+  }
+</style>

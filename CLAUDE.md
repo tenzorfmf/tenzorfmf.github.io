@@ -167,9 +167,10 @@ Page-type traps:
   section key, sorted by `nav.order`. The current five included sections are Program, Finance,
   Events, Students, and About; the number five is content-derived, not enforced in code.
 - Finance currently lives directly on `section-finance`; there is no finance child page.
-- The home page has extra composition in `[lang]/index.astro`: hard-coded descriptors for known
-  section keys, newest featured post, five latest non-archive/indexable posts, and quick links
-  selected by exact translation keys.
+- The home page has extra composition in `[lang]/index.astro`: the home `title` as centred h1,
+  hard-coded descriptors for known section keys, newest featured post, and five latest
+  non-archive/indexable posts. It runs a once-per-session hexagon load-in
+  (`intro` prop on `BaseLayout`, `[data-intro]`/`[data-reveal]` rules in `global.css`).
 - Members get emphasized candidate styling only when `group` exactly equals `Študentski zbor`
   or `Student Council`.
 
@@ -227,8 +228,8 @@ Post contracts and traps:
   rendering path does not and the Astro build will fail. SVG is likewise not in the hero registry.
 - Every hero and Markdown image needs meaningful non-empty alt text. The cross-file validator
   checks Markdown image alt text and referenced hero/attachment file existence.
-- Images rendered through `ContentImage.astro` use Astro responsive optimization. The brand mark
-  is a separate raw SVG imported by `SiteHeader.astro`.
+- Images rendered through `ContentImage.astro` use Astro responsive optimization. The CMYK
+  hexagon brand mark is inline SVG in `SiteHeader.astro`.
 - The only embed provider is `google-sheets`; `SheetEmbed.astro` renders a lazy iframe plus a
   human-viewable fallback link made by stripping the URL query.
 
@@ -240,12 +241,14 @@ Post contracts and traps:
   The overlay utility links are manually composed in `BaseLayout.astro`; the exported
   `utilityPages()` helper is not currently used there.
 - `BaseLayout.astro` owns the global frame, skip link, header, focus-trapped mobile menu, footer,
-  and Pagefind annotations. Preserve keyboard focus restoration, Escape/Tab behavior,
+  mobile search dock (`SearchDock.astro`, which also holds the menu toggle), and Pagefind
+  annotations. Preserve keyboard focus restoration, Escape/Tab behavior,
   `aria-expanded`, disabled translation state, and reduced-motion handling when changing UI.
-- Design direction is “Editorial / Journal”: warm paper, dark ink, burgundy accent, Source Serif
-  4 + IBM Plex Sans. Shared values belong in `src/styles/tokens.css`; Markdown and site-wide
+- Design direction is “Tenzor Mobile v5”: white paper on a light grid, near-black ink, CMYK
+  magenta/cyan/yellow accents (`--accent` is the AA-safe magenta for text), Jost (`--display`)
+  + Open Sans (`--sans`). Shared values belong in `src/styles/tokens.css`; Markdown and site-wide
   primitives belong in `global.css`; component-specific rules stay in scoped `<style>` blocks.
-- There is one intentional desktop breakpoint at 900px. Content measure is 680px; wide search/
+- There is one intentional desktop breakpoint at 1100px. Content measure is 680px; wide search/
   index measure is 860px. Preserve readable prose width and mobile-first behavior.
 - Prefer semantic HTML and existing components (`DocumentRow`, `SectionIndex`, `AttachmentList`,
   `EmptyState`, etc.) before creating near-duplicates.

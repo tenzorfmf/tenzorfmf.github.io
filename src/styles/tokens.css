@@ -1,61 +1,71 @@
 /* ============================================================
-   Tenzor design tokens — direction 1a "Editorial / Journal".
-   Every value is lifted verbatim from the blueprint artboards.
+   Tenzor design tokens — "Tenzor Mobile v5" (CMYK on white grid).
    Components must not use magic numbers; reference these tokens.
    ============================================================ */
 
 :root {
   /* ---- colour ---- */
-  --paper: #f4f0e8;
-  --ink: #241a14;
-  --accent: #7a1f1f;
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  /* Magenta for text on white; the pure brand magenta fails AA for small text. */
+  --accent: #b8005f;
 
-  --ink-85: rgba(36, 26, 20, 0.85);
-  --ink-80: rgba(36, 26, 20, 0.8);
-  --ink-75: rgba(36, 26, 20, 0.75);
-  /* WCAG 2.2 AA fix (see plan §7.1): the blueprint's .40–.60 tints render 2.4–4.3:1
-     on --paper and fail 4.5:1 for text. Content-bearing muted tokens are floored
-     at alpha .63 (>=4.5:1) while keeping a monotonic hierarchy. --ink-40 stays at
-     .40 because it is only ever the decorative 01–05 index numerals. */
-  --ink-60: rgba(36, 26, 20, 0.68);
-  --ink-55: rgba(36, 26, 20, 0.66);
-  --ink-50: rgba(36, 26, 20, 0.64);
-  --ink-45: rgba(36, 26, 20, 0.63);
-  --ink-40: rgba(36, 26, 20, 0.4);
+  /* CMYK brand fills (decorative: strips, borders, logo) */
+  --magenta: #e6007e;
+  --cyan: #0090f5;
+  --yellow: #ffce00;
 
-  --rule: rgba(36, 26, 20, 0.15);
-  --rule-chip: rgba(36, 26, 20, 0.25);
-  --tint: rgba(36, 26, 20, 0.03);
-  --on-ink: #f4f0e8;
+  --ink-85: rgba(10, 10, 10, 0.85);
+  --ink-80: rgba(10, 10, 10, 0.8);
+  --ink-75: rgba(10, 10, 10, 0.75);
+  /* Content-bearing muted tints stay >= 4.5:1 on white; --ink-40 is decorative only. */
+  --ink-60: rgba(10, 10, 10, 0.68);
+  --ink-55: rgba(10, 10, 10, 0.66);
+  --ink-50: rgba(10, 10, 10, 0.64);
+  --ink-45: rgba(10, 10, 10, 0.63);
+  --ink-40: rgba(10, 10, 10, 0.4);
+
+  --rule: #d8d8d8;
+  --rule-field: #d0d0d0;
+  --rule-chip: rgba(10, 10, 10, 0.25);
+  --tint: rgba(10, 10, 10, 0.03);
+  --on-ink: #ffffff;
+
+  /* ---- background grid ---- */
+  --grid-line: #e4e4e4;
+  --grid-width: 5px;
+  --grid-cell: 104px;
+  --grid-offset: 30px 40px;
 
   /* ---- type families ---- */
-  --serif: "Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman", serif;
-  --sans: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --display: "Jost", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --sans: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
   /* ---- type scale (element => declaration) ---- */
-  --logotype: 700 19px / 1.2 var(--serif);
-  --logotype-tracking: 0.03em;
+  --logotype: 700 19px / 1 var(--display);
+  --logotype-tracking: 0.06em;
 
-  --h1-page: 700 32px / 1.15 var(--serif);
-  --h1-document: 700 26px / 1.3 var(--serif);
-  --h1-event: 700 28px / 1.3 var(--serif);
+  --h1-home: 700 40px / 1.05 var(--display);
+  --h1-page: 700 32px / 1.15 var(--display);
+  --h1-document: 700 26px / 1.3 var(--display);
+  --h1-event: 700 28px / 1.3 var(--display);
 
-  --home-lede: 400 17px / 1.7 var(--serif);
+  --home-lede: 400 15px / 1.6 var(--sans);
   --page-intro: 400 15px / 1.7 var(--sans);
 
-  --featured-home: 700 21px / 1.3 var(--serif);
-  --featured-section: 700 18px / 1.3 var(--serif);
-  --search-result-title: 700 17px / 1.3 var(--serif);
+  --featured-home: 700 21px / 1.2 var(--display);
+  --featured-section: 700 18px / 1.3 var(--display);
+  --search-result-title: 700 17px / 1.3 var(--display);
 
-  --member-name-candidate: 700 19px / 1.25 var(--serif);
-  --member-name: 700 18px / 1.25 var(--serif);
+  --member-name-candidate: 700 19px / 1.25 var(--display);
+  --member-name: 700 18px / 1.25 var(--display);
 
-  --explore-item: 600 17px / 1.3 var(--serif);
-  --menu-item: 600 16px / 1.3 var(--serif);
-  --menu-title: 700 18px / 1.2 var(--serif);
+  --explore-item: 700 19px / 1.1 var(--display);
+  --menu-item: 600 16px / 1.3 var(--display);
+  --menu-title: 700 18px / 1.2 var(--display);
 
-  --eyebrow: 600 11px / 1.2 var(--sans);
-  --eyebrow-tracking: 0.14em;
+  --eyebrow: 700 12px / 1.2 var(--display);
+  --eyebrow-tracking: 0.16em;
 
   --subnav-tab: 600 13px / 1.2 var(--sans);
   --body: 400 14px / 1.7 var(--sans);
@@ -65,12 +75,13 @@
   --linkrow-lg: 500 14.5px / 1.4 var(--sans);
   --meta: 500 11px / 1.4 var(--sans);
   --breadcrumb: 400 12px / 1.5 var(--sans);
-  --latest-item: 400 13px / 1.5 var(--sans);
-  --explore-numeral: 600 12px / 1.2 var(--sans);
+  --latest-date: 600 12px / 1.5 var(--display);
+  --latest-item: 600 14px / 1.4 var(--sans);
+  --explore-numeral: 600 12px / 1.2 var(--display);
   --quicklink: 600 13px / 1.3 var(--sans);
-  --footer: 400 12px / 1.5 var(--sans);
-  --cta: 600 12px / 1.3 var(--sans);
-  --blockquote: 400 14px / 1.7 var(--serif);
+  --footer: 600 13px / 1.5 var(--sans);
+  --cta: 600 12px / 1.3 var(--display);
+  --blockquote: 400 14px / 1.7 var(--sans);
   --button: 600 13px / 1.2 var(--sans);
   --chip-active: 600 11px / 1.2 var(--sans);
   --chip-inactive: 500 11px / 1.2 var(--sans);
@@ -79,23 +90,24 @@
   --measure: 680px; /* prose */
   --measure-wide: 860px; /* index / archive / search rows, desktop only */
   --pad: 24px;
+  --dock-height: 72px; /* mobile search dock, excluding safe-area inset */
 
   /* section rhythm */
-  --sec-home: 40px;
+  --sec-home: 38px;
   --sec-md: 32px;
   --sec-last-pad: 40px;
 
   /* row padding */
-  --row-index: 13px;
+  --row-index: 14px;
   --row-linklist: 12px;
   --row-dense: 11px;
   --row-menu: 14px;
   --row-featured: 16px;
-  --row-latest: 9px;
+  --row-latest: 12px;
 
   /* gaps */
   --gap-header-icons: 18px;
-  --gap-logo: 10px;
+  --gap-logo: 8px;
   --gap-index-row: 14px;
   --gap-quicklinks: 20px;
   --gap-footer-links: 16px;

@@ -15,7 +15,6 @@ const en: UIStrings = {
   breadcrumbNav: 'Breadcrumb',
   latest: 'Latest',
   explore: 'Explore',
-  quickLinks: 'Quick links',
   importantNow: 'Featured',
   news: 'News',
   documents: 'Documents',
@@ -39,6 +38,14 @@ const en: UIStrings = {
   filterPerson: 'People',
   filterArchive: 'Archive',
   translationMissing: 'Translation not available',
+  switchLanguage: 'Preklopi v slovenščino',
+  kinds: {
+    news: 'News',
+    statement: 'Statement',
+    event: 'Event',
+    document: 'Document',
+    archive: 'Archive',
+  },
 };
 
 export default en;
