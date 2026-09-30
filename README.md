@@ -1,4 +1,4 @@
-# Tenzor — spletna stran
+# Tenzor — spletna stran - test
 
 Statična, večjezična spletna stran študentske liste **Tenzor** (Fakulteta za
 matematiko in fiziko, UL). Zgrajena z [Astro](https://astro.build/); vsebina je
