@@ -1,9 +1,12 @@
 name: preview-dev
 
-# Keeps a Cloudflare Worker Preview of the `dev` branch up to date at
-# https://dev-tenzor-fmf.<account-subdomain>.workers.dev (noindex by default).
-# Needs repository secrets CLOUDFLARE_API_TOKEN ("Edit Cloudflare Workers")
-# and CLOUDFLARE_ACCOUNT_ID.
+# Deploys the `dev` branch as a Cloudflare Worker with static assets at
+# https://dev.tenzor-fmf.org. Production remains on its separate Cloudflare
+# Worker and is not modified by this workflow.
+#
+# Required repository secret:
+# - CLOUDFLARE_API_TOKEN: Workers Scripts: Edit and Workers Routes: Edit for
+#   the Tenzor account, plus Zone: Read for the tenzor-fmf.org zone.
 
 on:
   push:
@@ -22,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: preview-dev
-      url: ${{ steps.preview.outputs.url }}
+      url: https://dev.tenzor-fmf.org
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,15 +35,7 @@ jobs:
       - run: npm ci
       - name: Build (Astro -> Pagefind -> redirects)
         run: npm run build
-      - id: preview
-        name: Create or update the dev Preview
-        run: |
-          set -o pipefail
-          output="$(npx wrangler preview --name dev --json)"
-          printf '%s\n' "$output"
-          url="$(printf '%s' "$output" | jq -er '.preview.urls[0]')"
-          echo "url=$url" >> "$GITHUB_OUTPUT"
-          echo "Preview: $url" >> "$GITHUB_STEP_SUMMARY"
+      - name: Deploy dev.tenzor-fmf.org
+        run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

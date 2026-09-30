@@ -227,11 +227,17 @@ Vsebina (`src/content/`), logotip (vgrajen SVG v `src/components/navigation/Site
 
 ---
 
-## Namestitev (GitHub Pages)
+## Namestitev (Cloudflare Workers)
 
 `.github/workflows/validate.yml` teče ob vsakem push/PR (tipi, validacija,
-gradnja, preverjanje povezav). `.github/workflows/deploy-pages.yml` ob push na
-`main` zgradi in objavi `dist/`. `public/CNAME` nosi `tenzor-fmf.org`.
+gradnja, preverjanje povezav). Produkcija na `https://tenzor-fmf.org` teče kot
+Cloudflare Worker `tenzorfmf-github-io` in se objavlja iz veje `main` prek
+Cloudflare Workers Builds.
 
-> Vklop GitHub Pages, dodajanje oddaljenega repozitorija, `git push` in vse
-> spremembe DNS so **dejanja vzdrževalca**, ne del te kodne baze.
+Veja `dev` se objavlja kot ločen Cloudflare Worker `tenzor-fmf-dev` na
+`https://dev.tenzor-fmf.org` prek `.github/workflows/preview-dev.yml`. Workflow
+potrebuje GitHub repository secret `CLOUDFLARE_API_TOKEN`; zahtevana Cloudflare
+dovoljenja so dokumentirana v workflowu. Custom Domain in DNS zapis ustvari
+Wrangler iz `wrangler.jsonc` ob prvi uspešni objavi.
+
+GitHub Pages se za gostovanje te strani ne uporablja.
