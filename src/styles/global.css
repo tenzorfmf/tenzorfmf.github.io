@@ -17,12 +17,7 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(90deg, var(--grid-line) var(--grid-width), transparent var(--grid-width)),
-    linear-gradient(var(--grid-line) var(--grid-width), transparent var(--grid-width));
-  background-size: var(--grid-cell) var(--grid-cell);
-  background-position: var(--grid-offset);
+  background: var(--paper);
   color: var(--ink);
   font: var(--body);
   -webkit-font-smoothing: antialiased;
@@ -60,11 +55,29 @@ img {
 
 /* ---- layout frame ---- */
 .frame {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   /* room for the fixed mobile search dock */
   padding-bottom: calc(var(--dock-height) + env(safe-area-inset-bottom));
+}
+/* Background grid: only a backdrop for the home intro, which fades it out.
+   Hidden everywhere else. z-index -1 without a stacking context on .frame
+   keeps it behind all content while the menu overlay still stacks above
+   the search dock. */
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background-image:
+    linear-gradient(90deg, var(--grid-line) var(--grid-width), transparent var(--grid-width)),
+    linear-gradient(var(--grid-line) var(--grid-width), transparent var(--grid-width));
+  background-size: var(--grid-cell) var(--grid-cell);
+  background-position: var(--grid-offset);
 }
 
 .site-header,
@@ -261,7 +274,7 @@ img {
 }
 
 /* ============================================================
-   Home load-in (first visit per session). <html data-intro>
+   Home load-in (every load of the home page). <html data-intro>
    is set by an inline head script only when JS runs and motion is
    allowed, so without it nothing is ever hidden. Elements opt in
    with data-reveal and a --d delay.
@@ -275,6 +288,13 @@ img {
 }
 [data-intro] .search-dock {
   transform: translateY(100%);
+}
+[data-intro] .frame::before {
+  opacity: 1;
+}
+[data-intro='run'] .frame::before {
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 [data-intro='run'] [data-reveal] {
   opacity: 1;

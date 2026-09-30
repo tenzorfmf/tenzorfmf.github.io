@@ -32,7 +32,7 @@ interface Props {
   pagefindBody?: boolean;
   pagefindFilters?: Record<string, string | string[]>;
   pagefindMeta?: Record<string, string>;
-  /** Home only: run the hexagon load-in on the first visit per session. */
+  /** Home only: run the hexagon load-in on every load. */
   intro?: boolean;
 }
 
@@ -94,18 +94,13 @@ const mainClasses = ['site-main', mainClass, wide ? 'site-main--wide' : ''].filt
     {
       intro && (
         <script is:inline>
-          try {
-            if (
-              !matchMedia('(prefers-reduced-motion: reduce)').matches &&
-              !sessionStorage.getItem('tenzor-intro')
-            ) {
-              document.documentElement.dataset.intro = 'pending';
-              // Failsafe: content can never stay hidden.
-              setTimeout(function () {
-                delete document.documentElement.dataset.intro;
-              }, 2500);
-            }
-          } catch (e) {}
+          if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.dataset.intro = 'pending';
+            // Failsafe: content can never stay hidden.
+            setTimeout(function () {
+              delete document.documentElement.dataset.intro;
+            }, 2500);
+          }
         </script>
       )
     }
@@ -156,9 +151,6 @@ const mainClasses = ['site-main', mainClass, wide ? 'site-main--wide' : ''].filt
           (function () {
             var root = document.documentElement;
             if (!root.dataset.intro) return;
-            try {
-              sessionStorage.setItem('tenzor-intro', '1');
-            } catch (e) {}
             var logo = document.querySelector('.site-header__mark svg');
             if (!logo) {
               root.dataset.intro = 'run';

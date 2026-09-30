@@ -169,7 +169,7 @@ Page-type traps:
 - Finance currently lives directly on `section-finance`; there is no finance child page.
 - The home page has extra composition in `[lang]/index.astro`: the home `title` as centred h1,
   hard-coded descriptors for known section keys, newest featured post, and five latest
-  non-archive/indexable posts. It runs a once-per-session hexagon load-in
+  non-archive/indexable posts. It runs a hexagon load-in on every load
   (`intro` prop on `BaseLayout`, `[data-intro]`/`[data-reveal]` rules in `global.css`).
 - Members get emphasized candidate styling only when `group` exactly equals `Študentski zbor`
   or `Student Council`.
@@ -244,7 +244,8 @@ Post contracts and traps:
   mobile search dock (`SearchDock.astro`, which also holds the menu toggle), and Pagefind
   annotations. Preserve keyboard focus restoration, Escape/Tab behavior,
   `aria-expanded`, disabled translation state, and reduced-motion handling when changing UI.
-- Design direction is “Tenzor Mobile v5”: white paper on a light grid, near-black ink, CMYK
+- Design direction is “Tenzor Mobile v5”: white paper (the light grid appears only during the
+  home intro and fades out), near-black ink, CMYK
   magenta/cyan/yellow accents (`--accent` is the AA-safe magenta for text), Jost (`--display`)
   + Open Sans (`--sans`). Shared values belong in `src/styles/tokens.css`; Markdown and site-wide
   primitives belong in `global.css`; component-specific rules stay in scoped `<style>` blocks.
