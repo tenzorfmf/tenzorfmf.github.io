@@ -61,6 +61,7 @@ const latest = posts
   .filter(
     (p) =>
       p.data.search.include !== false &&
+      p.data.latest &&
       p.data.kind !== 'archive' &&
       p.id !== featured?.id,
   )
