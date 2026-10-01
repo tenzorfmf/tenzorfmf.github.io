@@ -1,8 +1,7 @@
 name: preview-dev
 
 # Deploys the `dev` branch to the separate Cloudflare Worker `tenzor-fmf-dev`
-# at https://dev.tenzor-fmf.org. The name is also passed as a flag so this
-# keeps working regardless of the `name` in `wrangler.jsonc`.
+# at https://dev.tenzor-fmf.org, using the `dev` environment in `wrangler.jsonc`.
 #
 # Required repository secret:
 # - CLOUDFLARE_API_TOKEN: Workers Scripts: Edit and Workers Routes: Edit for
@@ -36,6 +35,6 @@ jobs:
       - name: Build (Astro -> Pagefind -> redirects)
         run: npm run build
       - name: Deploy dev.tenzor-fmf.org
-        run: npx wrangler deploy --name tenzor-fmf-dev --domain dev.tenzor-fmf.org
+        run: npx wrangler deploy --env dev
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

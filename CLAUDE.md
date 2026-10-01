@@ -62,11 +62,11 @@ fails under `npm run dev`; test search with `npm run build && npm run preview`.
 
 GitHub Actions mirrors this on all pushes/PRs in `.github/workflows/validate.yml`. A push to
 `main` is deployed by Cloudflare Workers Builds to the Worker `tenzorfmf-github-io`
-(`https://tenzor-fmf.org`). `wrangler.jsonc` is named `tenzor-fmf-dev` to match that Worker's
-Workers Builds connection; never add the dev custom domain to it. A push
-to `dev` runs `.github/workflows/preview-dev.yml`, which builds and runs
-`wrangler deploy --name tenzor-fmf-dev --domain dev.tenzor-fmf.org` (Node 22 because of wrangler;
-needs the `CLOUDFLARE_API_TOKEN` repo secret).
+(`https://tenzor-fmf.org`) from the top level of `wrangler.jsonc`. A push to `dev` runs
+`.github/workflows/preview-dev.yml`, which builds and runs `wrangler deploy --env dev` to the
+Worker `tenzor-fmf-dev` (`https://dev.tenzor-fmf.org`, Node 22 because of wrangler; needs the
+`CLOUDFLARE_API_TOKEN` repo secret). Both branches share one `wrangler.jsonc`; never put a custom
+domain at its top level.
 
 ## High-value repository map
 
