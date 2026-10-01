@@ -13,7 +13,6 @@ const sl = {
   breadcrumbNav: 'Drobtinice',
   latest: 'Najnovejše',
   explore: 'Razišči',
-  quickLinks: 'Hitre povezave',
   importantNow: 'Izpostavljeno',
   news: 'Novice',
   documents: 'Dokumenti',
@@ -37,6 +36,15 @@ const sl = {
   filterPerson: 'Ljudje',
   filterArchive: 'Arhiv',
   translationMissing: 'Prevod ni na voljo',
+  /** aria-label of the header language button; written in the target language. */
+  switchLanguage: 'Switch to English',
+  kinds: {
+    news: 'Novica',
+    statement: 'Izjava',
+    event: 'Dogodek',
+    document: 'Dokument',
+    archive: 'Arhiv',
+  } as Record<string, string>,
 };
 
 export default sl;

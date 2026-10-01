@@ -1,4 +1,4 @@
-# Tenzor — spletna stran
+# Tenzor — spletna stran - test
 
 Statična, večjezična spletna stran študentske liste **Tenzor** (Fakulteta za
 matematiko in fiziko, UL). Zgrajena z [Astro](https://astro.build/); vsebina je
@@ -222,16 +222,23 @@ komponent**:
 - domena je nastavljena v `astro.config.mjs`, `scripts/build-redirects.mjs` in `public/CNAME`
 - `public/CNAME` — domena za GitHub Pages
 
-Vsebina (`src/content/`), logotip (`src/assets/brand/tenzor-mark.svg`) in
+Vsebina (`src/content/`), logotip (vgrajen SVG v `src/components/navigation/SiteHeader.astro`) in
 `public/favicon.svg` so seveda specifični za Tenzor.
 
 ---
 
-## Namestitev (GitHub Pages)
+## Namestitev (Cloudflare Workers)
 
 `.github/workflows/validate.yml` teče ob vsakem push/PR (tipi, validacija,
-gradnja, preverjanje povezav). `.github/workflows/deploy-pages.yml` ob push na
-`main` zgradi in objavi `dist/`. `public/CNAME` nosi `tenzor-fmf.org`.
+gradnja, preverjanje povezav). Produkcija na `https://tenzor-fmf.org` teče kot
+Cloudflare Worker `tenzorfmf-github-io` in se objavlja iz veje `main` prek
+Cloudflare Workers Builds.
 
-> Vklop GitHub Pages, dodajanje oddaljenega repozitorija, `git push` in vse
-> spremembe DNS so **dejanja vzdrževalca**, ne del te kodne baze.
+Veja `dev` se objavlja kot ločen Cloudflare Worker `tenzor-fmf-dev` na
+`https://dev.tenzor-fmf.org` prek `.github/workflows/preview-dev.yml`. Workflow
+potrebuje GitHub repository secret `CLOUDFLARE_API_TOKEN`; zahtevana Cloudflare
+dovoljenja so dokumentirana v workflowu. Obe veji uporabljata isti
+`wrangler.jsonc`: vrhnja raven je produkcija, okolje `dev` (`--env dev`) pa
+dev Worker s Custom Domain `dev.tenzor-fmf.org`.
+
+GitHub Pages se za gostovanje te strani ne uporablja.

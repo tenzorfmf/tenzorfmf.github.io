@@ -31,14 +31,6 @@ const d = entry.data;
 const seoTitle = `${d.title} | ${o.organisationName}`;
 const seoDesc = d.summary;
 
-const kindLabel: Record<string, string> = {
-  news: locale === 'sl' ? 'Novica' : 'News',
-  statement: locale === 'sl' ? 'Izjava' : 'Statement',
-  event: locale === 'sl' ? 'Dogodek' : 'Event',
-  document: locale === 'sl' ? 'Dokument' : 'Document',
-  archive: locale === 'sl' ? 'Arhiv' : 'Archive',
-};
-
 /*
  * Only exceptions to the kebab-case -> Title Case fallback below: acronyms
  * (fmf, aluo, om-fmf), a spelling the tag slug doesn't carry (icozathlon),
@@ -69,7 +61,7 @@ const tagLabel = (tag: string) =>
 const year = d.publishedAt.getUTCFullYear();
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const metaParts = [
-  kindLabel[d.kind],
+  strings.kinds[d.kind],
   cap(d.category),
   ...(d.kind === 'archive' ? [] : d.tags.map(tagLabel)),
   String(year),
