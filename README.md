@@ -237,7 +237,7 @@ Cloudflare Workers Builds.
 Veja `dev` se objavlja kot ločen Cloudflare Worker `tenzor-fmf-dev` na
 `https://dev.tenzor-fmf.org` prek `.github/workflows/preview-dev.yml`. Workflow
 potrebuje GitHub repository secret `CLOUDFLARE_API_TOKEN`; zahtevana Cloudflare
-dovoljenja so dokumentirana v workflowu. Workflow uporabi `wrangler.jsonc`
-produkcije, ime Workerja in Custom Domain pa poda z `--name` in `--domain`.
+dovoljenja so dokumentirana v workflowu. `wrangler.jsonc` nosi ime
+`tenzor-fmf-dev`; Custom Domain workflow poda z `--domain`.
 
 GitHub Pages se za gostovanje te strani ne uporablja.

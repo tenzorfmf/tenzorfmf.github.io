@@ -1,8 +1,8 @@
 name: preview-dev
 
 # Deploys the `dev` branch to the separate Cloudflare Worker `tenzor-fmf-dev`
-# at https://dev.tenzor-fmf.org. `wrangler.jsonc` keeps the production name
-# (Workers Builds deploys `main` with it), so the dev name is passed as a flag.
+# at https://dev.tenzor-fmf.org. The name is also passed as a flag so this
+# keeps working regardless of the `name` in `wrangler.jsonc`.
 #
 # Required repository secret:
 # - CLOUDFLARE_API_TOKEN: Workers Scripts: Edit and Workers Routes: Edit for

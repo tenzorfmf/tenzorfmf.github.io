@@ -1,8 +1,9 @@
-// Production Worker, deployed from `main` by Cloudflare Workers Builds. The
-// dev workflow reuses this config with `--name tenzor-fmf-dev`.
+// Dev Worker (dev.tenzor-fmf.org). The name matches the Workers Builds
+// connection for `tenzor-fmf-dev`. The custom domain is passed by the dev
+// workflow, never set here, so production builds cannot claim it.
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "tenzorfmf-github-io",
+  "name": "tenzor-fmf-dev",
   "account_id": "2e62c15f5af47ec2ab7b0ad7084d1b7b",
   "compatibility_date": "2026-09-30",
   "assets": {
