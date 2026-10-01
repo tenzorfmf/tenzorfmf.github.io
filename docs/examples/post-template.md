@@ -14,6 +14,7 @@ category: "dogodki"               # free text; drives the 'back to section' targ
 tags: ["volitve"]
 authors: []
 featured: false                   # one featured post per locale shows as "Pomembno zdaj"
+latest: true                      # false hides the post from the home "Najnovejše" list
 draft: false
 
 hero: null                         # or: { src: "flyers/…png" | "/media/…png", alt: "obvezno", caption: "…" }

@@ -116,6 +116,8 @@ const posts = defineCollection({
         category: z.string().min(1),
         tags: z.array(z.string().min(1)).default([]),
         featured: z.boolean().default(false),
+        /** false keeps the post out of the home "latest" list (it stays in listings and search). */
+        latest: z.boolean().default(true),
         draft: z.boolean().default(false),
         hero: imageRef.nullable().default(null),
         attachments: z.array(attachmentItem).default([]),

@@ -134,6 +134,7 @@ komponentami namesto v frontmatterju:
 | `tags` | ne | seznam |
 | `authors` | ne | seznam |
 | `featured` | ne | `true` = ena izpostavljena objava na jezik („Pomembno zdaj“) |
+| `latest` | ne | `false` = objava se ne prikaže v seznamu „Najnovejše“ na domači strani (privzeto `true`) |
 | `hero` | ne | `{ src, alt (obvezno), caption? }` |
 | `attachments` | pri `kind: document` potreben ≥1 (ali vir) | `{ label, path (/…), mediaType, language? }` |
 | `sources` | ne | `{ label, url, archivedUrl?, accessedAt? }` |
