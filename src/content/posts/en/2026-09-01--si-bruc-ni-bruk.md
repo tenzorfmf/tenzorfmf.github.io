@@ -8,7 +8,7 @@ kind: "news"
 publishedAt: 2026-09-01
 category: "students"
 tags: ["freshers", "fmf", "student-life"]
-featured: false
+featured: true
 hero:
   src: "news/si-bruc-ni-bruk-2026.jpg"
   alt: "Cover of the post “Si bruc? Ni bruk! Na hitro o FMF” with coloured cubes on a grid"

@@ -8,7 +8,7 @@ kind: "news"
 publishedAt: 2026-09-01
 category: "študenti"
 tags: ["bruci", "fmf", "študentsko-življenje"]
-featured: false
+featured: true
 hero:
   src: "news/si-bruc-ni-bruk-2026.jpg"
   alt: "Naslovnica objave »Si bruc? Ni bruk! Na hitro o FMF« z barvnimi kockami na mreži"

@@ -8,7 +8,7 @@ kind: "news"
 publishedAt: 2026-08-30
 category: "events"
 tags: ["entalpija", "freshers", "elections", "events"]
-featured: true
+featured: false
 hero:
   src: "news/brucovanje-entalpija-2026.png"
   alt: "Poster for Entalpija, the free freshers' party organised by Tenzor FMF on 2 October at Publika"

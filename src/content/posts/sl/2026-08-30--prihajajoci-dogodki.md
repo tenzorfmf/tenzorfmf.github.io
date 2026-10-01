@@ -8,7 +8,7 @@ kind: "news"
 publishedAt: 2026-08-30
 category: "dogodki"
 tags: ["entalpija", "brucovanje", "volitve", "dogodki"]
-featured: true
+featured: false
 hero:
   src: "news/brucovanje-entalpija-2026.png"
   alt: "Plakat za brezplačni spoznavni žur Entalpija, ki ga Tenzor FMF organizira 2. 10. v Publiki"
