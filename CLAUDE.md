@@ -61,11 +61,11 @@ a fast content-only iteration. Pagefind is generated only by the full build, so 
 fails under `npm run dev`; test search with `npm run build && npm run preview`.
 
 GitHub Actions mirrors this on all pushes/PRs in `.github/workflows/validate.yml`. A push to
-`main` also runs `.github/workflows/deploy-pages.yml` and publishes `dist/`. A push to `dev`
-runs `.github/workflows/preview-dev.yml`, which builds and uploads `dist/` as the `dev` Cloudflare
-Worker Preview (`wrangler preview --name dev`, config in `wrangler.jsonc`, Node 22 because of
-wrangler; needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets). Production is
-not deployed to Cloudflare.
+`main` is deployed by Cloudflare Workers Builds to the Worker `tenzorfmf-github-io`
+(`https://tenzor-fmf.org`) using `wrangler.jsonc`, so keep that file's `name` unchanged. A push
+to `dev` runs `.github/workflows/preview-dev.yml`, which builds and runs
+`wrangler deploy --name tenzor-fmf-dev --domain dev.tenzor-fmf.org` (Node 22 because of wrangler;
+needs the `CLOUDFLARE_API_TOKEN` repo secret).
 
 ## High-value repository map
 

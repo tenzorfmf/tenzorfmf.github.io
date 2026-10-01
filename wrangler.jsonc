@@ -1,6 +1,5 @@
-// Cloudflare's production Worker. The dev workflow uses `wrangler preview`
-// against this Worker, so it updates the existing `dev` Preview without
-// deploying production.
+// Production Worker, deployed from `main` by Cloudflare Workers Builds. The
+// dev workflow reuses this config with `--name tenzor-fmf-dev`.
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "tenzorfmf-github-io",
@@ -10,6 +9,5 @@
     "directory": "./dist/",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
-  },
-  "previews": {}
+  }
 }
